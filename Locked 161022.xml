@@ -133,6 +133,11 @@
   </action>
   <action type="control_user_interface">
     <useDefaultName>true</useDefaultName>
+    <name>Control UI: </name>
+    <script></script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>true</useDefaultName>
     <name>Control UI: file_text = replace(file_text," ",""); stdout = replace(stdout," ",""); file_text = replace(file_text,"\n",""); stdout = replace(stdout,"\n","");</name>
     <script>file_text = replace(file_text," ","");
 stdout = replace(stdout," ","");
@@ -268,49 +273,6 @@ break;
   </action>
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
-    <name>GTA-A</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-
-count = 0;
-store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
-store_list_number = length(store_list) + 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
-{
-while(check_type != "ส่งอาหาร")
-{
-check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-
-check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
-
-
-for(i in [0 to store_list_number-1])
-{
-pass = contains(check_store,store_list[i]);
-if(pass == true)
-break
-}
-
-
-
-count = count +1;
-if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND pass == true)
-{
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-
-count = count + 1;
-if(count == 30)
-break;
-}
-}</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>false</useDefaultName>
     <name>GTA.6</name>
     <script>check_type = "";
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
@@ -357,330 +319,6 @@ if(count == 30)
 break;
 }
 }</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>false</useDefaultName>
-    <name>GTB</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
-{
-while(check_type != "ส่งอาหาร")
-{
-check_type = getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_delivery_type_name", 0);
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-
-count = count +1;
-if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
-{
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 30)
-break;
-}
-}</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>false</useDefaultName>
-    <name>GTB-B</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
-{
-while(check_type != "ส่งอาหาร")
-{
-check_type = getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_delivery_type_name", 0);
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-
-count = count +1;
-if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
-{
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 30)
-break;
-}
-}</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>false</useDefaultName>
-    <name>GTC</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
-{
-while(check_type != "ส่งสินค้า")
-{
-check_type = getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_delivery_type_name", 0);
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-
-count = count +1;
-if(check_type == "ส่งสินค้า" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
-{
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 30)
-break;
-}
-}</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>false</useDefaultName>
-    <name>GTC-C</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
-{
-while(check_type != "ส่งสินค้า")
-{
-check_type = getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_delivery_type_name", 0);
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-
-count = count +1;
-if(check_type == "ส่งสินค้า" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
-{
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 30)
-break;
-}
-}</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>false</useDefaultName>
-    <name>GTD</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register){
-while(check_type != "ส่งของ")
-{
-check_type = getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_delivery_type_name", 0);
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-
-count = count +1;
-if(check_type == "ส่งของ" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
-{
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 30)
-break;
-}
-}</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>false</useDefaultName>
-    <name>GTD-D</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register){
-while(check_type != "ส่งของ")
-{
-check_type = getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_delivery_type_name", 0);
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-
-count = count +1;
-if(check_type == "ส่งของ" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
-{
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 30)
-break;
-}
-}</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>false</useDefaultName>
-    <name>GTE</name>
-    <script>check_price = "";
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
-{
-while(!isEmpty(check_price))
-{
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-
-count = count +1;
-if(check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
-{
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 30)
-break;
-}
-}</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>false</useDefaultName>
-    <name>GTE-E</name>
-    <script>check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
-{
-while(!isEmpty(check_price))
-{
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-count = count +1;
-if(check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
-{
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 30)
-break;
-}
-}</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>false</useDefaultName>
-    <name>GTF</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-count = 0;
-store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
-store_list_number = length(store_list) + 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
-{
-while(check_type != "ส่งอาหาร")
-{
-check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
-
-
-for(i in [0 to store_list_number-1])
-{
-pass = contains(check_store,store_list[i]);
-if(pass == true){
-checking = 1;
-break;
-}
-
-
-if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND i == store_list_number-1)
-{
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-
-checking = 1;
-}
-
-}
-count = count+1;
-if(count == 30)
-break;
-}}
-</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>false</useDefaultName>
-    <name>GTF-F</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-count = 0;
-store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
-store_list_number = length(store_list) + 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
-{
-while(check_type != "ส่งอาหาร")
-{
-check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
-
-
-for(i in [0 to store_list_number-1])
-{
-pass = contains(check_store,store_list[i]);
-if(pass == true){
-checking = 1;
-break;
-}
-
-if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND i == store_list_number-1)
-{
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-
-checking = 1;
-}
-
-}
-count = count+1;
-if(count == 30)
-break;
-}}
-</script>
   </action>
   <action type="http_request">
     <useDefaultName>true</useDefaultName>
@@ -843,6 +481,259 @@ break;
     <enlargeDialogWidth>false</enlargeDialogWidth>
     <keyboardCapitalizeSentences>false</keyboardCapitalizeSentences>
   </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>SA</name>
+    <script>count = 0;
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+while(isEmpty(check_store))
+{
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND check_store != null)
+{
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+if(check_price == "null0"){
+check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
+else if(check_price == "null0")
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+
+for(i in [0 to store_list_number-1])
+{
+pass = contains(check_store,store_list[i]);
+if(pass == true)
+break
+}
+if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND pass == true)
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+if(clicker == true)
+{
+sleep(2);
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
+
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+}
+}
+
+}
+count = count+1;
+if(count == 30)
+break;
+}</script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>SA-A</name>
+    <script>count = 0;
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+while(isEmpty(check_store))
+{
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND check_store != null)
+{
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
+
+
+for(i in [0 to store_list_number-1])
+{
+pass = contains(check_store,store_list[i]);
+if(pass == true)
+break
+}
+if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND pass == true)
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+if(clicker == true)
+{
+sleep(2);
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
+
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+}
+}
+
+}
+count = count+1;
+if(count == 30)
+break;
+}</script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>SB</name>
+    <script>count = 0;
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+while(isEmpty(check_store))
+{
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND check_store != null)
+{
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+if(check_price == "null0"){
+check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
+else if(check_price == "null0")
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+
+for(i in [0 to store_list_number-1])
+{
+pass = contains(check_store,store_list[i]);
+if(pass == true){
+checking = 1;
+break;
+}
+
+if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND i == store_list_number-1)
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+if(clicker == true)
+{
+sleep(2);
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
+
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+}
+checking = 1;
+}
+
+}
+}
+count = count+1;
+if(count == 30)
+break;
+}</script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>SB-B</name>
+    <script>count = 0;
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+while(isEmpty(check_store))
+{
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND check_store != null)
+{
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
+
+
+for(i in [0 to store_list_number-1])
+{
+pass = contains(check_store,store_list[i]);
+if(pass == true){
+checking = 1;
+break;
+}
+
+if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND i == store_list_number-1)
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+if(clicker == true)
+{
+sleep(2);
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
+
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+}
+checking = 1;
+}
+
+}
+}
+count = count+1;
+if(count == 30)
+break;
+}</script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>SC</name>
+    <script>count = 0;
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+while(isEmpty(check_store))
+{
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND check_store != null)
+{
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+if(check_price == "null0"){
+check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
+else if(check_price == "null0")
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+
+if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+if(clicker == true)
+{
+sleep(2);
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
+
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+}
+checking = 1;
+}
+
+}
+count = count+1;
+if(count == 30)
+break;
+}</script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>SC-C</name>
+    <script>count = 0;
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+while(isEmpty(check_store))
+{
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND check_store != null)
+{
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
+
+
+if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+if(clicker == true)
+{
+sleep(2);
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
+
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+}
+checking = 1;
+}
+
+}
+count = count+1;
+if(count == 30)
+break;
+}</script>
+  </action>
   <action type="script">
     <useDefaultName>true</useDefaultName>
     <name>Script: global_authorized = false; global_name = false; global_register = false; global_store = false;</name>
@@ -947,6 +838,156 @@ result = false;
 else
 global_authorized = result</script>
   </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>SD</name>
+    <script>count = 0;
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+while(isEmpty(check_store))
+{
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND check_store != null)
+{
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+if(check_price == "null0"){
+check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
+else if(check_price == "null0")
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+
+if(check_type == "ส่งสินค้า" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+if(clicker == true)
+{
+sleep(2);
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
+
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+}
+checking = 1;
+}
+
+}
+count = count+1;
+if(count == 30)
+break;
+}</script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>SD-D</name>
+    <script>count = 0;
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+while(isEmpty(check_store))
+{
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND check_store != null)
+{
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
+
+
+if(check_type == "ส่งสินค้า" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+if(clicker == true)
+{
+sleep(2);
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
+
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+}
+checking = 1;
+}
+
+}
+count = count+1;
+if(count == 30)
+break;
+}</script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>SE</name>
+    <script>count = 0;
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+while(isEmpty(check_store))
+{
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND check_store != null)
+{
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+if(check_price == "null0"){
+check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
+else if(check_price == "null0")
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+
+if(check_type == "ส่งของ" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+if(clicker == true)
+{
+sleep(2);
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
+
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+}
+checking = 1;
+}
+
+}
+count = count+1;
+if(count == 30)
+break;
+}</script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>SE-E</name>
+    <script>count = 0;
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+while(isEmpty(check_store))
+{
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND check_store != null)
+{
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
+
+
+if(check_type == "ส่งของ" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+if(clicker == true)
+{
+sleep(2);
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
+
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+}
+checking = 1;
+}
+
+}
+count = count+1;
+if(count == 30)
+break;
+}</script>
+  </action>
   <action type="set_flow_state">
     <useDefaultName>true</useDefaultName>
     <name>Set Flow State: Disable Lineman</name>
@@ -974,6 +1015,79 @@ global_authorized = result</script>
     <enable>true</enable>
     <includeFlowNamePatternList>Lineman</includeFlowNamePatternList>
     <excludeFlowNamePatternList></excludeFlowNamePatternList>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>SF</name>
+    <script>count = 0;
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+while(isEmpty(check_store))
+{
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND check_store != null)
+{
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+if(check_price == "null0"){
+check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
+else if(check_price == "null0")
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+
+if( check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+if(clicker == true)
+{
+sleep(2);
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
+
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+}
+checking = 1;
+}
+
+}
+count = count+1;
+if(count == 30)
+break;
+}</script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>SF-F</name>
+    <script>count = 0;
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+while(isEmpty(check_store))
+{
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND check_store != null)
+{
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
+
+
+if( check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+if(clicker == true)
+{
+sleep(2);
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
+
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+}
+checking = 1;
+}
+
+}
+count = count+1;
+if(count == 30)
+break;
+}</script>
   </action>
   <action type="stop_flows">
     <useDefaultName>true</useDefaultName>
@@ -1130,16 +1244,16 @@ global_authorized = result</script>
     <actioncontainer id="t88" x="805.0" y="-52.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t89" x="-315.0" y="-787.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t90" x="105.0" y="52.5">xx UI: xx</actioncontainer>
-    <notecontainer id="t91" x="-2467.5" y="-6037.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t92" x="7455.0" y="2397.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t93" x="6055.0" y="6282.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t94" x="11830.0" y="4812.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t95" x="14875.0" y="-3727.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t96" x="5495.0" y="3727.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t97" x="17220.0" y="-9292.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t98" x="21105.0" y="-2782.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t99" x="122.5" y="-2222.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t100" x="-3447.5" y="-3237.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t91" x="-3447.5" y="-3237.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t92" x="-2467.5" y="-6037.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t93" x="7455.0" y="2397.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t94" x="6055.0" y="6282.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t95" x="11830.0" y="4812.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t96" x="14875.0" y="-3727.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t97" x="5495.0" y="3727.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t98" x="17220.0" y="-9292.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t99" x="21105.0" y="-2782.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t100" x="122.5" y="-2222.5" w="76265.0" h="94395.0">xxxx</notecontainer>
     <connection from="t1" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t2" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t4" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
@@ -1327,7 +1441,7 @@ global_authorized = result</script>
     <name>BB </name>
     <description> </description>
     <group>GT Modify</group>
-    <enabled>false</enabled>
+    <enabled>true</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
     <triggercontainer id="t1" x="70.0" y="52.5" />
     <actioncontainer id="t2" x="70.0" y="52.5">Script: if (global_st_price == null) global_st_price = 0; if (global_end_price == null) global_end_price = 0;</actioncontainer>
@@ -1867,16 +1981,16 @@ global_authorized = result</script>
     <group>GT Modify</group>
     <enabled>true</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
-    <notecontainer id="t1" x="4480.0" y="13177.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t2" x="13860.0" y="5722.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t3" x="-262.5" y="7192.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <actioncontainer id="t4" x="70.00002" y="682.5">Control UI: gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));s</actioncontainer>
-    <triggercontainer id="t5" x="70.0" y="682.50006">
+    <triggercontainer id="t1" x="70.0" y="682.50006">
       <trigger>UI Event: Window opened package com.linecorp.lineman.driver contains text ยืนยันรับงาน?</trigger>
     </triggercontainer>
-    <notecontainer id="t6" x="20895.0" y="5827.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t7" x="16205.0" y="157.5" w="64750.0" h="96285.0"></notecontainer>
-    <connection from="t5" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <notecontainer id="t2" x="20895.0" y="5827.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t3" x="16205.0" y="157.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t4" x="4480.0" y="13177.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t5" x="13860.0" y="5722.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t6" x="-262.5" y="7192.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <actioncontainer id="t7" x="70.00002" y="682.5">Control UI: gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));s</actioncontainer>
+    <connection from="t1" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
   <flow type="flow">
     <name>GT Return</name>
@@ -1900,109 +2014,109 @@ global_authorized = result</script>
     <actioncontainer id="t6" x="-455.0" y="-752.5">Init Variable Package Info: com.linecorp.lineman.driver into package_info</actioncontainer>
     <actioncontainer id="t7" x="-455.0" y="-577.5">Control UI: version = findAll(package_info, "\\d.\\d.\\d"); version = version[0];</actioncontainer>
     <conditioncontainer id="t8" x="490.0" y="-192.5">Expression: global_mode == 3</conditioncontainer>
-    <conditioncontainer id="t9" x="945.0" y="-192.5">Expression: global_modex == 3</conditioncontainer>
-    <conditioncontainer id="t10" x="490.0" y="17.5">Expression: global_modex == 1</conditioncontainer>
-    <conditioncontainer id="t11" x="280.0" y="-157.5">Expression: global_mode == 2</conditioncontainer>
-    <conditioncontainer id="t12" x="-455.0" y="-437.5">Expression: version == "3.5.1"</conditioncontainer>
-    <actioncontainer id="t13" x="1120.0" y="17.5">GTE</actioncontainer>
-    <actioncontainer id="t14" x="910.0" y="17.5">GTD</actioncontainer>
-    <actioncontainer id="t15" x="700.0" y="17.5">GTC</actioncontainer>
-    <actioncontainer id="t16" x="490.0" y="227.5">GTB</actioncontainer>
-    <actioncontainer id="t17" x="280.0" y="17.5">GTF</actioncontainer>
-    <conditioncontainer id="t18" x="-1295.0" y="-52.5">Expression: global_mode == 1</conditioncontainer>
-    <conditioncontainer id="t19" x="-1120.0" y="-52.5">Expression: global_mode == 2</conditioncontainer>
-    <conditioncontainer id="t20" x="-945.0" y="-52.5">Expression: global_mode == 3</conditioncontainer>
-    <conditioncontainer id="t21" x="-770.0" y="-52.5">Expression: global_modex == 1</conditioncontainer>
-    <conditioncontainer id="t22" x="-595.0" y="-52.5">Expression: global_modex == 2</conditioncontainer>
-    <conditioncontainer id="t23" x="-420.0" y="-52.5">Expression: global_modex == 3</conditioncontainer>
-    <actioncontainer id="t24" x="-1120.0" y="157.5">GTF-F</actioncontainer>
-    <actioncontainer id="t25" x="-945.0" y="157.5">GTB-B</actioncontainer>
-    <actioncontainer id="t26" x="-770.0" y="157.5">GTC-C</actioncontainer>
-    <actioncontainer id="t27" x="-595.0" y="157.5">GTD-D</actioncontainer>
-    <conditioncontainer id="t28" x="-455.0" y="-1102.5">Expression: stdout == file_text</conditioncontainer>
-    <conditioncontainer id="t29" x="70.0" y="-157.49994">Expression: global_mode == 1</conditioncontainer>
-    <actioncontainer id="t30" x="69.99997" y="17.499966">GTA.6</actioncontainer>
-    <actioncontainer id="t31" x="70.000015" y="227.49994">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t32" x="279.99997" y="227.50006">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t33" x="490.0" y="402.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t34" x="700.0" y="227.5">Control UI: sleep(1);</actioncontainer>
-    <conditioncontainer id="t35" x="700.0" y="-192.5">Expression: global_modex == 2</conditioncontainer>
-    <actioncontainer id="t36" x="910.0" y="227.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t37" x="1120.0" y="227.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t38" x="-1295.0" y="332.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t39" x="-1120.0" y="332.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t40" x="-945.0" y="332.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t41" x="-770.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <conditioncontainer id="t9" x="-455.0" y="-437.5">Expression: version == "3.5.1"</conditioncontainer>
+    <conditioncontainer id="t10" x="-455.0" y="-1102.5">Expression: stdout == file_text</conditioncontainer>
+    <conditioncontainer id="t11" x="70.0" y="-157.49994">Expression: global_mode == 1</conditioncontainer>
+    <actioncontainer id="t12" x="70.00004" y="227.49988">Control UI: </actioncontainer>
+    <conditioncontainer id="t13" x="280.0" y="-157.5">Expression: global_mode == 2</conditioncontainer>
+    <conditioncontainer id="t14" x="490.0" y="17.5">Expression: global_modex == 1</conditioncontainer>
+    <conditioncontainer id="t15" x="700.0" y="-192.5">Expression: global_modex == 2</conditioncontainer>
+    <actioncontainer id="t16" x="700.0" y="227.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t17" x="910.0" y="227.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t18" x="490.0" y="402.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t19" x="279.99997" y="227.50006">Control UI: sleep(1);</actioncontainer>
+    <conditioncontainer id="t20" x="945.0" y="-192.5">Expression: global_modex == 3</conditioncontainer>
+    <actioncontainer id="t21" x="1120.0" y="227.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t22" x="70.00002" y="52.500057">SA</actioncontainer>
+    <actioncontainer id="t23" x="280.0" y="52.50008">SB</actioncontainer>
+    <actioncontainer id="t24" x="490.00012" y="227.50003">SC</actioncontainer>
+    <actioncontainer id="t25" x="700.0001" y="17.50003">SD</actioncontainer>
+    <actioncontainer id="t26" x="910.0001" y="17.500027">SE</actioncontainer>
+    <actioncontainer id="t27" x="1120.0001" y="17.50003">SF</actioncontainer>
+    <actioncontainer id="t28" x="-1295.0" y="157.50003">SA-A</actioncontainer>
+    <conditioncontainer id="t29" x="-1295.0" y="-52.5">Expression: global_mode == 1</conditioncontainer>
+    <actioncontainer id="t30" x="-1295.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <conditioncontainer id="t31" x="-1120.0" y="-52.5">Expression: global_mode == 2</conditioncontainer>
+    <actioncontainer id="t32" x="-1120.0002" y="157.50018">SB-B</actioncontainer>
+    <actioncontainer id="t33" x="-1120.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <conditioncontainer id="t34" x="-945.0" y="-52.5">Expression: global_mode == 3</conditioncontainer>
+    <conditioncontainer id="t35" x="-770.0" y="-52.5">Expression: global_modex == 1</conditioncontainer>
+    <actioncontainer id="t36" x="-944.9999" y="157.5">SC-C</actioncontainer>
+    <actioncontainer id="t37" x="-945.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <conditioncontainer id="t38" x="-595.0" y="-52.5">Expression: global_modex == 2</conditioncontainer>
+    <actioncontainer id="t39" x="-769.9999" y="157.50005">SD-D</actioncontainer>
+    <actioncontainer id="t40" x="-770.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t41" x="-594.9997" y="157.49997">SE-E</actioncontainer>
     <actioncontainer id="t42" x="-595.0" y="332.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t43" x="-420.0" y="332.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t44" x="-1295.0" y="157.5">GTA-A</actioncontainer>
-    <actioncontainer id="t45" x="-420.0" y="157.5">GTE-E</actioncontainer>
-    <notecontainer id="t46" x="8295.0" y="13282.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t47" x="-1207.5" y="3762.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t48" x="14070.0" y="11812.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t49" x="17115.0" y="3272.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t50" x="7735.0" y="10727.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t51" x="-227.5" y="962.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t52" x="2362.5" y="4777.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t53" x="23345.0" y="4217.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t54" x="9765.0" y="9397.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t55" x="19495.0" y="-2292.5" w="64750.0" h="96285.0"></notecontainer>
+    <conditioncontainer id="t43" x="-420.0" y="-52.5">Expression: global_modex == 3</conditioncontainer>
+    <actioncontainer id="t44" x="-419.99994" y="157.50015">SF-F</actioncontainer>
+    <actioncontainer id="t45" x="-420.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <notecontainer id="t46" x="8855.0" y="9537.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t47" x="18620.0" y="-2152.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t48" x="7455.0" y="13422.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t49" x="-2047.5" y="3902.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t50" x="13230.0" y="11952.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t51" x="16275.0" y="3412.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t52" x="6895.0" y="10867.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t53" x="-1067.5" y="1102.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t54" x="1522.5" y="4917.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t55" x="22505.0" y="4357.5" w="64750.0" h="96285.0"></notecontainer>
     <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t2" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t3" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t4" to="t28" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t4" to="t10" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t5" to="t6" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t6" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t7" to="t12" type="NORMAL" sourcePosition="SOUTH" targetPosition="SOUTH" />
-    <connection from="t8" to="t10" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t9" to="t13" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t9" to="t14" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t10" to="t35" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t10" to="t16" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t11" to="t17" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t11" to="t8" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t12" to="t29" type="FALSE" sourcePosition="SOUTH" targetPosition="SOUTH" />
-    <connection from="t12" to="t18" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t13" to="t37" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t14" to="t36" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t15" to="t34" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t16" to="t33" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t17" to="t32" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t18" to="t19" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t18" to="t44" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t19" to="t20" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t19" to="t24" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t20" to="t21" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t21" to="t22" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t21" to="t25" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t22" to="t23" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t22" to="t26" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t23" to="t45" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t23" to="t27" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t24" to="t39" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t25" to="t40" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t26" to="t41" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t27" to="t42" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t28" to="t5" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t29" to="t11" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t29" to="t30" type="TRUE" sourcePosition="SOUTH" targetPosition="EAST" />
-    <connection from="t30" to="t31" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t31" to="t29" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t32" to="t11" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t33" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t34" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t35" to="t9" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t35" to="t15" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t36" to="t9" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t37" to="t9" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t38" to="t18" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t39" to="t19" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t40" to="t20" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t41" to="t21" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t42" to="t22" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t43" to="t23" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t44" to="t38" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t45" to="t43" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t7" to="t9" type="NORMAL" sourcePosition="SOUTH" targetPosition="SOUTH" />
+    <connection from="t8" to="t14" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t9" to="t11" type="FALSE" sourcePosition="SOUTH" targetPosition="SOUTH" />
+    <connection from="t9" to="t29" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t10" to="t5" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t11" to="t13" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t11" to="t22" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t12" to="t22" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t13" to="t8" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t13" to="t23" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t14" to="t15" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t14" to="t24" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t15" to="t20" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t15" to="t25" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t16" to="t25" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t17" to="t26" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t18" to="t24" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t19" to="t23" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t20" to="t26" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t20" to="t27" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t21" to="t27" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t22" to="t12" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t23" to="t19" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t24" to="t18" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t25" to="t16" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t26" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t27" to="t21" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t28" to="t30" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t29" to="t31" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t29" to="t28" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t30" to="t28" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t31" to="t34" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t31" to="t32" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t32" to="t33" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t33" to="t32" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t34" to="t35" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t35" to="t38" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t35" to="t36" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t36" to="t37" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t37" to="t36" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t38" to="t43" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t38" to="t39" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t39" to="t40" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t40" to="t39" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t41" to="t42" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t42" to="t41" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t43" to="t41" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t43" to="t44" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t44" to="t45" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t45" to="t44" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
   <flow type="flow">
     <name>S</name>
