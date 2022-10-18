@@ -54,25 +54,10 @@
     <textFilter>ยืนยันรับงาน?</textFilter>
     <removeNonPrintableCharacters>false</removeNonPrintableCharacters>
   </trigger>
-  <trigger type="user_interface_event">
-    <useDefaultName>true</useDefaultName>
-    <name>UI Event: Window opened package com.linecorp.lineman.driver contains text ไม่สามารถเริ่มงานได้</name>
-    <enabled>false</enabled>
-    <accessibilityEventType>TYPE_WINDOW_STATE_CHANGED</accessibilityEventType>
-    <packageNameFilter>com.linecorp.lineman.driver</packageNameFilter>
-    <textMatchType>CONTAINS_TEXT</textMatchType>
-    <textFilter>ไม่สามารถเริ่มงานได้</textFilter>
-    <removeNonPrintableCharacters>false</removeNonPrintableCharacters>
-  </trigger>
   <condition type="expression">
     <useDefaultName>true</useDefaultName>
     <name>Expression: auth1</name>
     <expression>auth1</expression>
-  </condition>
-  <condition type="expression">
-    <useDefaultName>true</useDefaultName>
-    <name>Expression: checking == 1</name>
-    <expression>checking == 1</expression>
   </condition>
   <condition type="expression">
     <useDefaultName>true</useDefaultName>
@@ -148,11 +133,6 @@
   </action>
   <action type="control_user_interface">
     <useDefaultName>true</useDefaultName>
-    <name>Control UI: click("กลับไป*");</name>
-    <script>click("กลับไป*");</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>true</useDefaultName>
     <name>Control UI: file_text = replace(file_text," ",""); stdout = replace(stdout," ",""); file_text = replace(file_text,"\n",""); stdout = replace(stdout,"\n","");</name>
     <script>file_text = replace(file_text," ","");
 stdout = replace(stdout," ","");
@@ -160,9 +140,10 @@ file_text = replace(file_text,"\n","");
 stdout = replace(stdout,"\n","");</script>
   </action>
   <action type="control_user_interface">
-    <useDefaultName>true</useDefaultName>
-    <name>Control UI: gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));</name>
-    <script>gtxy = getBounds("​​รั​บ​ง​า​น​​");
+    <useDefaultName>false</useDefaultName>
+    <name>Control UI: gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));s</name>
+    <script>
+gtxy = getBounds("​​รั​บ​ง​า​น​​");
 
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));</script>
@@ -171,6 +152,11 @@ touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[
     <useDefaultName>true</useDefaultName>
     <name>Control UI: result = replace(stdout,"\n","");</name>
     <script>result = replace(stdout,"\n","");</script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>true</useDefaultName>
+    <name>Control UI: sleep(1);</name>
+    <script>sleep(1);</script>
   </action>
   <action type="control_user_interface">
     <useDefaultName>true</useDefaultName>
@@ -283,238 +269,254 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTA-A</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-
-count = 0;
+    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
 store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
 store_list_number = length(store_list) + 0;
+stop = 0;
+while(isEmpty(check_store))
+{
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+if(check_store != null)
+{
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
 if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
 {
-while(check_type != "ส่งอาหาร")
-{
-check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-
-check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
-
-
 for(i in [0 to store_list_number-1])
 {
 pass = contains(check_store,store_list[i]);
 if(pass == true)
-break
+break;
 }
-
-
-
-count = count +1;
 if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND pass == true)
 {
 clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-
-count = count + 1;
-if(count == 50)
+sleep(1);
+gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
 break;
 }
+}
+}
+stop = stop + 1;
+if(stop == 50)
+break;
 }</script>
   </action>
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
-    <name>GTB</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
+    <name>GTA.6</name>
+    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+stop = 0;
+while(isEmpty(check_store))
 {
-while(check_type != "ส่งอาหาร")
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+if(check_store != null)
 {
-check_type = getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_delivery_type_name", 0);
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
 if(check_price == "null0"){
 check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
 else if(check_price == "null0")
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
 
-count = count +1;
-if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
 {
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 50)
+for(i in [0 to store_list_number-1])
+{
+pass = contains(check_store,store_list[i]);
+if(pass == true)
 break;
 }
+if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND pass == true)
+{
+clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+sleep(1);
+gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+break;
+}
+}
+}
+stop = stop + 1;
+if(stop == 50)
+break;
 }</script>
   </action>
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTB-B</name>
-    <script>check_type = "";
+    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+stop = 0;
+while(isEmpty(check_store))
+{
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+if(check_store != null)
+{
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-count = 0;
+
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
 if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
 {
-while(check_type != "ส่งอาหาร")
-{
-check_type = getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_delivery_type_name", 0);
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-
-count = count +1;
 if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
 {
 clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 50)
+sleep(1);
+gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
 break;
 }
+}
+}
+stop = stop + 1;
+if(stop == 50)
+break;
 }</script>
   </action>
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
-    <name>GTC</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
+    <name>GTB.4</name>
+    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+stop = 0;
+while(isEmpty(check_store))
 {
-while(check_type != "ส่งสินค้า")
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+if(check_store != null)
 {
-check_type = getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_delivery_type_name", 0);
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
 if(check_price == "null0"){
 check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
 else if(check_price == "null0")
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
 
-count = count +1;
-if(check_type == "ส่งสินค้า" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
+{
+if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
 {
 clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 50)
+sleep(1);
+gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
 break;
 }
+}
+}
+stop = stop + 1;
+if(stop == 50)
+break;
 }</script>
   </action>
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTC-C</name>
-    <script>check_type = "";
+    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+stop = 0;
+while(isEmpty(check_store))
+{
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+if(check_store != null)
+{
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-count = 0;
+
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
 if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
 {
-while(check_type != "ส่งสินค้า")
-{
-check_type = getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_delivery_type_name", 0);
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-
-count = count +1;
 if(check_type == "ส่งสินค้า" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
 {
 clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 50)
+sleep(1);
+gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
 break;
 }
+}
+}
+stop = stop + 1;
+if(stop == 50)
+break;
 }</script>
   </action>
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
-    <name>GTD</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register){
-while(check_type != "ส่งของ")
+    <name>GTC.4</name>
+    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+stop = 0;
+while(isEmpty(check_store))
 {
-check_type = getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_delivery_type_name", 0);
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+if(check_store != null)
+{
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
 if(check_price == "null0"){
 check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
 else if(check_price == "null0")
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-
-count = count +1;
-if(check_type == "ส่งของ" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
+{
+if(check_type == "ส่งสินค้า" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
 {
 clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 50)
+sleep(1);
+gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
 break;
 }
-}</script>
+}
+}
+stop = stop + 1;
+if(stop == 50)
+break;
+}
+</script>
   </action>
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTD-D</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register){
-while(check_type != "ส่งของ")
+    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+stop = 0;
+while(isEmpty(check_store))
 {
-check_type = getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_delivery_type_name", 0);
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+if(check_store != null)
+{
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
 
-count = count +1;
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
+{
 if(check_type == "ส่งของ" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
 {
 clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 50)
+sleep(1);
+gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
 break;
 }
+}
+}
+stop = stop + 1;
+if(stop == 50)
+break;
 }</script>
   </action>
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
-    <name>GTE</name>
-    <script>check_price = "";
-count = 0;
-if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
+    <name>GTD.4</name>
+    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+stop = 0;
+while(isEmpty(check_store))
 {
-while(!isEmpty(check_price))
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
 if(check_price == "null0"){
@@ -522,107 +524,165 @@ check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_w
 else if(check_price == "null0")
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
 
-count = count +1;
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
+{
+if(check_type == "ส่งของ" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
+{
+clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+sleep(1);
+gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+break;
+}
+}
+}
+stop = stop + 1;
+if(stop == 50)
+break;
+}</script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>GTE-E</name>
+    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+stop = 0;
+while(isEmpty(check_store))
+{
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+if(check_store != null)
+{
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
+
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
+{
 if(check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
 {
 clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
-}
-count = count + 1;
-if(count == 50)
+sleep(1);
+gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
 break;
 }
+}
+}
+stop = stop + 1;
+if(stop == 50)
+break;
 }</script>
   </action>
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
-    <name>GTF</name>
-    <script>check_type = "";
+    <name>GTE.4</name>
+    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+stop = 0;
+while(isEmpty(check_store))
+{
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+if(check_store != null)
+{
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
 if(check_price == "null0"){
 check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
 else if(check_price == "null0")
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-count = 0;
-store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
-store_list_number = length(store_list) + 0;
+
+
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
 if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
 {
-while(check_type != "ส่งอาหาร")
-{
-check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
-else if(check_price == "null0")
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
-
-
-for(i in [0 to store_list_number-1])
-{
-pass = contains(check_store,store_list[i]);
-if(pass == true){
-checking = 1;
-break;
-}
-
-
-if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND i == store_list_number-1)
+if(check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
 {
 clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-
-checking = 1;
-}
-
-}
-count = count+1;
-if(count == 50)
+sleep(1);
+gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
 break;
-}}
+}
+}
+}
+stop = stop + 1;
+if(stop == 50)
+break;
+}
 </script>
   </action>
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTF-F</name>
-    <script>check_type = "";
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-count = 0;
+    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
 store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
 store_list_number = length(store_list) + 0;
+stop = 0;
+while(isEmpty(check_store))
+{
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+if(check_store != null)
+{
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
 if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
 {
-while(check_type != "ส่งอาหาร")
-{
-check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;}
-check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
-
-
 for(i in [0 to store_list_number-1])
 {
 pass = contains(check_store,store_list[i]);
 if(pass == true){
-checking = 1;
 break;
 }
-
-if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND i == store_list_number-1)
+if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND pass == true AND i == store_list_number-1)
 {
 clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-
-checking = 1;
-}
-
-}
-count = count+1;
-if(count == 50)
+sleep(1);
+gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
 break;
-}}
+}
+}
+}
+stop = stop + 1;
+if(stop == 50)
+break;
+}
+}
+</script>
+  </action>
+  <action type="control_user_interface">
+    <useDefaultName>false</useDefaultName>
+    <name>GTF.6</name>
+    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
+store_list_number = length(store_list) + 0;
+stop = 0;
+while(isEmpty(check_store))
+{
+check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+if(check_store != null)
+{
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+if(check_price == "null0"){
+check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
+else if(check_price == "null0")
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
+check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
+if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
+{
+for(i in [0 to store_list_number-1])
+{
+pass = contains(check_store,store_list[i]);
+if(pass == true){
+break;
+}
+if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND pass == true AND i == store_list_number-1)
+{
+clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+sleep(1);
+gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+break;
+}
+}
+}
+stop = stop + 1;
+if(stop == 50)
+break;
+}
+}
 </script>
   </action>
   <action type="http_request">
@@ -906,9 +966,9 @@ global_authorized = result</script>
   </action>
   <action type="set_flow_state">
     <useDefaultName>true</useDefaultName>
-    <name>Set Flow State: Enable "BB ",Authorization,GT A,S,XX,GT Hahahah,GT Return,Clicker</name>
+    <name>Set Flow State: Enable "BB ",Authorization,GT A,S,XX,GT Hahahah,Clicker</name>
     <enable>true</enable>
-    <includeFlowNamePatternList>"BB ",Authorization,GT A,S,XX,GT Hahahah,GT Return,Clicker</includeFlowNamePatternList>
+    <includeFlowNamePatternList>"BB ",Authorization,GT A,S,XX,GT Hahahah,Clicker</includeFlowNamePatternList>
     <excludeFlowNamePatternList></excludeFlowNamePatternList>
   </action>
   <action type="set_flow_state">
@@ -1073,16 +1133,16 @@ global_authorized = result</script>
     <actioncontainer id="t88" x="805.0" y="-52.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t89" x="-315.0" y="-787.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t90" x="105.0" y="52.5">xx UI: xx</actioncontainer>
-    <notecontainer id="t91" x="7455.0" y="2397.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t92" x="6055.0" y="6282.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t93" x="11830.0" y="4812.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t94" x="14875.0" y="-3727.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t95" x="5495.0" y="3727.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t96" x="17220.0" y="-9292.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t97" x="21105.0" y="-2782.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t98" x="122.5" y="-2222.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t99" x="-3447.5" y="-3237.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t100" x="-2467.5" y="-6037.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t91" x="-3447.5" y="-3237.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t92" x="-2467.5" y="-6037.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t93" x="7455.0" y="2397.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t94" x="6055.0" y="6282.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t95" x="11830.0" y="4812.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t96" x="14875.0" y="-3727.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t97" x="5495.0" y="3727.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t98" x="17220.0" y="-9292.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t99" x="21105.0" y="-2782.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t100" x="122.5" y="-2222.5" w="76265.0" h="94395.0">xxxx</notecontainer>
     <connection from="t1" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t2" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t4" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
@@ -1121,150 +1181,150 @@ global_authorized = result</script>
     <group>GT Modify</group>
     <enabled>false</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
-    <actioncontainer id="t1" x="0.0" y="612.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t2" x="-420.0" y="-192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t3" x="315.0" y="-52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t4" x="1365.0" y="297.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t5" x="-385.0" y="297.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t6" x="-245.0" y="262.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t7" x="105.0" y="-542.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t8" x="0.0" y="647.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t9" x="-140.0" y="122.5">Init Variable Text File: /storage/emulated/0/.gt/key to register</actioncontainer>
-    <actioncontainer id="t10" x="420.0" y="87.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t11" x="-420.0" y="647.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t12" x="-490.0" y="-262.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t13" x="140.0" y="227.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t14" x="-245.0" y="122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t15" x="420.0" y="682.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t16" x="315.0" y="-542.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t17" x="-70.0" y="-87.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t18" x="-105.0" y="-542.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t19" x="-525.0" y="-17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t20" x="490.0" y="52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t21" x="1330.0" y="227.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t22" x="665.0" y="-17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t23" x="420.0" y="-122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t24" x="350.0" y="-892.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t25" x="-700.0" y="-87.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t26" x="-210.0" y="437.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t27" x="735.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t28" x="350.0" y="717.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t29" x="1190.0" y="52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t30" x="-350.0" y="-227.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t31" x="210.0" y="647.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t32" x="700.0" y="-17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t33" x="-175.0" y="262.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t34" x="-210.0" y="-52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t35" x="210.0" y="-927.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t36" x="245.0" y="332.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t37" x="70.0" y="-122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t38" x="-210.0" y="-402.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t39" x="-735.0" y="87.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t40" x="-420.0" y="-682.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t41" x="1365.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t42" x="700.0" y="122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t43" x="-525.0" y="-52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t44" x="-210.0" y="647.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t45" x="385.0" y="612.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t46" x="910.0" y="-17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t47" x="455.0" y="682.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t48" x="735.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t49" x="-770.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t50" x="455.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t51" x="-245.0" y="-192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t52" x="1645.0" y="157.5">xx UI: xx</actioncontainer>
-    <conditioncontainer id="t53" x="140.0" y="157.5">Expression: version == "3.5.1"</conditioncontainer>
-    <actioncontainer id="t54" x="-420.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t55" x="210.0" y="472.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t56" x="-70.0" y="-227.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t57" x="1190.0" y="157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t58" x="630.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t59" x="420.0" y="87.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t60" x="245.0" y="-962.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t61" x="455.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t62" x="1295.0" y="262.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t63" x="175.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t64" x="490.0" y="157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t65" x="-105.0" y="-17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t66" x="385.0" y="-122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t67" x="1610.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t68" x="0.0" y="437.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t69" x="385.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t70" x="-140.0" y="122.5">GTA</actioncontainer>
-    <actioncontainer id="t71" x="210.0" y="647.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t72" x="770.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t73" x="-350.0" y="-717.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t74" x="35.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t75" x="105.0" y="-52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t76" x="70.0" y="-87.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t77" x="0.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t78" x="35.0" y="-17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t79" x="35.0" y="-17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t80" x="105.0" y="17.500004">xx UI: xx</actioncontainer>
-    <actioncontainer id="t81" x="70.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t82" x="35.0" y="87.5">Delete Files: /storage/emulated/0/.gt/*</actioncontainer>
-    <conditioncontainer id="t83" x="35.0" y="87.5">Expression: auth1</conditioncontainer>
-    <actioncontainer id="t84" x="35.0" y="87.5">Write to File: {global_authorized} to /storage/emulated/0/.gt/key (overwrite)</actioncontainer>
-    <actioncontainer id="t85" x="35.0" y="87.5">Script: global_name = getAppName("ch.gridvision.ppam.gtinemanhelperxx"); global_register = true</actioncontainer>
-    <actioncontainer id="t86" x="35.0" y="87.5">Create Directories: /storage/emulated/0/.gt</actioncontainer>
-    <actioncontainer id="t87" x="35.0" y="87.5">Script: global_authorized = false; global_name = false; global_register = false; global_store = false;</actioncontainer>
-    <actioncontainer id="t88" x="70.00001" y="122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t89" x="0.0" y="87.5">xx UI: xx</actioncontainer>
-    <triggercontainer id="t90" x="34.999996" y="87.5">
+    <triggercontainer id="t1" x="35.0" y="87.5">
       <trigger>Display State: On</trigger>
       <trigger>Display State: Off</trigger>
     </triggercontainer>
+    <actioncontainer id="t2" x="0.0" y="612.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t3" x="-420.0" y="-192.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t4" x="315.0" y="-52.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t5" x="1365.0" y="297.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t6" x="-385.0" y="297.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t7" x="-245.0" y="262.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t8" x="105.0" y="-542.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t9" x="0.0" y="647.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t10" x="-140.0" y="122.5">Init Variable Text File: /storage/emulated/0/.gt/key to register</actioncontainer>
+    <actioncontainer id="t11" x="420.0" y="87.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t12" x="-420.0" y="647.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t13" x="-490.0" y="-262.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t14" x="140.0" y="227.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t15" x="-245.0" y="122.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t16" x="420.0" y="682.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t17" x="315.0" y="-542.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t18" x="-70.0" y="-87.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t19" x="-105.0" y="-542.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t20" x="-525.0" y="-17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t21" x="490.0" y="52.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t22" x="1330.0" y="227.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t23" x="665.0" y="-17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t24" x="420.0" y="-122.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t25" x="350.0" y="-892.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t26" x="-700.0" y="-87.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t27" x="-210.0" y="437.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t28" x="735.0" y="192.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t29" x="350.0" y="717.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t30" x="1190.0" y="52.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t31" x="-350.0" y="-227.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t32" x="210.0" y="647.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t33" x="700.0" y="-17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t34" x="-175.0" y="262.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t35" x="-210.0" y="-52.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t36" x="210.0" y="-927.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t37" x="245.0" y="332.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t38" x="70.0" y="-122.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t39" x="-210.0" y="-402.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t40" x="-735.0" y="87.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t41" x="-420.0" y="-682.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t42" x="1365.0" y="192.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t43" x="700.0" y="122.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t44" x="-525.0" y="-52.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t45" x="-210.0" y="647.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t46" x="385.0" y="612.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t47" x="910.0" y="-17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t48" x="455.0" y="682.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t49" x="735.0" y="192.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t50" x="-770.0" y="17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t51" x="455.0" y="17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t52" x="-245.0" y="-192.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t53" x="1645.0" y="157.5">xx UI: xx</actioncontainer>
+    <conditioncontainer id="t54" x="140.0" y="157.5">Expression: version == "3.5.1"</conditioncontainer>
+    <actioncontainer id="t55" x="-420.0" y="17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t56" x="210.0" y="472.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t57" x="-70.0" y="-227.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t58" x="1190.0" y="157.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t59" x="630.0" y="192.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t60" x="420.0" y="87.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t61" x="245.0" y="-962.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t62" x="455.0" y="17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t63" x="1295.0" y="262.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t64" x="175.0" y="192.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t65" x="490.0" y="157.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t66" x="-105.0" y="-17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t67" x="385.0" y="-122.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t68" x="1610.0" y="17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t69" x="0.0" y="437.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t70" x="385.0" y="17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t71" x="-140.0" y="122.5">GTA</actioncontainer>
+    <actioncontainer id="t72" x="210.0" y="647.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t73" x="770.0" y="17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t74" x="-350.0" y="-717.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t75" x="35.0" y="192.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t76" x="105.0" y="-52.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t77" x="70.0" y="-87.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t78" x="0.0" y="17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t79" x="35.0" y="-17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t80" x="35.0" y="-17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t81" x="105.0" y="17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t82" x="70.0" y="17.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t83" x="35.0" y="87.5">Delete Files: /storage/emulated/0/.gt/*</actioncontainer>
+    <conditioncontainer id="t84" x="35.0" y="87.5">Expression: auth1</conditioncontainer>
+    <actioncontainer id="t85" x="35.0" y="87.5">Write to File: {global_authorized} to /storage/emulated/0/.gt/key (overwrite)</actioncontainer>
+    <actioncontainer id="t86" x="35.0" y="87.5">Script: global_name = getAppName("ch.gridvision.ppam.gtinemanhelperxx"); global_register = true</actioncontainer>
+    <actioncontainer id="t87" x="35.0" y="87.5">Create Directories: /storage/emulated/0/.gt</actioncontainer>
+    <actioncontainer id="t88" x="35.0" y="87.5">Script: global_authorized = false; global_name = false; global_register = false; global_store = false;</actioncontainer>
+    <actioncontainer id="t89" x="70.0" y="122.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t90" x="0.0" y="87.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t91" x="35.0" y="87.5">HTTP Request: GET https://raw.githubusercontent.com/gotza02/gotza02/main/keygen   store in response</actioncontainer>
     <actioncontainer id="t92" x="35.0" y="87.5">Script: if(response == "" OR response == " "){ response = false; } else { auth1 = contains(response,global_authorized); if(auth1 == true) global_authorized = global_authorized else global_authorized = false;}</actioncontainer>
     <actioncontainer id="t93" x="140.0" y="-157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t94" x="34.999947" y="87.50001">xx UI: xx</actioncontainer>
-    <actioncontainer id="t95" x="70.0" y="87.49997">xx UI: xx</actioncontainer>
-    <notecontainer id="t96" x="8855.0" y="14227.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t97" x="23905.0" y="5162.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t98" x="14630.0" y="12757.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t99" x="20020.0" y="-1347.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t100" x="-647.5" y="4707.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t101" x="332.5" y="1907.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t102" x="17675.0" y="4217.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t103" x="8295.0" y="11672.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t104" x="2922.5" y="5722.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t105" x="10255.0" y="10342.5" w="64750.0" h="96285.0"></notecontainer>
-    <connection from="t1" to="t71" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t5" to="t65" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t7" to="t16" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t7" to="t18" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t8" to="t44" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t10" to="t77" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t11" to="t34" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t11" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t18" to="t60" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t26" to="t68" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t26" to="t1" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t34" to="t26" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t34" to="t11" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t35" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t36" to="t55" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t44" to="t11" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t55" to="t65" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t60" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t65" to="t10" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t65" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t68" to="t55" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t68" to="t34" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t69" to="t37" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t71" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t71" to="t68" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t71" to="t94" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t73" to="t18" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t73" to="t94" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t83" to="t87" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t83" to="t85" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t85" to="t86" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t86" to="t84" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t87" to="t82" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t90" to="t91" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <actioncontainer id="t94" x="35.0" y="87.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t95" x="70.0" y="87.5">xx UI: xx</actioncontainer>
+    <notecontainer id="t96" x="23870.0" y="5197.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t97" x="14630.0" y="12757.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t98" x="20020.0" y="-1347.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t99" x="-647.5" y="4707.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t100" x="332.5" y="1907.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t101" x="17675.0" y="4217.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t102" x="8295.0" y="11672.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t103" x="2922.5" y="5722.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t104" x="10255.0" y="10342.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t105" x="8855.0" y="14262.5" w="64750.0" h="96285.0"></notecontainer>
+    <connection from="t1" to="t91" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t2" to="t72" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t6" to="t66" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t8" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t8" to="t19" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t9" to="t45" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t11" to="t78" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t12" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t12" to="t6" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t19" to="t61" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t27" to="t69" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t27" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t35" to="t27" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t35" to="t12" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t36" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t37" to="t56" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t45" to="t12" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t56" to="t66" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t61" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t66" to="t11" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t66" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t69" to="t56" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t69" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t70" to="t38" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t72" to="t9" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t72" to="t69" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t72" to="t94" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t74" to="t19" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t74" to="t94" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t84" to="t88" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t84" to="t86" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t86" to="t87" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t87" to="t85" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t88" to="t83" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t91" to="t92" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t92" to="t83" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t92" to="t84" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
   <flow type="flow">
     <name>BB </name>
@@ -1365,21 +1425,21 @@ global_authorized = result</script>
     <actioncontainer id="t91" x="105.0" y="-87.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t92" x="35.0" y="437.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t93" x="420.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t94" x="-105.0" y="122.5">GTA</actioncontainer>
+    <actioncontainer id="t94" x="-105.0" y="122.5">GTA.6</actioncontainer>
     <actioncontainer id="t95" x="245.0" y="647.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t96" x="805.0" y="17.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t97" x="245.0" y="472.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t98" x="-700.0" y="87.5">xx UI: xx</actioncontainer>
-    <notecontainer id="t99" x="1330.0" y="892.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t100" x="-4042.5" y="-7682.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t101" x="-8207.5" y="-8522.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t102" x="10185.0" y="-8942.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t103" x="16485.0" y="-7962.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t104" x="7105.0" y="-577.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t105" x="805.0" y="-1557.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t106" x="-10342.5" y="-8662.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t107" x="12670.0" y="-14542.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t108" x="2485.0" y="-2642.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t99" x="2485.0" y="-2642.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t100" x="1330.0" y="892.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t101" x="-4042.5" y="-7682.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t102" x="-8207.5" y="-8522.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t103" x="10185.0" y="-8942.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t104" x="16485.0" y="-7962.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t105" x="7105.0" y="-577.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t106" x="805.0" y="-1557.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t107" x="-10342.5" y="-8662.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t108" x="12670.0" y="-14542.5" w="64750.0" h="96285.0"></notecontainer>
     <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t2" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t3" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
@@ -1426,76 +1486,79 @@ global_authorized = result</script>
     <group>GT Modify</group>
     <enabled>false</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
-    <actioncontainer id="t1" x="350.0" y="-1172.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t2" x="-70.0" y="-1977.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t3" x="665.0" y="-1837.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t4" x="350.0" y="-1767.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t5" x="1715.0" y="-1487.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t6" x="-35.0" y="-1487.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t7" x="105.0" y="-1522.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t8" x="455.0" y="-2327.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t9" x="350.0" y="-1137.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t10" x="210.0" y="-1662.5">Init Variable Text File: /storage/emulated/0/.gt/key to register</actioncontainer>
-    <actioncontainer id="t11" x="770.0" y="-1697.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t12" x="-70.0" y="-1137.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t13" x="-140.0" y="-2047.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t14" x="490.0" y="-1557.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t15" x="105.0" y="-1662.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t16" x="770.0" y="-1102.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t17" x="665.0" y="-2327.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t18" x="0.0" y="-2502.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t19" x="280.0" y="-1872.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t20" x="245.0" y="-2327.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t21" x="-175.0" y="-1802.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t22" x="840.0" y="-1732.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t23" x="420.0" y="-1767.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t24" x="1680.0" y="-1557.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t25" x="1015.0" y="-1802.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t26" x="385.0" y="-1802.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t27" x="770.0" y="-1907.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t28" x="700.0" y="-2677.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t29" x="140.0" y="-1347.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t30" x="1085.0" y="-1592.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t31" x="455.0" y="-1837.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t32" x="700.0" y="-1067.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t33" x="1540.0" y="-1732.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t34" x="0.0" y="-2012.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t35" x="560.0" y="-1137.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t36" x="1050.0" y="-1802.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t37" x="175.0" y="-1522.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t38" x="140.0" y="-1837.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t39" x="560.0" y="-2712.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t40" x="420.0" y="-1907.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t41" x="140.0" y="-2187.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t42" x="-385.0" y="-1697.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t43" x="-70.0" y="-2467.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t44" x="1715.0" y="-1592.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t45" x="1050.0" y="-1662.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t46" x="-175.0" y="-1837.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t47" x="140.0" y="-1137.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t48" x="735.0" y="-1172.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t49" x="1260.0" y="-1802.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t50" x="805.0" y="-1102.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t51" x="1085.0" y="-1592.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t52" x="-420.0" y="-1767.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t53" x="805.0" y="-1767.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t54" x="665.0" y="-2012.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t55" x="105.0" y="-1977.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t56" x="1995.0" y="-1627.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t57" x="-70.0" y="-1767.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t58" x="735.0" y="-1592.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t59" x="455.0" y="-1767.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t60" x="350.0" y="-1697.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t61" x="560.0" y="-1312.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t62" x="280.0" y="-2012.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t63" x="1540.0" y="-1627.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t64" x="980.0" y="-1592.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t65" x="770.0" y="-1697.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t66" x="595.0" y="-2747.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t67" x="805.0" y="-1767.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t68" x="1645.0" y="-1522.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t69" x="840.0" y="-1627.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t70" x="245.0" y="-1802.5">xx UI: xx</actioncontainer>
+    <triggercontainer id="t1" x="490.0" y="-1662.5">
+      <trigger>Display State: On</trigger>
+      <trigger>Display State: Off</trigger>
+    </triggercontainer>
+    <actioncontainer id="t2" x="350.0" y="-1172.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t3" x="-70.0" y="-1977.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t4" x="665.0" y="-1837.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t5" x="350.0" y="-1767.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t6" x="1715.0" y="-1487.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t7" x="-35.0" y="-1487.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t8" x="105.0" y="-1522.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t9" x="455.0" y="-2327.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t10" x="350.0" y="-1137.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t11" x="210.0" y="-1662.5">Init Variable Text File: /storage/emulated/0/.gt/key to register</actioncontainer>
+    <actioncontainer id="t12" x="770.0" y="-1697.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t13" x="-70.0" y="-1137.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t14" x="-140.0" y="-2047.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t15" x="490.0" y="-1557.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t16" x="105.0" y="-1662.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t17" x="770.0" y="-1102.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t18" x="665.0" y="-2327.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t19" x="0.0" y="-2502.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t20" x="280.0" y="-1872.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t21" x="245.0" y="-2327.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t22" x="-175.0" y="-1802.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t23" x="840.0" y="-1732.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t24" x="420.0" y="-1767.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t25" x="1680.0" y="-1557.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t26" x="1015.0" y="-1802.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t27" x="385.0" y="-1802.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t28" x="770.0" y="-1907.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t29" x="700.0" y="-2677.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t30" x="140.0" y="-1347.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t31" x="1085.0" y="-1592.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t32" x="455.0" y="-1837.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t33" x="700.0" y="-1067.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t34" x="1540.0" y="-1732.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t35" x="0.0" y="-2012.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t36" x="560.0" y="-1137.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t37" x="1050.0" y="-1802.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t38" x="175.0" y="-1522.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t39" x="140.0" y="-1837.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t40" x="560.0" y="-2712.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t41" x="420.0" y="-1907.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t42" x="140.0" y="-2187.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t43" x="-385.0" y="-1697.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t44" x="-70.0" y="-2467.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t45" x="1715.0" y="-1592.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t46" x="1050.0" y="-1662.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t47" x="-175.0" y="-1837.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t48" x="140.0" y="-1137.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t49" x="735.0" y="-1172.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t50" x="1260.0" y="-1802.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t51" x="805.0" y="-1102.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t52" x="1085.0" y="-1592.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t53" x="-420.0" y="-1767.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t54" x="805.0" y="-1767.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t55" x="665.0" y="-2012.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t56" x="105.0" y="-1977.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t57" x="1995.0" y="-1627.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t58" x="-70.0" y="-1767.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t59" x="735.0" y="-1592.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t60" x="455.0" y="-1767.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t61" x="350.0" y="-1697.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t62" x="560.0" y="-1312.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t63" x="280.0" y="-2012.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t64" x="1540.0" y="-1627.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t65" x="980.0" y="-1592.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t66" x="770.0" y="-1697.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t67" x="595.0" y="-2747.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t68" x="805.0" y="-1767.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t69" x="1645.0" y="-1522.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t70" x="840.0" y="-1627.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t71" x="735.0" y="-1907.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t72" x="1960.0" y="-1767.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t73" x="420.0" y="-1872.5">xx UI: xx</actioncontainer>
@@ -1591,58 +1654,49 @@ global_authorized = result</script>
     <actioncontainer id="t163" x="420.0" y="-1662.5">xx UI: xx</actioncontainer>
     <conditioncontainer id="t164" x="490.0" y="-1627.5">Expression: version == "3.5.1"</conditioncontainer>
     <actioncontainer id="t165" x="525.0" y="-1592.5">xx UI: xx</actioncontainer>
-    <triggercontainer id="t166" x="490.0" y="-1662.5">
-      <trigger>Display State: On</trigger>
-      <trigger>Display State: Off</trigger>
-    </triggercontainer>
-    <actioncontainer id="t167" x="490.0" y="-1662.5">Set Flow State: Enable "BB ",Authorization,GT A,S,XX,GT Hahahah,GT Return,Clicker</actioncontainer>
-    <actioncontainer id="t168" x="490.0" y="-1662.5">Execute Root Command: settings get secure android_id in </actioncontainer>
-    <actioncontainer id="t169" x="490.0" y="-1662.5">Control UI: result = replace(stdout,"\n","");</actioncontainer>
-    <actioncontainer id="t170" x="490.0" y="-1662.5">Script: if(result == "" AND result == " ") { global_authorized = false; result = false; } else global_authorized = result</actioncontainer>
-    <actioncontainer id="t171" x="595.0" y="-1452.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t172" x="560.0" y="-1837.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t173" x="525.0" y="-1662.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t174" x="455.00006" y="-1592.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t175" x="525.00006" y="-1662.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t176" x="385.00006" y="-1662.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t177" x="350.0" y="-1417.5">xx UI: xx</actioncontainer>
-    <notecontainer id="t178" x="8225.0" y="11462.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t179" x="23275.0" y="2397.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t180" x="14000.0" y="9992.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t181" x="19390.0" y="-4112.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t182" x="-1277.5" y="1942.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t183" x="-297.5" y="-857.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t184" x="17045.0" y="1452.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t185" x="7665.0" y="8907.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t186" x="2292.5" y="2957.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t187" x="9625.0" y="7577.5" w="64750.0" h="96285.0"></notecontainer>
-    <connection from="t1" to="t76" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t6" to="t70" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t8" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t8" to="t20" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t9" to="t47" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t11" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t12" to="t38" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t12" to="t6" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t18" to="t20" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t18" to="t54" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t20" to="t66" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t29" to="t78" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t29" to="t1" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t38" to="t29" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t38" to="t12" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t39" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t47" to="t12" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t61" to="t70" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t66" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t70" to="t11" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t70" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t74" to="t40" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t76" to="t9" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <actioncontainer id="t166" x="490.0" y="-1662.5">Set Flow State: Enable "BB ",Authorization,GT A,S,XX,GT Hahahah,Clicker</actioncontainer>
+    <actioncontainer id="t167" x="490.0" y="-1662.5">Execute Root Command: settings get secure android_id in </actioncontainer>
+    <actioncontainer id="t168" x="490.0" y="-1662.5">Control UI: result = replace(stdout,"\n","");</actioncontainer>
+    <actioncontainer id="t169" x="490.0" y="-1662.5">Script: if(result == "" AND result == " ") { global_authorized = false; result = false; } else global_authorized = result</actioncontainer>
+    <actioncontainer id="t170" x="595.0" y="-1452.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t171" x="560.0" y="-1837.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t172" x="525.0" y="-1662.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t173" x="455.0" y="-1592.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t174" x="525.0" y="-1662.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t175" x="385.0" y="-1662.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t176" x="350.0" y="-1417.5">xx UI: xx</actioncontainer>
+    <actioncontainer id="t177" x="245.0" y="-1802.5">xx UI: xx</actioncontainer>
+    <notecontainer id="t178" x="13510.0" y="2642.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t179" x="-612.5" y="4112.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t180" x="20545.0" y="2747.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t181" x="15855.0" y="-2922.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t182" x="3990.0" y="9957.5" w="64750.0" h="96285.0"></notecontainer>
+    <connection from="t1" to="t167" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t2" to="t76" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t7" to="t177" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t9" to="t18" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t9" to="t21" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t10" to="t48" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t12" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t13" to="t39" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t13" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t19" to="t21" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t19" to="t55" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t21" to="t67" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t30" to="t78" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t30" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t39" to="t30" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t39" to="t13" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t40" to="t9" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t48" to="t13" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t62" to="t177" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t67" to="t9" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t74" to="t41" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t76" to="t10" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t76" to="t78" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t76" to="t54" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t78" to="t61" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t78" to="t38" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t76" to="t55" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t78" to="t62" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t78" to="t39" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t79" to="t158" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t85" to="t151" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t87" to="t96" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
@@ -1658,24 +1712,25 @@ global_authorized = result</script>
     <connection from="t119" to="t110" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t119" to="t91" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t120" to="t87" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t121" to="t177" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t121" to="t176" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t129" to="t91" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t146" to="t87" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t151" to="t172" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t151" to="t171" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t151" to="t80" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t155" to="t177" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t155" to="t176" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t155" to="t119" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t156" to="t122" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t158" to="t88" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t158" to="t155" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t158" to="t135" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t166" to="t168" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t167" to="t168" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t168" to="t169" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t169" to="t170" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t170" to="t167" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t171" to="t61" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t172" to="t83" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t177" to="t151" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t169" to="t166" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t170" to="t62" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t171" to="t83" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t176" to="t151" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t177" to="t12" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t177" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
   <flow type="flow">
     <name>GT A</name>
@@ -1760,12 +1815,12 @@ global_authorized = result</script>
     <actioncontainer id="t73" x="-385.0" y="-157.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t74" x="-490.0" y="192.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t75" x="35.0" y="227.5">xx UI: xx</actioncontainer>
-    <notecontainer id="t76" x="19285.0" y="-332.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t77" x="7560.0" y="12687.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t78" x="23975.0" y="5337.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t79" x="2817.5" y="6702.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t80" x="16940.0" y="5232.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t81" x="-1382.5" y="5897.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t76" x="23975.0" y="5337.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t77" x="2817.5" y="6702.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t78" x="16940.0" y="5232.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t79" x="-1382.5" y="5897.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t80" x="19285.0" y="-332.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t81" x="7560.0" y="12687.5" w="64750.0" h="96285.0"></notecontainer>
     <connection from="t1" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t2" to="t6" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t2" to="t4" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
@@ -1815,248 +1870,16 @@ global_authorized = result</script>
     <group>GT Modify</group>
     <enabled>false</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
-    <triggercontainer id="t1" x="70.0" y="472.5">
+    <triggercontainer id="t1" x="70.0" y="682.5">
       <trigger>UI Event: Window opened package com.linecorp.lineman.driver contains text ยืนยันรับงาน?</trigger>
     </triggercontainer>
-    <actioncontainer id="t2" x="70.0" y="472.5">Control UI: gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));</actioncontainer>
-    <actioncontainer id="t3" x="70.0" y="472.5">Set Flow State: Disable Lineman</actioncontainer>
-    <actioncontainer id="t4" x="70.0" y="472.5">Stop Flows: Lineman</actioncontainer>
-    <actioncontainer id="t5" x="70.0" y="472.5">Set Flow State: Enable Lineman</actioncontainer>
-    <actioncontainer id="t6" x="70.0" y="472.5">Execute Flows: Lineman</actioncontainer>
-    <notecontainer id="t7" x="17850.0" y="-2502.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t8" x="6195.0" y="10482.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t9" x="1452.5" y="4567.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t10" x="21630.0" y="4077.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t11" x="-2817.5" y="3727.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t2" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t3" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t4" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t5" to="t6" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-  </flow>
-  <flow type="flow">
-    <name>GT Return</name>
-    <description> </description>
-    <group>GT Modify</group>
-    <enabled>false</enabled>
-    <executionPolicy>PARALLEL</executionPolicy>
-    <triggercontainer id="t1" x="70.0" y="52.5">
-      <trigger>UI Event: Window opened package com.linecorp.lineman.driver contains text ไม่สามารถเริ่มงานได้</trigger>
-    </triggercontainer>
-    <actioncontainer id="t2" x="70.0" y="52.5">Control UI: click("กลับไป*");</actioncontainer>
-    <actioncontainer id="t3" x="-245.0" y="822.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t4" x="-665.0" y="-87.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t5" x="-210.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t6" x="70.0" y="52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t7" x="-630.0" y="507.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t8" x="-490.0" y="367.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t9" x="-140.0" y="-437.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t10" x="-245.0" y="857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t11" x="-140.0" y="87.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t12" x="-665.0" y="857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t13" x="-140.0" y="-262.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t14" x="-735.0" y="-157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t15" x="-490.0" y="227.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t16" x="175.0" y="892.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t17" x="70.0" y="-437.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t18" x="-175.0" y="332.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t19" x="-595.0" y="-612.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t20" x="-105.0" y="-52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t21" x="-140.0" y="402.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t22" x="-315.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t23" x="-350.0" y="-437.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t24" x="35.0" y="332.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t25" x="-770.0" y="87.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t26" x="-385.0" y="87.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t27" x="245.0" y="157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t28" x="175.0" y="857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t29" x="-175.0" y="227.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t30" x="70.0" y="-297.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t31" x="-140.0" y="437.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t32" x="420.0" y="-192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t33" x="105.0" y="-787.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t34" x="-455.0" y="647.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t35" x="-140.0" y="157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t36" x="-595.0" y="-122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t37" x="455.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t38" x="140.0" y="927.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t39" x="210.0" y="822.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t40" x="-455.0" y="52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t41" x="175.0" y="857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t42" x="0.0" y="542.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t43" x="-35.0" y="-822.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t44" x="-455.0" y="-297.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t45" x="-175.0" y="-17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t46" x="175.0" y="892.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t47" x="-665.0" y="-577.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t48" x="-560.0" y="-122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t49" x="-350.0" y="227.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t50" x="-455.0" y="857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t51" x="-770.0" y="157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t52" x="210.0" y="892.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t53" x="490.0" y="402.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t54" x="210.0" y="892.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t55" x="-420.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t56" x="-455.0" y="367.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t57" x="175.0" y="892.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t58" x="70.0" y="-17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t59" x="210.0" y="122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t60" x="-665.0" y="122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t61" x="70.0" y="857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t62" x="-35.0" y="682.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t63" x="-315.0" y="-122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t64" x="-385.0" y="157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t65" x="210.0" y="227.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t66" x="140.0" y="227.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t67" x="-35.0" y="857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t68" x="-560.0" y="-297.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t69" x="-665.0" y="52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t70" x="-245.0" y="647.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t71" x="-210.0" y="787.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t72" x="-630.0" y="-122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t73" x="-175.0" y="157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t74" x="105.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t75" x="-595.0" y="472.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t76" x="-455.0" y="332.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t77" x="-105.0" y="-472.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t78" x="-210.0" y="822.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t79" x="-105.0" y="52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t80" x="-630.0" y="822.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t81" x="-105.0" y="-297.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t82" x="-700.0" y="-192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t83" x="-455.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t84" x="210.0" y="857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t85" x="105.0" y="-472.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t86" x="-140.0" y="297.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t87" x="-560.0" y="-647.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t88" x="-105.0" y="367.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t89" x="-280.0" y="-17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t90" x="-315.0" y="-472.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t91" x="70.0" y="297.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t92" x="-735.0" y="52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t93" x="-350.0" y="52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t94" x="280.0" y="122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t95" x="210.0" y="822.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t96" x="-140.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t97" x="105.0" y="-332.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t98" x="-105.0" y="402.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t99" x="455.0" y="-227.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t100" x="140.0" y="-822.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t101" x="-420.0" y="612.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t102" x="-105.0" y="122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t103" x="-560.0" y="-157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t104" x="490.0" y="157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t105" x="175.0" y="892.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t106" x="245.0" y="787.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t107" x="-420.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t108" x="210.0" y="822.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t109" x="35.0" y="507.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t110" x="0.0" y="-857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t111" x="-420.0" y="-332.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t112" x="-140.0" y="-52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t113" x="210.0" y="857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t114" x="-630.0" y="-612.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t115" x="-525.0" y="-157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t116" x="-315.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t117" x="-420.0" y="822.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t118" x="-735.0" y="122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t119" x="245.0" y="857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t120" x="525.0" y="367.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t121" x="245.0" y="857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t122" x="-385.0" y="157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t123" x="-420.0" y="332.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t124" x="210.0" y="857.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t125" x="105.0" y="-52.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t126" x="245.0" y="87.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t127" x="-630.0" y="87.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t128" x="105.0" y="822.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t129" x="0.0" y="647.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t130" x="-280.0" y="-157.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t131" x="-350.0" y="122.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t132" x="245.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t133" x="-210.0" y="612.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t134" x="175.0" y="192.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t135" x="0.0" y="822.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t136" x="-525.0" y="-332.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t137" x="-630.0" y="17.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t138" x="-70.0" y="-87.5">xx UI: xx</actioncontainer>
-    <notecontainer id="t139" x="6895.0" y="10132.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t140" x="22400.0" y="3727.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t141" x="2117.5" y="4217.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t142" x="16275.0" y="2677.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t143" x="-2047.5" y="3342.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t144" x="18620.0" y="-2887.5" w="64750.0" h="96285.0"></notecontainer>
-    <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t3" to="t67" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t9" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t9" to="t23" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t10" to="t50" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t12" to="t40" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t12" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t13" to="t43" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t17" to="t30" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t19" to="t23" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t19" to="t58" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t23" to="t68" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t30" to="t58" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t30" to="t19" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t31" to="t42" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t32" to="t31" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t33" to="t13" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t34" to="t70" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t34" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t39" to="t67" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t40" to="t34" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t40" to="t12" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t42" to="t62" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t42" to="t39" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t43" to="t9" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t48" to="t33" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t48" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t50" to="t12" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t54" to="t67" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t66" to="t45" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t67" to="t10" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t67" to="t70" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t67" to="t58" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t68" to="t48" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t70" to="t62" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t70" to="t40" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t71" to="t135" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t77" to="t85" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t77" to="t90" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t78" to="t117" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t80" to="t107" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t80" to="t75" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t81" to="t110" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t85" to="t97" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t87" to="t90" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t87" to="t125" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t90" to="t136" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t97" to="t125" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t97" to="t87" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t98" to="t109" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t99" to="t98" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t100" to="t81" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t101" to="t133" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t101" to="t71" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t106" to="t135" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t107" to="t101" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t107" to="t80" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t109" to="t129" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t109" to="t106" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t110" to="t77" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t115" to="t100" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t115" to="t85" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t117" to="t80" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t121" to="t135" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t133" to="t129" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t133" to="t107" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t134" to="t112" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t135" to="t78" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t135" to="t133" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t135" to="t125" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t136" to="t115" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <notecontainer id="t2" x="20895.0" y="5827.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t3" x="16205.0" y="157.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t4" x="4480.0" y="13177.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t5" x="13860.0" y="5722.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t6" x="-262.5" y="7192.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <actioncontainer id="t7" x="70.0" y="682.5">Control UI: gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));s</actioncontainer>
+    <connection from="t1" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
   <flow type="flow">
     <name>Lineman</name>
@@ -2065,126 +1888,107 @@ global_authorized = result</script>
     <enabled>false</enabled>
     <executionPolicy>STOP</executionPolicy>
     <emergencyStopCount>999999</emergencyStopCount>
-    <triggercontainer id="t1" x="-489.99994" y="-2152.5002" />
-    <actioncontainer id="t2" x="-490.00012" y="-2152.5">GTA</actioncontainer>
-    <actioncontainer id="t3" x="-489.99988" y="-2152.5">GTF</actioncontainer>
-    <conditioncontainer id="t4" x="-489.99994" y="-2152.5">Expression: global_mode == 2</conditioncontainer>
-    <conditioncontainer id="t5" x="-490.00006" y="-2152.5">Expression: checking == 1</conditioncontainer>
-    <actioncontainer id="t6" x="-489.99994" y="-2152.5">Execute Root Command: settings get secure android_id in x</actioncontainer>
-    <conditioncontainer id="t7" x="-490.0" y="-2152.5">Expression: checking == 1</conditioncontainer>
-    <conditioncontainer id="t8" x="-490.00012" y="-2152.5">Expression: global_mode == 1</conditioncontainer>
-    <conditioncontainer id="t9" x="-489.99988" y="-2152.5">Expression: global_mode == 3</conditioncontainer>
-    <conditioncontainer id="t10" x="-490.00012" y="-2152.5">Expression: version == "3.5.1"</conditioncontainer>
-    <actioncontainer id="t11" x="-489.99988" y="-2152.5005">Init Variable Text File: /sdcard/.gt/key to file_text</actioncontainer>
-    <actioncontainer id="t12" x="-490.00012" y="-2152.5">Control UI: file_text = replace(file_text," ",""); stdout = replace(stdout," ",""); file_text = replace(file_text,"\n",""); stdout = replace(stdout,"\n","");</actioncontainer>
-    <conditioncontainer id="t13" x="-490.0" y="-2152.5">Expression: stdout == file_text</conditioncontainer>
-    <actioncontainer id="t14" x="-490.00006" y="-2152.5002">Init Variable Text File: /storage/emulated/0/.gt/key to register</actioncontainer>
-    <actioncontainer id="t15" x="-490.00018" y="-2152.5">Init Variable Package Info: com.linecorp.lineman.driver into package_info</actioncontainer>
-    <actioncontainer id="t16" x="-490.00012" y="-2152.5">GTB</actioncontainer>
-    <actioncontainer id="t17" x="-490.00018" y="-2152.5">Execute Flows: Lineman</actioncontainer>
-    <actioncontainer id="t18" x="-490.0" y="-2152.5">GTA-A</actioncontainer>
-    <actioncontainer id="t19" x="-490.00012" y="-2152.5">GTE</actioncontainer>
-    <actioncontainer id="t20" x="-490.00012" y="-2152.5">GTD</actioncontainer>
-    <actioncontainer id="t21" x="-489.99988" y="-2152.5">GTD-D</actioncontainer>
-    <actioncontainer id="t22" x="-490.0" y="-2152.5">GTC-C</actioncontainer>
-    <actioncontainer id="t23" x="-489.99994" y="-2152.5">Stop Flows: Lineman</actioncontainer>
-    <actioncontainer id="t24" x="-489.99988" y="-2152.5">GTC</actioncontainer>
-    <actioncontainer id="t25" x="-490.00012" y="-2152.5">Execute Flows: Lineman</actioncontainer>
-    <actioncontainer id="t26" x="-489.99982" y="-2152.5">GTE</actioncontainer>
-    <conditioncontainer id="t27" x="-490.00006" y="-2152.5">Expression: checking == 1</conditioncontainer>
-    <actioncontainer id="t28" x="-490.0" y="-2152.5">GTB-B</actioncontainer>
-    <conditioncontainer id="t29" x="-489.99994" y="-2152.5">Expression: global_modex == 3</conditioncontainer>
-    <conditioncontainer id="t30" x="-490.00018" y="-2152.5">Expression: global_modex == 3</conditioncontainer>
-    <conditioncontainer id="t31" x="-489.99994" y="-2152.5">Expression: global_modex == 1</conditioncontainer>
-    <conditioncontainer id="t32" x="-490.00012" y="-2152.5">Expression: checking == 1</conditioncontainer>
-    <conditioncontainer id="t33" x="-455.00006" y="-2152.5">Expression: global_modex == 2</conditioncontainer>
-    <conditioncontainer id="t34" x="-490.00012" y="-2152.5">Expression: checking == 1</conditioncontainer>
-    <conditioncontainer id="t35" x="-490.00006" y="-2152.5">Expression: checking == 1</conditioncontainer>
-    <conditioncontainer id="t36" x="-489.99976" y="-2152.5">Expression: global_mode == 3</conditioncontainer>
-    <actioncontainer id="t37" x="-489.99994" y="-2152.5">GTF-F</actioncontainer>
-    <conditioncontainer id="t38" x="-490.00024" y="-2152.5">Expression: global_mode == 1</conditioncontainer>
-    <actioncontainer id="t39" x="-490.0" y="-2152.5">Stop Flows: Lineman</actioncontainer>
-    <conditioncontainer id="t40" x="-490.00012" y="-2117.5005">Expression: global_modex == 1</conditioncontainer>
-    <conditioncontainer id="t41" x="-525.0" y="-2152.5002">Expression: checking == 1</conditioncontainer>
-    <conditioncontainer id="t42" x="-489.99988" y="-2117.5">Expression: checking == 1</conditioncontainer>
-    <conditioncontainer id="t43" x="-455.00006" y="-2117.4995">Expression: global_modex == 2</conditioncontainer>
-    <conditioncontainer id="t44" x="-454.99988" y="-2117.4998">Expression: checking == 1</conditioncontainer>
-    <conditioncontainer id="t45" x="-455.00006" y="-2152.5">Expression: checking == 1</conditioncontainer>
-    <conditioncontainer id="t46" x="-454.99994" y="-2117.5">Expression: checking == 1</conditioncontainer>
-    <conditioncontainer id="t47" x="-489.99982" y="-2117.5">Expression: checking == 1</conditioncontainer>
-    <actioncontainer id="t48" x="-525.0" y="-2152.5005">Control UI: version = findAll(package_info, "\\d.\\d.\\d"); version = version[0];</actioncontainer>
-    
-    <conditioncontainer id="t829" x="-490.0" y="-2117.5">Expression: global_mode == 2</conditioncontainer>
-    <connection from="t1" to="t6" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t2" to="t41" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t3" to="t34" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t4" to="t9" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t4" to="t37" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t5" to="t37" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t5" to="t39" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t6" to="t11" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t7" to="t24" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t7" to="t23" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t8" to="t4" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t8" to="t18" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t9" to="t40" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t10" to="t38" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t10" to="t8" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t11" to="t12" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t12" to="t13" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t13" to="t14" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t14" to="t15" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t15" to="t48" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t16" to="t27" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <triggercontainer id="t1" x="-455.0" y="-1697.5" />
+    <actioncontainer id="t2" x="-455.0" y="-1557.5">Execute Root Command: settings get secure android_id in x</actioncontainer>
+    <actioncontainer id="t3" x="-455.0" y="-1417.5">Init Variable Text File: /sdcard/.gt/key to file_text</actioncontainer>
+    <actioncontainer id="t4" x="-455.0" y="-1277.5">Control UI: file_text = replace(file_text," ",""); stdout = replace(stdout," ",""); file_text = replace(file_text,"\n",""); stdout = replace(stdout,"\n","");</actioncontainer>
+    <conditioncontainer id="t5" x="-455.0" y="-1102.5">Expression: stdout == file_text</conditioncontainer>
+    <actioncontainer id="t6" x="-455.0" y="-927.5">Init Variable Text File: /storage/emulated/0/.gt/key to register</actioncontainer>
+    <actioncontainer id="t7" x="-455.0" y="-752.5">Init Variable Package Info: com.linecorp.lineman.driver into package_info</actioncontainer>
+    <actioncontainer id="t8" x="-455.0" y="-577.5">Control UI: version = findAll(package_info, "\\d.\\d.\\d"); version = version[0];</actioncontainer>
+    <conditioncontainer id="t9" x="490.0" y="-192.5">Expression: global_mode == 3</conditioncontainer>
+    <conditioncontainer id="t10" x="105.0" y="-157.5">Expression: global_mode == 1</conditioncontainer>
+    <conditioncontainer id="t11" x="735.0" y="-192.5">Expression: global_modex == 2</conditioncontainer>
+    <conditioncontainer id="t12" x="945.0" y="-192.5">Expression: global_modex == 3</conditioncontainer>
+    <conditioncontainer id="t13" x="490.0" y="17.5">Expression: global_modex == 1</conditioncontainer>
+    <conditioncontainer id="t14" x="280.0" y="-157.5">Expression: global_mode == 2</conditioncontainer>
+    <conditioncontainer id="t15" x="-455.0" y="-437.5">Expression: version == "3.5.1"</conditioncontainer>
+    <actioncontainer id="t16" x="280.0" y="227.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t17" x="490.0" y="402.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t18" x="700.0" y="227.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t19" x="910.0" y="227.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t20" x="1120.0" y="227.5">Control UI: sleep(1);</actioncontainer>
+    <conditioncontainer id="t21" x="-1295.0" y="-52.5">Expression: global_mode == 1</conditioncontainer>
+    <conditioncontainer id="t22" x="-1120.0" y="-52.5">Expression: global_mode == 2</conditioncontainer>
+    <conditioncontainer id="t23" x="-945.0" y="-52.5">Expression: global_mode == 3</conditioncontainer>
+    <conditioncontainer id="t24" x="-770.0" y="-52.5">Expression: global_modex == 1</conditioncontainer>
+    <conditioncontainer id="t25" x="-595.0" y="-52.5">Expression: global_modex == 2</conditioncontainer>
+    <conditioncontainer id="t26" x="-420.0" y="-52.5">Expression: global_modex == 3</conditioncontainer>
+    <actioncontainer id="t27" x="-1295.0" y="157.5">GTA-A</actioncontainer>
+    <actioncontainer id="t28" x="-945.0" y="157.5">GTB-B</actioncontainer>
+    <actioncontainer id="t29" x="-770.0" y="157.5">GTC-C</actioncontainer>
+    <actioncontainer id="t30" x="-595.0" y="157.5">GTD-D</actioncontainer>
+    <actioncontainer id="t31" x="-420.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t32" x="-595.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t33" x="-770.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t34" x="-945.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t35" x="-1120.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t36" x="-1295.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t37" x="-420.0" y="157.5">GTE-E</actioncontainer>
+    <actioncontainer id="t38" x="105.0" y="17.5">GTA.6</actioncontainer>
+    <actioncontainer id="t39" x="-1120.0" y="157.5">GTF-F</actioncontainer>
+    <actioncontainer id="t40" x="280.00006" y="17.500015">GTF.6</actioncontainer>
+    <actioncontainer id="t41" x="105.0" y="227.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t42" x="1120.0" y="17.5">GTE.4</actioncontainer>
+    <actioncontainer id="t43" x="910.0" y="17.5">GTD.4</actioncontainer>
+    <actioncontainer id="t44" x="700.0" y="17.5">GTC.4</actioncontainer>
+    <actioncontainer id="t45" x="490.0" y="227.5">GTB.4</actioncontainer>
+    <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t2" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t3" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t4" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t5" to="t6" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t6" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t7" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t8" to="t15" type="NORMAL" sourcePosition="SOUTH" targetPosition="SOUTH" />
+    <connection from="t9" to="t13" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t10" to="t14" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t10" to="t38" type="TRUE" sourcePosition="SOUTH" targetPosition="EAST" />
+    <connection from="t11" to="t12" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t11" to="t44" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t12" to="t42" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t12" to="t43" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t13" to="t11" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t13" to="t45" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t14" to="t40" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t14" to="t9" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t15" to="t10" type="FALSE" sourcePosition="SOUTH" targetPosition="SOUTH" />
+    <connection from="t15" to="t21" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t16" to="t40" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t17" to="t45" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t18" to="t44" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t19" to="t46" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t20" to="t45" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t21" to="t32" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t22" to="t42" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t23" to="t25" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t24" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t26" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t27" to="t16" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t27" to="t23" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t28" to="t47" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t29" to="t19" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t29" to="t21" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t30" to="t26" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t30" to="t20" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t31" to="t33" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t31" to="t16" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t32" to="t21" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t32" to="t39" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t33" to="t30" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t33" to="t24" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t34" to="t3" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t34" to="t23" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t35" to="t26" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t35" to="t23" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t36" to="t31" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t37" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t38" to="t829" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t38" to="t2" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t39" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t40" to="t43" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t40" to="t28" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t41" to="t2" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t41" to="t23" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t42" to="t22" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t42" to="t39" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t43" to="t29" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t43" to="t22" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t44" to="t18" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t44" to="t39" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t45" to="t20" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t45" to="t23" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t46" to="t19" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t46" to="t39" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t47" to="t28" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t47" to="t39" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t48" to="t10" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t829" to="t36" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t829" to="t3" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t19" to="t43" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t20" to="t42" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t21" to="t22" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t21" to="t27" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t22" to="t23" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t22" to="t39" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t23" to="t24" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t24" to="t25" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t24" to="t28" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t25" to="t26" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t25" to="t29" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t26" to="t37" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t26" to="t30" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t27" to="t36" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t28" to="t34" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t29" to="t33" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t30" to="t32" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t31" to="t37" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t32" to="t30" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t33" to="t29" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t34" to="t28" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t35" to="t39" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t36" to="t27" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t37" to="t31" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t38" to="t41" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t39" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t40" to="t16" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t41" to="t38" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t42" to="t20" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t43" to="t19" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t44" to="t18" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t45" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
   <flow type="flow">
     <name>S</name>
@@ -2410,18 +2214,18 @@ global_authorized = result</script>
     <actioncontainer id="t214" x="-980.0" y="-2012.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t215" x="-1085.0" y="-1662.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t216" x="-420.0" y="-1172.5">xx UI: xx</actioncontainer>
-    <notecontainer id="t217" x="12530.0" y="-10727.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t218" x="805.0" y="2292.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t219" x="16730.0" y="-4182.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t220" x="4672.5" y="-6282.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t221" x="18830.0" y="-7787.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t222" x="507.5" y="-7122.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t223" x="21175.0" y="-13352.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t224" x="9450.0" y="-332.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t225" x="25060.0" y="-6842.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t226" x="8680.0" y="-2117.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t227" x="-5477.5" y="-122.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t228" x="-10237.5" y="-4917.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t217" x="16730.0" y="-4182.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t218" x="4672.5" y="-6282.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t219" x="18830.0" y="-7787.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t220" x="507.5" y="-7122.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t221" x="21175.0" y="-13352.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t222" x="9450.0" y="-332.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t223" x="25060.0" y="-6842.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t224" x="8680.0" y="-2117.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t225" x="-5477.5" y="-122.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t226" x="-10237.5" y="-4917.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t227" x="12530.0" y="-10727.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t228" x="805.0" y="2292.5" w="64750.0" h="96285.0"></notecontainer>
     <connection from="t1" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t2" to="t3" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t3" to="t6" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
