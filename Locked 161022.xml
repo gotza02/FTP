@@ -269,7 +269,7 @@ checking = 1;
 }
 
 count = count + 1;
-if(count == 50)
+if(count == 100)
 break;
 }
 }</script>
@@ -312,7 +312,7 @@ checking = 1;
 }
 
 count = count + 1;
-if(count == 50)
+if(count == 100)
 break;
 }
 }</script>
@@ -345,7 +345,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 50)
+if(count == 100)
 break;
 }
 }</script>
@@ -374,7 +374,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 50)
+if(count == 100)
 break;
 }
 }</script>
@@ -407,7 +407,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 50)
+if(count == 100)
 break;
 }
 }</script>
@@ -436,7 +436,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 50)
+if(count == 100)
 break;
 }
 }</script>
@@ -468,7 +468,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 50)
+if(count == 100)
 break;
 }
 }</script>
@@ -496,7 +496,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 50)
+if(count == 100)
 break;
 }
 }</script>
@@ -523,7 +523,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 50)
+if(count == 100)
 break;
 }
 }</script>
@@ -545,7 +545,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 50)
+if(count == 100)
 break;
 }
 }</script>
@@ -593,7 +593,7 @@ checking = 1;
 
 }
 count = count+1;
-if(count == 50)
+if(count == 100)
 break;
 }}
 </script>
@@ -636,7 +636,7 @@ checking = 1;
 
 }
 count = count+1;
-if(count == 50)
+if(count == 100)
 break;
 }}
 </script>
@@ -1853,54 +1853,54 @@ global_authorized = result</script>
     <emergencyStopCount>999999</emergencyStopCount>
     <triggercontainer id="t1" x="-455.0" y="-1697.5" />
     <actioncontainer id="t2" x="-455.0" y="-1557.5">Execute Root Command: settings get secure android_id in x</actioncontainer>
-    <actioncontainer id="t3" x="-455.0" y="-1417.5">Init Variable Text File: /sdcard/.gt/key to file_text</actioncontainer>
-    <actioncontainer id="t4" x="-455.0" y="-1277.5">Control UI: file_text = replace(file_text," ",""); stdout = replace(stdout," ",""); file_text = replace(file_text,"\n",""); stdout = replace(stdout,"\n","");</actioncontainer>
-    <conditioncontainer id="t5" x="-455.0" y="-1102.5">Expression: stdout == file_text</conditioncontainer>
-    <actioncontainer id="t6" x="-455.0" y="-927.5">Init Variable Text File: /storage/emulated/0/.gt/key to register</actioncontainer>
-    <actioncontainer id="t7" x="-455.0" y="-752.5">Init Variable Package Info: com.linecorp.lineman.driver into package_info</actioncontainer>
-    <actioncontainer id="t8" x="-455.0" y="-577.5">Control UI: version = findAll(package_info, "\\d.\\d.\\d"); version = version[0];</actioncontainer>
-    <conditioncontainer id="t9" x="490.0" y="-192.5">Expression: global_mode == 3</conditioncontainer>
-    <conditioncontainer id="t10" x="105.0" y="-157.5">Expression: global_mode == 1</conditioncontainer>
-    <conditioncontainer id="t11" x="735.0" y="-192.5">Expression: global_modex == 2</conditioncontainer>
-    <conditioncontainer id="t12" x="945.0" y="-192.5">Expression: global_modex == 3</conditioncontainer>
-    <conditioncontainer id="t13" x="490.0" y="17.5">Expression: global_modex == 1</conditioncontainer>
-    <conditioncontainer id="t14" x="280.0" y="-157.5">Expression: global_mode == 2</conditioncontainer>
-    <conditioncontainer id="t15" x="-455.0" y="-437.5">Expression: version == "3.5.1"</conditioncontainer>
-    <actioncontainer id="t16" x="1120.0" y="17.5">GTE</actioncontainer>
-    <actioncontainer id="t17" x="910.0" y="17.5">GTD</actioncontainer>
-    <actioncontainer id="t18" x="700.0" y="17.5">GTC</actioncontainer>
-    <actioncontainer id="t19" x="490.0" y="227.5">GTB</actioncontainer>
-    <actioncontainer id="t20" x="280.0" y="17.5">GTF</actioncontainer>
-    <actioncontainer id="t21" x="105.0" y="17.5">GTA</actioncontainer>
-    <actioncontainer id="t22" x="280.0" y="227.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t23" x="490.0" y="402.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t24" x="700.0" y="227.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t25" x="910.0" y="227.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t26" x="1120.0" y="227.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <conditioncontainer id="t27" x="-1295.0" y="-52.5">Expression: global_mode == 1</conditioncontainer>
-    <conditioncontainer id="t28" x="-1120.0" y="-52.5">Expression: global_mode == 2</conditioncontainer>
-    <conditioncontainer id="t29" x="-945.0" y="-52.5">Expression: global_mode == 3</conditioncontainer>
-    <conditioncontainer id="t30" x="-770.0" y="-52.5">Expression: global_modex == 1</conditioncontainer>
-    <conditioncontainer id="t31" x="-595.0" y="-52.5">Expression: global_modex == 2</conditioncontainer>
-    <conditioncontainer id="t32" x="-420.0" y="-52.5">Expression: global_modex == 3</conditioncontainer>
-    <actioncontainer id="t33" x="105.0" y="227.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t34" x="-420.0" y="157.5">GTE-E</actioncontainer>
-    <actioncontainer id="t35" x="-595.0" y="157.5">GTD-D</actioncontainer>
-    <actioncontainer id="t36" x="-770.0" y="157.5">GTC-C</actioncontainer>
-    <actioncontainer id="t37" x="-945.0" y="157.5">GTB-B</actioncontainer>
-    <actioncontainer id="t38" x="-1120.0" y="157.5">GTF-F</actioncontainer>
-    <actioncontainer id="t39" x="-1295.0" y="157.5">GTA-A</actioncontainer>
-    <actioncontainer id="t40" x="-420.0" y="157.49998">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t41" x="-594.99994" y="157.50002">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t42" x="-770.0" y="157.50002">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t43" x="-945.0" y="157.50002">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t44" x="-1120.0" y="157.49991">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t45" x="-1260.0" y="157.49995">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <notecontainer id="t46" x="-1417.5" y="4847.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t47" x="3325.0" y="10832.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t48" x="19740.0" y="3482.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t49" x="15050.0" y="-2187.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t50" x="12705.0" y="3377.5" w="64750.0" h="96285.0"></notecontainer>
+    <actioncontainer id="t3" x="-455.0" y="-1557.5">Init Variable Text File: /sdcard/.gt/key to file_text</actioncontainer>
+    <actioncontainer id="t4" x="-455.0" y="-1557.5">Control UI: file_text = replace(file_text," ",""); stdout = replace(stdout," ",""); file_text = replace(file_text,"\n",""); stdout = replace(stdout,"\n","");</actioncontainer>
+    <conditioncontainer id="t5" x="-455.0" y="-1557.5">Expression: stdout == file_text</conditioncontainer>
+    <actioncontainer id="t6" x="-455.0" y="-1557.5">Init Variable Text File: /storage/emulated/0/.gt/key to register</actioncontainer>
+    <actioncontainer id="t7" x="-455.0" y="-1557.5">Init Variable Package Info: com.linecorp.lineman.driver into package_info</actioncontainer>
+    <actioncontainer id="t8" x="-455.0" y="-1557.5">Control UI: version = findAll(package_info, "\\d.\\d.\\d"); version = version[0];</actioncontainer>
+    <conditioncontainer id="t9" x="-455.0" y="-1557.5">Expression: global_mode == 3</conditioncontainer>
+    <conditioncontainer id="t10" x="-455.0" y="-1557.5">Expression: global_mode == 1</conditioncontainer>
+    <conditioncontainer id="t11" x="-455.0" y="-1557.5">Expression: global_modex == 2</conditioncontainer>
+    <conditioncontainer id="t12" x="-455.0" y="-1557.5">Expression: global_modex == 3</conditioncontainer>
+    <conditioncontainer id="t13" x="-455.0" y="-1557.5">Expression: global_modex == 1</conditioncontainer>
+    <conditioncontainer id="t14" x="-455.0" y="-1557.5">Expression: global_mode == 2</conditioncontainer>
+    <conditioncontainer id="t15" x="-455.0" y="-1557.5">Expression: version == "3.5.1"</conditioncontainer>
+    <actioncontainer id="t16" x="-455.0" y="-1557.5">GTE</actioncontainer>
+    <actioncontainer id="t17" x="-455.0" y="-1557.5">GTD</actioncontainer>
+    <actioncontainer id="t18" x="-455.0" y="-1557.5">GTC</actioncontainer>
+    <actioncontainer id="t19" x="-455.0" y="-1557.5">GTB</actioncontainer>
+    <actioncontainer id="t20" x="-455.0" y="-1557.5">GTF</actioncontainer>
+    <actioncontainer id="t21" x="-455.0" y="-1557.5">GTA</actioncontainer>
+    <actioncontainer id="t22" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
+    <actioncontainer id="t23" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
+    <actioncontainer id="t24" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
+    <actioncontainer id="t25" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
+    <actioncontainer id="t26" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
+    <conditioncontainer id="t27" x="-455.0" y="-1557.5">Expression: global_mode == 1</conditioncontainer>
+    <conditioncontainer id="t28" x="-455.0" y="-1557.5">Expression: global_mode == 2</conditioncontainer>
+    <conditioncontainer id="t29" x="-455.0" y="-1557.5">Expression: global_mode == 3</conditioncontainer>
+    <conditioncontainer id="t30" x="-455.0" y="-1557.5">Expression: global_modex == 1</conditioncontainer>
+    <conditioncontainer id="t31" x="-455.0" y="-1557.5">Expression: global_modex == 2</conditioncontainer>
+    <conditioncontainer id="t32" x="-455.0" y="-1557.5">Expression: global_modex == 3</conditioncontainer>
+    <actioncontainer id="t33" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
+    <actioncontainer id="t34" x="-455.0" y="-1557.5">GTE-E</actioncontainer>
+    <actioncontainer id="t35" x="-455.0" y="-1557.5">GTD-D</actioncontainer>
+    <actioncontainer id="t36" x="-455.0" y="-1557.5">GTC-C</actioncontainer>
+    <actioncontainer id="t37" x="-455.0" y="-1557.5">GTB-B</actioncontainer>
+    <actioncontainer id="t38" x="-455.0" y="-1557.5">GTF-F</actioncontainer>
+    <actioncontainer id="t39" x="-455.0" y="-1557.5">GTA-A</actioncontainer>
+    <actioncontainer id="t40" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
+    <actioncontainer id="t41" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
+    <actioncontainer id="t42" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
+    <actioncontainer id="t43" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
+    <actioncontainer id="t44" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
+    <actioncontainer id="t45" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
+    <notecontainer id="t46" x="-455.0" y="-1557.5" w="99999.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t47" x="-455.0" y="-1557.5" w="99999.0" h="94395.0">xxxx</notecontainer>
+	<notecontainer id="t48" x="-455.0" y="-1557.5" w="99999.0" h="94395.0">xxxx</notecontainer>
+	<notecontainer id="t49" x="-455.0" y="-1557.5" w="99999.0" h="94395.0">xxxx</notecontainer>
+	<notecontainer id="t50" x="-455.0" y="-1557.5" w="99999.0" h="94395.0">xxxx</notecontainer>
     <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t2" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t3" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
