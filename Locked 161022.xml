@@ -150,19 +150,6 @@ touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[
   </action>
   <action type="control_user_interface">
     <useDefaultName>true</useDefaultName>
-    <name>Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</name>
-    <script>if(checking == 1)
-{
-sleep(1);
-gtxy = getBounds("​​รั​บ​ง​า​น​​");
-
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
-checking = 0;
-}</script>
-  </action>
-  <action type="control_user_interface">
-    <useDefaultName>true</useDefaultName>
     <name>Control UI: result = replace(stdout,"\n","");</name>
     <script>result = replace(stdout,"\n","");</script>
   </action>
@@ -269,7 +256,7 @@ checking = 1;
 }
 
 count = count + 1;
-if(count == 100)
+if(count == 50)
 break;
 }
 }</script>
@@ -312,7 +299,7 @@ checking = 1;
 }
 
 count = count + 1;
-if(count == 100)
+if(count == 50)
 break;
 }
 }</script>
@@ -345,7 +332,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 100)
+if(count == 50)
 break;
 }
 }</script>
@@ -374,7 +361,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 100)
+if(count == 50)
 break;
 }
 }</script>
@@ -407,7 +394,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 100)
+if(count == 50)
 break;
 }
 }</script>
@@ -436,7 +423,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 100)
+if(count == 50)
 break;
 }
 }</script>
@@ -468,7 +455,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 100)
+if(count == 50)
 break;
 }
 }</script>
@@ -496,7 +483,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 100)
+if(count == 50)
 break;
 }
 }</script>
@@ -523,7 +510,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 100)
+if(count == 50)
 break;
 }
 }</script>
@@ -545,7 +532,7 @@ clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = 1;
 }
 count = count + 1;
-if(count == 100)
+if(count == 50)
 break;
 }
 }</script>
@@ -593,7 +580,7 @@ checking = 1;
 
 }
 count = count+1;
-if(count == 100)
+if(count == 50)
 break;
 }}
 </script>
@@ -636,7 +623,7 @@ checking = 1;
 
 }
 count = count+1;
-if(count == 100)
+if(count == 50)
 break;
 }}
 </script>
@@ -933,6 +920,13 @@ global_authorized = result</script>
     <enable>true</enable>
     <includeFlowNamePatternList>Lineman</includeFlowNamePatternList>
     <excludeFlowNamePatternList></excludeFlowNamePatternList>
+  </action>
+  <action type="sleep">
+    <useDefaultName>true</useDefaultName>
+    <name>Sleep: 1ms (keep device awake)</name>
+    <duration>1ms</duration>
+    <keepDeviceAwake>true</keepDeviceAwake>
+    <allowWakeupFromDeviceIdle>false</allowWakeupFromDeviceIdle>
   </action>
   <action type="stop_flows">
     <useDefaultName>true</useDefaultName>
@@ -1235,16 +1229,16 @@ global_authorized = result</script>
     <actioncontainer id="t93" x="140.0" y="-157.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t94" x="35.0" y="87.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t95" x="70.0" y="87.5">xx UI: xx</actioncontainer>
-    <notecontainer id="t96" x="10255.0" y="10342.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t97" x="8855.0" y="14227.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t98" x="23905.0" y="5162.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t99" x="14630.0" y="12757.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t100" x="20020.0" y="-1347.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t101" x="-647.5" y="4707.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t102" x="332.5" y="1907.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t103" x="17675.0" y="4217.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t104" x="8295.0" y="11672.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t105" x="2922.5" y="5722.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t96" x="23870.0" y="5197.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t97" x="14630.0" y="12757.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t98" x="20020.0" y="-1347.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t99" x="-647.5" y="4707.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t100" x="332.5" y="1907.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t101" x="17675.0" y="4217.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t102" x="8295.0" y="11672.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t103" x="2922.5" y="5722.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t104" x="10255.0" y="10342.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t105" x="8855.0" y="14262.5" w="64750.0" h="96285.0"></notecontainer>
     <connection from="t1" to="t91" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t2" to="t72" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t6" to="t66" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
@@ -1851,112 +1845,117 @@ global_authorized = result</script>
     <enabled>false</enabled>
     <executionPolicy>STOP</executionPolicy>
     <emergencyStopCount>999999</emergencyStopCount>
-    <triggercontainer id="t1" x="-455.0" y="-1697.5" />
-    <actioncontainer id="t2" x="-455.0" y="-1557.5">Execute Root Command: settings get secure android_id in x</actioncontainer>
-    <actioncontainer id="t3" x="-455.0" y="-1557.5">Init Variable Text File: /sdcard/.gt/key to file_text</actioncontainer>
-    <actioncontainer id="t4" x="-455.0" y="-1557.5">Control UI: file_text = replace(file_text," ",""); stdout = replace(stdout," ",""); file_text = replace(file_text,"\n",""); stdout = replace(stdout,"\n","");</actioncontainer>
-    <conditioncontainer id="t5" x="-455.0" y="-1557.5">Expression: stdout == file_text</conditioncontainer>
-    <actioncontainer id="t6" x="-455.0" y="-1557.5">Init Variable Text File: /storage/emulated/0/.gt/key to register</actioncontainer>
-    <actioncontainer id="t7" x="-455.0" y="-1557.5">Init Variable Package Info: com.linecorp.lineman.driver into package_info</actioncontainer>
-    <actioncontainer id="t8" x="-455.0" y="-1557.5">Control UI: version = findAll(package_info, "\\d.\\d.\\d"); version = version[0];</actioncontainer>
-    <conditioncontainer id="t9" x="-455.0" y="-1557.5">Expression: global_mode == 3</conditioncontainer>
-    <conditioncontainer id="t10" x="-455.0" y="-1557.5">Expression: global_mode == 1</conditioncontainer>
-    <conditioncontainer id="t11" x="-455.0" y="-1557.5">Expression: global_modex == 2</conditioncontainer>
-    <conditioncontainer id="t12" x="-455.0" y="-1557.5">Expression: global_modex == 3</conditioncontainer>
-    <conditioncontainer id="t13" x="-455.0" y="-1557.5">Expression: global_modex == 1</conditioncontainer>
-    <conditioncontainer id="t14" x="-455.0" y="-1557.5">Expression: global_mode == 2</conditioncontainer>
-    <conditioncontainer id="t15" x="-455.0" y="-1557.5">Expression: version == "3.5.1"</conditioncontainer>
-    <actioncontainer id="t16" x="-455.0" y="-1557.5">GTE</actioncontainer>
-    <actioncontainer id="t17" x="-455.0" y="-1557.5">GTD</actioncontainer>
-    <actioncontainer id="t18" x="-455.0" y="-1557.5">GTC</actioncontainer>
-    <actioncontainer id="t19" x="-455.0" y="-1557.5">GTB</actioncontainer>
-    <actioncontainer id="t20" x="-455.0" y="-1557.5">GTF</actioncontainer>
-    <actioncontainer id="t21" x="-455.0" y="-1557.5">GTA</actioncontainer>
-    <actioncontainer id="t22" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t23" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t24" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t25" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t26" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <conditioncontainer id="t27" x="-455.0" y="-1557.5">Expression: global_mode == 1</conditioncontainer>
-    <conditioncontainer id="t28" x="-455.0" y="-1557.5">Expression: global_mode == 2</conditioncontainer>
-    <conditioncontainer id="t29" x="-455.0" y="-1557.5">Expression: global_mode == 3</conditioncontainer>
-    <conditioncontainer id="t30" x="-455.0" y="-1557.5">Expression: global_modex == 1</conditioncontainer>
-    <conditioncontainer id="t31" x="-455.0" y="-1557.5">Expression: global_modex == 2</conditioncontainer>
-    <conditioncontainer id="t32" x="-455.0" y="-1557.5">Expression: global_modex == 3</conditioncontainer>
-    <actioncontainer id="t33" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t34" x="-455.0" y="-1557.5">GTE-E</actioncontainer>
-    <actioncontainer id="t35" x="-455.0" y="-1557.5">GTD-D</actioncontainer>
-    <actioncontainer id="t36" x="-455.0" y="-1557.5">GTC-C</actioncontainer>
-    <actioncontainer id="t37" x="-455.0" y="-1557.5">GTB-B</actioncontainer>
-    <actioncontainer id="t38" x="-455.0" y="-1557.5">GTF-F</actioncontainer>
-    <actioncontainer id="t39" x="-455.0" y="-1557.5">GTA-A</actioncontainer>
-    <actioncontainer id="t40" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t41" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t42" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t43" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t44" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <actioncontainer id="t45" x="-455.0" y="-1557.5">Control UI: if(checking == 1) { sleep(1); gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy</actioncontainer>
-    <notecontainer id="t46" x="-455.0" y="-1557.5" w="99999.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t47" x="-455.0" y="-1557.5" w="99999.0" h="94395.0">xxxx</notecontainer>
-	<notecontainer id="t48" x="-455.0" y="-1557.5" w="99999.0" h="94395.0">xxxx</notecontainer>
-	<notecontainer id="t49" x="-455.0" y="-1557.5" w="99999.0" h="94395.0">xxxx</notecontainer>
-	<notecontainer id="t50" x="-455.0" y="-1557.5" w="99999.0" h="94395.0">xxxx</notecontainer>
-    <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <triggercontainer id="t1" x="-455.00006" y="-1557.5" />
+    <actioncontainer id="t2" x="-455.0001" y="-1557.5">Init Variable Text File: /sdcard/.gt/key to file_text</actioncontainer>
+    <actioncontainer id="t3" x="-455.0" y="-1557.5">Control UI: file_text = replace(file_text," ",""); stdout = replace(stdout," ",""); file_text = replace(file_text,"\n",""); stdout = replace(stdout,"\n","");</actioncontainer>
+    <conditioncontainer id="t4" x="-454.99997" y="-1557.5">Expression: stdout == file_text</conditioncontainer>
+    <actioncontainer id="t5" x="-454.99994" y="-1557.5">Init Variable Text File: /storage/emulated/0/.gt/key to register</actioncontainer>
+    <actioncontainer id="t6" x="-455.00006" y="-1557.5">Init Variable Package Info: com.linecorp.lineman.driver into package_info</actioncontainer>
+    <actioncontainer id="t7" x="-454.99997" y="-1557.5">Control UI: version = findAll(package_info, "\\d.\\d.\\d"); version = version[0];</actioncontainer>
+    <conditioncontainer id="t8" x="-454.99997" y="-1557.5">Expression: version == "3.5.1"</conditioncontainer>
+    <conditioncontainer id="t9" x="-454.99994" y="-1557.5">Expression: global_modex == 3</conditioncontainer>
+    <conditioncontainer id="t10" x="-455.00003" y="-1557.5">Expression: global_modex == 2</conditioncontainer>
+    <conditioncontainer id="t11" x="-419.99997" y="-1557.5">Expression: global_modex == 1</conditioncontainer>
+    <actioncontainer id="t12" x="-455.00003" y="-1557.5">Execute Root Command: settings get secure android_id in x</actioncontainer>
+    <conditioncontainer id="t13" x="-454.99997" y="-1557.4999">Expression: global_mode == 3</conditioncontainer>
+    <conditioncontainer id="t14" x="-454.99988" y="-1557.5">Expression: global_mode == 2</conditioncontainer>
+    <conditioncontainer id="t15" x="-455.00012" y="-1557.5">Expression: global_mode == 1</conditioncontainer>
+    <actioncontainer id="t16" x="-454.99994" y="-1557.5">GTE-E</actioncontainer>
+    <actioncontainer id="t17" x="-454.99988" y="-1557.4999">GTD-D</actioncontainer>
+    <actioncontainer id="t18" x="-454.99994" y="-1557.5">GTC-C</actioncontainer>
+    <actioncontainer id="t19" x="-455.00006" y="-1557.5">GTB-B</actioncontainer>
+    <actioncontainer id="t20" x="-454.99976" y="-1557.4999">GTF-F</actioncontainer>
+    <actioncontainer id="t21" x="-455.00006" y="-1557.5">GTA-A</actioncontainer>
+    <actioncontainer id="t22" x="-455.0003" y="-1557.5">Sleep: 1ms (keep device awake)</actioncontainer>
+    <actioncontainer id="t23" x="-455.00012" y="-1557.5">Sleep: 1ms (keep device awake)</actioncontainer>
+    <actioncontainer id="t24" x="-455.0" y="-1557.5">Sleep: 1ms (keep device awake)</actioncontainer>
+    <actioncontainer id="t25" x="-455.00003" y="-1557.5">Sleep: 1ms (keep device awake)</actioncontainer>
+    <actioncontainer id="t26" x="-455.0002" y="-1557.5001">Sleep: 1ms (keep device awake)</actioncontainer>
+    <actioncontainer id="t27" x="-454.99994" y="-1557.5">Sleep: 1ms (keep device awake)</actioncontainer>
+    <conditioncontainer id="t28" x="-454.99985" y="-1557.5">Expression: global_mode == 1</conditioncontainer>
+    <conditioncontainer id="t29" x="-454.99994" y="-1557.5001">Expression: global_mode == 2</conditioncontainer>
+    <conditioncontainer id="t30" x="-455.0" y="-1592.5">Expression: global_mode == 3</conditioncontainer>
+    <actioncontainer id="t31" x="-490.0" y="-1557.5">GTA</actioncontainer>
+    <actioncontainer id="t32" x="-420.00003" y="-1557.5">GTF</actioncontainer>
+    <conditioncontainer id="t33" x="-420.0" y="-1557.5">Expression: global_modex == 1</conditioncontainer>
+    <actioncontainer id="t34" x="-455.0" y="-1592.5">Sleep: 1ms (keep device awake)</actioncontainer>
+    <actioncontainer id="t35" x="-419.99994" y="-1557.5">Sleep: 1ms (keep device awake)</actioncontainer>
+    <actioncontainer id="t36" x="-489.99988" y="-1592.5">GTB</actioncontainer>
+    <actioncontainer id="t37" x="-455.00006" y="-1522.5">Sleep: 1ms (keep device awake)</actioncontainer>
+    <actioncontainer id="t38" x="-524.9999" y="-1557.5">GTE</actioncontainer>
+    <actioncontainer id="t39" x="-454.99997" y="-1592.5">Sleep: 1ms (keep device awake)</actioncontainer>
+    <actioncontainer id="t40" x="-419.99988" y="-1557.5">Sleep: 1ms (keep device awake)</actioncontainer>
+    <actioncontainer id="t41" x="-489.99994" y="-1557.5">Sleep: 1ms (keep device awake)</actioncontainer>
+    <actioncontainer id="t42" x="-419.99994" y="-1557.5">GTC</actioncontainer>
+    <conditioncontainer id="t43" x="-455.0" y="-1557.5">Expression: global_modex == 3</conditioncontainer>
+    <actioncontainer id="t44" x="-455.0" y="-1592.5">GTD</actioncontainer>
+    <conditioncontainer id="t45" x="-489.99994" y="-1557.5">Expression: global_modex == 2</conditioncontainer>
+    <notecontainer id="t46" x="-1522.5" y="2852.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t47" x="7420.0" y="9817.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t48" x="2047.5" y="3867.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t49" x="19145.0" y="-3202.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t50" x="7980.0" y="12407.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t51" x="13755.0" y="10902.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t52" x="-542.5" y="52.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t53" x="16800.0" y="2362.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t54" x="22995.0" y="3342.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t55" x="9380.0" y="8487.5" w="64750.0" h="96285.0"></notecontainer>
+    <connection from="t1" to="t12" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t2" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t3" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t4" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t5" to="t6" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t4" to="t5" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t5" to="t6" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t6" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t7" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t8" to="t15" type="NORMAL" sourcePosition="SOUTH" targetPosition="SOUTH" />
-    <connection from="t9" to="t13" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t10" to="t14" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t10" to="t21" type="TRUE" sourcePosition="SOUTH" targetPosition="EAST" />
-    <connection from="t11" to="t12" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t11" to="t18" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t12" to="t16" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t12" to="t17" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t13" to="t11" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t13" to="t19" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t7" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="SOUTH" />
+    <connection from="t8" to="t28" type="FALSE" sourcePosition="SOUTH" targetPosition="SOUTH" />
+    <connection from="t8" to="t15" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t9" to="t16" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t9" to="t17" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t10" to="t9" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t10" to="t18" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t11" to="t10" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t11" to="t19" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t12" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t13" to="t11" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t14" to="t13" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t14" to="t20" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t14" to="t9" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t15" to="t10" type="FALSE" sourcePosition="SOUTH" targetPosition="SOUTH" />
-    <connection from="t15" to="t27" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t16" to="t26" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t17" to="t25" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t15" to="t14" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t15" to="t21" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t16" to="t22" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t17" to="t23" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t18" to="t24" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t19" to="t23" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t20" to="t22" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t21" to="t33" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t22" to="t20" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t23" to="t19" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t19" to="t25" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t20" to="t26" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t21" to="t27" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t22" to="t16" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t23" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t24" to="t18" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t25" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t26" to="t16" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t27" to="t28" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t27" to="t39" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t25" to="t19" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t26" to="t20" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t27" to="t21" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t28" to="t29" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t28" to="t38" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t29" to="t30" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t30" to="t31" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t30" to="t37" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t31" to="t32" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t31" to="t36" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t32" to="t34" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t32" to="t35" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t33" to="t21" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t34" to="t40" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t35" to="t41" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t36" to="t42" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t37" to="t43" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t38" to="t44" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t39" to="t45" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t40" to="t34" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t41" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t42" to="t36" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t43" to="t37" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t44" to="t38" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t45" to="t39" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t28" to="t31" type="TRUE" sourcePosition="SOUTH" targetPosition="EAST" />
+    <connection from="t29" to="t32" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t29" to="t30" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t30" to="t33" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t31" to="t34" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t32" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t33" to="t45" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t33" to="t36" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t34" to="t31" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t35" to="t32" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t36" to="t37" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t37" to="t36" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t38" to="t39" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t39" to="t38" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t40" to="t44" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t41" to="t42" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t42" to="t41" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t43" to="t38" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t43" to="t44" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t44" to="t40" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t45" to="t43" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t45" to="t42" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
   <flow type="flow">
     <name>S</name>
@@ -2182,18 +2181,18 @@ global_authorized = result</script>
     <actioncontainer id="t214" x="-980.0" y="-2012.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t215" x="-1085.0" y="-1662.5">xx UI: xx</actioncontainer>
     <actioncontainer id="t216" x="-420.0" y="-1172.5">xx UI: xx</actioncontainer>
-    <notecontainer id="t217" x="12530.0" y="-10727.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t218" x="805.0" y="2292.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t219" x="16730.0" y="-4182.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t220" x="4672.5" y="-6282.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t221" x="18830.0" y="-7787.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t222" x="507.5" y="-7122.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t223" x="21175.0" y="-13352.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t224" x="9450.0" y="-332.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t225" x="25060.0" y="-6842.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t226" x="8680.0" y="-2117.5" w="64750.0" h="96285.0"></notecontainer>
-    <notecontainer id="t227" x="-5477.5" y="-122.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <notecontainer id="t228" x="-10237.5" y="-4917.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t217" x="16730.0" y="-4182.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t218" x="4672.5" y="-6282.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t219" x="18830.0" y="-7787.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t220" x="507.5" y="-7122.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t221" x="21175.0" y="-13352.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t222" x="9450.0" y="-332.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t223" x="25060.0" y="-6842.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t224" x="8680.0" y="-2117.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t225" x="-5477.5" y="-122.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t226" x="-10237.5" y="-4917.5" w="76265.0" h="94395.0">xxxx</notecontainer>
+    <notecontainer id="t227" x="12530.0" y="-10727.5" w="64750.0" h="96285.0"></notecontainer>
+    <notecontainer id="t228" x="805.0" y="2292.5" w="64750.0" h="96285.0"></notecontainer>
     <connection from="t1" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t2" to="t3" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t3" to="t6" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
