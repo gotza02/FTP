@@ -15,7 +15,7 @@
   <trigger type="quick_settings_tile_selected">
     <useDefaultName>true</useDefaultName>
     <name>Quick Settings Tile Selected: Tile 1 ON/OFF GT</name>
-    <enabled>false</enabled>
+    <enabled>true</enabled>
     <tileID>TILE_1</tileID>
     <label>ON/OFF GT</label>
     <iconType>BUILTIN</iconType>
@@ -26,7 +26,7 @@
   <trigger type="quick_settings_tile_selected">
     <useDefaultName>true</useDefaultName>
     <name>Quick Settings Tile Selected: Tile 2 ตั้งค่าร้าน</name>
-    <enabled>false</enabled>
+    <enabled>true</enabled>
     <tileID>TILE_2</tileID>
     <label>ตั้งค่าร้าน</label>
     <iconType>BUILTIN</iconType>
@@ -269,13 +269,15 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTA-A</name>
-    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+    <script>check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
 store_list_number = length(store_list) + 0;
 stop = 0;
 while(isEmpty(check_store))
 {
-check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
@@ -305,13 +307,15 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTA.6</name>
-    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+    <script>check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
 store_list_number = length(store_list) + 0;
 stop = 0;
 while(isEmpty(check_store))
 {
-check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
@@ -346,13 +350,15 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTB-B</name>
-    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+    <script>check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
 store_list_number = length(store_list) + 0;
 stop = 0;
 while(isEmpty(check_store))
 {
-check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
@@ -377,13 +383,15 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTB.4</name>
-    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+    <script>check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
 store_list_number = length(store_list) + 0;
 stop = 0;
 while(isEmpty(check_store))
 {
-check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
@@ -412,13 +420,15 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTC-C</name>
-    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+    <script>check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
 store_list_number = length(store_list) + 0;
 stop = 0;
 while(isEmpty(check_store))
 {
-check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
@@ -443,13 +453,15 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTC.4</name>
-    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+    <script>check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
 store_list_number = length(store_list) + 0;
 stop = 0;
 while(isEmpty(check_store))
 {
-check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
@@ -478,13 +490,15 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTD-D</name>
-    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+    <script>check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
 store_list_number = length(store_list) + 0;
 stop = 0;
 while(isEmpty(check_store))
 {
-check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
@@ -509,13 +523,15 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTD.4</name>
-    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+    <script>check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
 store_list_number = length(store_list) + 0;
 stop = 0;
 while(isEmpty(check_store))
 {
-check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
@@ -544,11 +560,13 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTE-E</name>
-    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+    <script>check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 stop = 0;
 while(isEmpty(check_store))
 {
-check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
@@ -573,11 +591,13 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTE.4</name>
-    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+    <script>check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 stop = 0;
 while(isEmpty(check_store))
 {
-check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
@@ -608,13 +628,15 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTF-F</name>
-    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+    <script>check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
 store_list_number = length(store_list) + 0;
 stop = 0;
 while(isEmpty(check_store))
 {
-check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
@@ -646,13 +668,15 @@ break;
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
     <name>GTF.6</name>
-    <script>check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+    <script>check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 store_list = splitCSVRecord(toLowerCase(replace(global_store, " ", "")));
 store_list_number = length(store_list) + 0;
 stop = 0;
 while(isEmpty(check_store))
 {
-check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
+check_store = replace(toLowerCase(getTextById("com.linecorp.lineman.driver:id/route_text"))," ","");
+
 if(check_store != null)
 {
 check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
@@ -1885,7 +1909,7 @@ global_authorized = result</script>
     <name>Lineman</name>
     <description> </description>
     <group>GT Modify</group>
-    <enabled>false</enabled>
+    <enabled>true</enabled>
     <executionPolicy>STOP</executionPolicy>
     <emergencyStopCount>999999</emergencyStopCount>
     <triggercontainer id="t1" x="-455.0" y="-1697.5" />
@@ -1914,25 +1938,25 @@ global_authorized = result</script>
     <conditioncontainer id="t24" x="-770.0" y="-52.5">Expression: global_modex == 1</conditioncontainer>
     <conditioncontainer id="t25" x="-595.0" y="-52.5">Expression: global_modex == 2</conditioncontainer>
     <conditioncontainer id="t26" x="-420.0" y="-52.5">Expression: global_modex == 3</conditioncontainer>
-    <actioncontainer id="t27" x="-1295.0" y="157.5">GTA-A</actioncontainer>
-    <actioncontainer id="t28" x="-945.0" y="157.5">GTB-B</actioncontainer>
-    <actioncontainer id="t29" x="-770.0" y="157.5">GTC-C</actioncontainer>
-    <actioncontainer id="t30" x="-595.0" y="157.5">GTD-D</actioncontainer>
-    <actioncontainer id="t31" x="-420.0" y="332.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t32" x="-595.0" y="332.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t33" x="-770.0" y="332.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t34" x="-945.0" y="332.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t35" x="-1120.0" y="332.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t36" x="-1295.0" y="332.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t37" x="-420.0" y="157.5">GTE-E</actioncontainer>
-    <actioncontainer id="t38" x="105.0" y="17.5">GTA.6</actioncontainer>
-    <actioncontainer id="t39" x="-1120.0" y="157.5">GTF-F</actioncontainer>
-    <actioncontainer id="t40" x="280.00006" y="17.500015">GTF.6</actioncontainer>
-    <actioncontainer id="t41" x="105.0" y="227.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t42" x="1120.0" y="17.5">GTE.4</actioncontainer>
-    <actioncontainer id="t43" x="910.0" y="17.5">GTD.4</actioncontainer>
-    <actioncontainer id="t44" x="700.0" y="17.5">GTC.4</actioncontainer>
-    <actioncontainer id="t45" x="490.0" y="227.5">GTB.4</actioncontainer>
+    <actioncontainer id="t27" x="-945.0" y="157.5">GTB-B</actioncontainer>
+    <actioncontainer id="t28" x="-770.0" y="157.5">GTC-C</actioncontainer>
+    <actioncontainer id="t29" x="-595.0" y="157.5">GTD-D</actioncontainer>
+    <actioncontainer id="t30" x="-420.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t31" x="-595.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t32" x="-770.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t33" x="-945.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t34" x="-1120.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t35" x="-1295.0" y="332.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t36" x="-420.0" y="157.5">GTE-E</actioncontainer>
+    <actioncontainer id="t37" x="280.00006" y="17.500015">GTF.6</actioncontainer>
+    <actioncontainer id="t38" x="1120.0" y="17.5">GTE.4</actioncontainer>
+    <actioncontainer id="t39" x="910.0" y="17.5">GTD.4</actioncontainer>
+    <actioncontainer id="t40" x="700.0" y="17.5">GTC.4</actioncontainer>
+    <actioncontainer id="t41" x="490.0" y="227.5">GTB.4</actioncontainer>
+    <actioncontainer id="t42" x="-1120.0" y="157.5">GTF-F</actioncontainer>
+    <actioncontainer id="t43" x="105.0" y="227.5">Control UI: sleep(1);</actioncontainer>
+    <actioncontainer id="t44" x="105.0" y="17.5">GTA.6</actioncontainer>
+    <actioncontainer id="t45" x="-1295.0" y="157.5">GTA-A</actioncontainer>
     <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t2" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t3" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
@@ -1943,58 +1967,58 @@ global_authorized = result</script>
     <connection from="t8" to="t15" type="NORMAL" sourcePosition="SOUTH" targetPosition="SOUTH" />
     <connection from="t9" to="t13" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t10" to="t14" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t10" to="t38" type="TRUE" sourcePosition="SOUTH" targetPosition="EAST" />
+    <connection from="t10" to="t44" type="TRUE" sourcePosition="SOUTH" targetPosition="EAST" />
     <connection from="t11" to="t12" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t11" to="t44" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t12" to="t42" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t12" to="t43" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t11" to="t40" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t12" to="t38" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t12" to="t39" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t13" to="t11" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t13" to="t45" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t14" to="t40" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t13" to="t41" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t14" to="t37" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t14" to="t9" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t15" to="t10" type="FALSE" sourcePosition="SOUTH" targetPosition="SOUTH" />
     <connection from="t15" to="t21" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t16" to="t40" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t17" to="t45" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t18" to="t44" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t19" to="t43" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t20" to="t42" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t16" to="t37" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t17" to="t41" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t18" to="t40" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t19" to="t39" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t20" to="t38" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t21" to="t22" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t21" to="t27" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t21" to="t45" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t22" to="t23" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t22" to="t39" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t22" to="t42" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t23" to="t24" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t24" to="t25" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t24" to="t28" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t24" to="t27" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t25" to="t26" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t25" to="t29" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t26" to="t37" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t26" to="t30" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t27" to="t36" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t28" to="t34" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t29" to="t33" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t30" to="t32" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t31" to="t37" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t32" to="t30" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t33" to="t29" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t34" to="t28" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t35" to="t39" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t36" to="t27" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t37" to="t31" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t38" to="t41" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t39" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t40" to="t16" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t41" to="t38" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t42" to="t20" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t43" to="t19" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t44" to="t18" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t45" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t25" to="t28" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t26" to="t36" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t26" to="t29" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t27" to="t33" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t28" to="t32" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t29" to="t31" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t30" to="t36" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t31" to="t29" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t32" to="t28" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t33" to="t27" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t34" to="t42" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t35" to="t45" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t36" to="t30" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t37" to="t16" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t38" to="t20" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t39" to="t19" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t40" to="t18" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t41" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t42" to="t34" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t43" to="t44" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t44" to="t43" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t45" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
   <flow type="flow">
     <name>S</name>
     <description> </description>
     <group>GT Modify</group>
-    <enabled>false</enabled>
+    <enabled>true</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
     <triggercontainer id="t1" x="0.0" y="-647.5">
       <trigger>Quick Settings Tile Selected: Tile 1 ON/OFF GT</trigger>
@@ -2347,7 +2371,7 @@ global_authorized = result</script>
     <name>XX</name>
     <description> </description>
     <group>GT Modify</group>
-    <enabled>false</enabled>
+    <enabled>true</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
     <triggercontainer id="t1" x="70.0" y="52.5">
       <trigger>Quick Settings Tile Selected: Tile 2 ตั้งค่าร้าน</trigger>
