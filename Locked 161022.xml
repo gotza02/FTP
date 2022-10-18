@@ -920,9 +920,9 @@ global_authorized = result</script>
   </action>
   <action type="set_flow_state">
     <useDefaultName>true</useDefaultName>
-    <name>Set Flow State: Enable "BB ",Authorization,GT A,S,XX,GT Hahahah,GT Return,Clicker</name>
+    <name>Set Flow State: Enable "BB ",Authorization,GT A,S,XX,GT Hahahah,Clicker</name>
     <enable>true</enable>
-    <includeFlowNamePatternList>"BB ",Authorization,GT A,S,XX,GT Hahahah,GT Return,Clicker</includeFlowNamePatternList>
+    <includeFlowNamePatternList>"BB ",Authorization,GT A,S,XX,GT Hahahah,Clicker</includeFlowNamePatternList>
     <excludeFlowNamePatternList></excludeFlowNamePatternList>
   </action>
   <action type="set_flow_state">
@@ -1613,7 +1613,7 @@ global_authorized = result</script>
     <actioncontainer id="t163" x="420.0" y="-1662.5">xx UI: xx</actioncontainer>
     <conditioncontainer id="t164" x="490.0" y="-1627.5">Expression: version == "3.5.1"</conditioncontainer>
     <actioncontainer id="t165" x="525.0" y="-1592.5">xx UI: xx</actioncontainer>
-    <actioncontainer id="t166" x="490.0" y="-1662.5">Set Flow State: Enable "BB ",Authorization,GT A,S,XX,GT Hahahah,GT Return,Clicker</actioncontainer>
+    <actioncontainer id="t166" x="490.0" y="-1662.5">Set Flow State: Enable "BB ",Authorization,GT A,S,XX,GT Hahahah,Clicker</actioncontainer>
     <actioncontainer id="t167" x="490.0" y="-1662.5">Execute Root Command: settings get secure android_id in </actioncontainer>
     <actioncontainer id="t168" x="490.0" y="-1662.5">Control UI: result = replace(stdout,"\n","");</actioncontainer>
     <actioncontainer id="t169" x="490.0" y="-1662.5">Script: if(result == "" AND result == " ") { global_authorized = false; result = false; } else global_authorized = result</actioncontainer>
