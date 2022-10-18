@@ -699,7 +699,7 @@ pass = contains(toLowerCase(replace(check_store," ","")),store_list[i]);
 if(pass == true){
 break;
 }
-if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND pass == true AND i == store_list_number-1)
+if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND i == store_list_number-1)
 {
 clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 while(gtxy == null)
@@ -748,7 +748,7 @@ pass = contains(toLowerCase(replace(check_store," ","")),store_list[i]);
 if(pass == true){
 break;
 }
-if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND pass == true AND i == store_list_number-1)
+if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND i == store_list_number-1)
 {
 clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 while(gtxy == null)
