@@ -262,8 +262,14 @@ break
 count = count +1;
 if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND pass == true)
 {
-clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-checking = 1;
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+checking = true;
+while(not(clicker))
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+checking = true;
+sleep(1);
+}
 }
 
 count = count + 1;
@@ -547,12 +553,12 @@ break
 if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND pass == true)
 {
 clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-if(clicker == true)
+checking = true;
+while(not(clicker))
 {
-sleep(2);
-gtxy = getBounds("​​รั​บ​ง​า​น​​");
-
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+checking = true;
+sleep(1);
 }
 }
 
@@ -595,6 +601,12 @@ if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_pric
 {
 clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = true;
+while(not(clicker))
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+checking = true;
+sleep(1);
+}
 }
 
 }
@@ -632,14 +644,13 @@ break;
 if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price AND i == store_list_number-1)
 {
 clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-if(clicker == true)
+checking = true;
+while(not(clicker))
 {
-sleep(2);
-gtxy = getBounds("​​รั​บ​ง​า​น​​");
-
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+checking = true;
+sleep(1);
 }
-checking = 1;
 }
 
 }
@@ -673,14 +684,13 @@ check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisI
 if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
 {
 clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-if(clicker == true)
-{
-sleep(2);
-gtxy = getBounds("​​รั​บ​ง​า​น​​");
-
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
-}
 checking = true;
+while(not(clicker))
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+checking = true;
+sleep(1);
+}
 }
 
 }
@@ -709,14 +719,13 @@ check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_
 if(check_type == "ส่งอาหาร" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
 {
 clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-if(clicker == true)
+checking = true;
+while(not(clicker))
 {
-sleep(2);
-gtxy = getBounds("​​รั​บ​ง​า​น​​");
-
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+checking = true;
+sleep(1);
 }
-checking = 1;
 }
 
 }
@@ -854,6 +863,12 @@ if(check_type == "ส่งสินค้า" AND check_price &gt;= global_st_p
 {
 clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
 checking = true;
+while(not(clicker))
+{
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+checking = true;
+sleep(1);
+}
 }
 
 }
@@ -882,14 +897,13 @@ check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_
 if(check_type == "ส่งสินค้า" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
 {
 clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-if(clicker == true)
+checking = true;
+while(not(clicker))
 {
-sleep(2);
-gtxy = getBounds("​​รั​บ​ง​า​น​​");
-
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+checking = true;
+sleep(1);
 }
-checking = 1;
 }
 
 }
@@ -922,14 +936,13 @@ check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisI
 if(check_type == "ส่งของ" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
 {
 clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-if(clicker == true)
+checking = true;
+while(not(clicker))
 {
-sleep(2);
-gtxy = getBounds("​​รั​บ​ง​า​น​​");
-
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+checking = true;
+sleep(1);
 }
-checking = 1;
 }
 
 }
@@ -958,14 +971,13 @@ check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_
 if(check_type == "ส่งของ" AND check_price &gt;= global_st_price AND check_price &lt;= global_end_price)
 {
 clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
-if(clicker == true)
+checking = true;
+while(not(clicker))
 {
-sleep(2);
-gtxy = getBounds("​​รั​บ​ง​า​น​​");
-
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+clicker = clickById("com.linecorp.lineman.driver:id/item_work_take_order_button");
+checking = true;
+sleep(1);
 }
-checking = 1;
 }
 
 }
