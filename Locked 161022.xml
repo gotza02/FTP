@@ -713,10 +713,11 @@ touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[
 }
 }
 }
+
+}
 stop = stop + 1;
 if(stop == 50)
 break;
-}
 }
 </script>
   </action>
@@ -762,10 +763,11 @@ touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[
 }
 }
 }
+
+}
 stop = stop + 1;
 if(stop == 50)
 break;
-}
 }
 </script>
   </action>
