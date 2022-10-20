@@ -15,7 +15,7 @@
   <trigger type="quick_settings_tile_selected">
     <useDefaultName>true</useDefaultName>
     <name>Quick Settings Tile Selected: Tile 1 ON/OFF GT</name>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <tileID>TILE_1</tileID>
     <label>ON/OFF GT</label>
     <iconType>BUILTIN</iconType>
@@ -26,7 +26,7 @@
   <trigger type="quick_settings_tile_selected">
     <useDefaultName>true</useDefaultName>
     <name>Quick Settings Tile Selected: Tile 2 ตั้งค่าร้าน</name>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <tileID>TILE_2</tileID>
     <label>ตั้งค่าร้าน</label>
     <iconType>BUILTIN</iconType>
@@ -141,12 +141,12 @@ stdout = replace(stdout,"\n","");</script>
   </action>
   <action type="control_user_interface">
     <useDefaultName>false</useDefaultName>
-    <name>Control UI: gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));s</name>
+    <name>Control UI: gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));s</name>
     <script>
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));</script>
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));</script>
   </action>
   <action type="control_user_interface">
     <useDefaultName>true</useDefaultName>
@@ -298,14 +298,14 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
 }
 }
 }
 stop = stop + 1;
-if(stop == 50)
+if(stop == 100)
 break;
 }</script>
   </action>
@@ -346,14 +346,14 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
 }
 }
 }
 stop = stop + 1;
-if(stop == 50)
+if(stop == 100)
 break;
 }</script>
   </action>
@@ -384,14 +384,14 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }​
 }
 }
 }
 stop = stop + 1;
-if(stop == 50)
+if(stop == 100)
 break;
 }</script>
   </action>
@@ -426,14 +426,14 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
 }
 }
 }
 stop = stop + 1;
-if(stop == 50)
+if(stop == 100)
 break;
 }</script>
   </action>
@@ -464,14 +464,14 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
 }
 }
 }
 stop = stop + 1;
-if(stop == 50)
+if(stop == 100)
 break;
 }</script>
   </action>
@@ -505,14 +505,14 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
 }
 }
 }
 stop = stop + 1;
-if(stop == 50)
+if(stop == 100)
 break;
 }
 </script>
@@ -544,14 +544,14 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
 }
 }
 }
 stop = stop + 1;
-if(stop == 50)
+if(stop == 100)
 break;
 }</script>
   </action>
@@ -586,14 +586,14 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
 }
 }
 }
 stop = stop + 1;
-if(stop == 50)
+if(stop == 100)
 break;
 }</script>
   </action>
@@ -622,14 +622,14 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
 }
 }
 }
 stop = stop + 1;
-if(stop == 50)
+if(stop == 100)
 break;
 }</script>
   </action>
@@ -663,14 +663,14 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
 }
 }
 }
 stop = stop + 1;
-if(stop == 50)
+if(stop == 100)
 break;
 }
 </script>
@@ -707,7 +707,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
 }
@@ -716,7 +716,7 @@ touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[
 
 }
 stop = stop + 1;
-if(stop == 50)
+if(stop == 100)
 break;
 }
 </script>
@@ -757,7 +757,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
-touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));
+touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
 }
@@ -766,7 +766,7 @@ touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[
 
 }
 stop = stop + 1;
-if(stop == 50)
+if(stop == 100)
 break;
 }
 </script>
@@ -833,8 +833,8 @@ break;
     <stripBOM>true</stripBOM>
   </action>
   <action type="input_dialog">
-    <useDefaultName>true</useDefaultName>
-    <name>Input Dialog:  Single-line text </name>
+    <useDefaultName>false</useDefaultName>
+    <name>Input Dialog:  Single-line text .3</name>
     <title></title>
     <inputDialogType>SINGLE_LINE_TEXT</inputDialogType>
     <prompt></prompt>
@@ -1130,7 +1130,7 @@ global_authorized = result</script>
     <enabled>false</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
     <triggercontainer id="t1" x="70.0" y="52.5" />
-    <actioncontainer id="t2" x="70.0" y="52.5">Input Dialog:  Single-line text </actioncontainer>
+    <actioncontainer id="t2" x="70.0" y="52.5">Input Dialog:  Single-line text .3</actioncontainer>
     <actioncontainer id="t3" x="70.0" y="52.5">Write to File: a,b,c to /storage/emulated/0/GT LINE.txt (overwrite)</actioncontainer>
     <actioncontainer id="t4" x="70.0" y="52.5">ABC</actioncontainer>
     <actioncontainer id="t5" x="35.0" y="542.5">xx UI: xx</actioncontainer>
@@ -1416,7 +1416,7 @@ global_authorized = result</script>
     <name>BB </name>
     <description> </description>
     <group>GT Modify</group>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
     <triggercontainer id="t1" x="70.0" y="52.5" />
     <actioncontainer id="t2" x="70.0" y="52.5">Script: if (global_st_price == null) global_st_price = 0; if (global_end_price == null) global_end_price = 0;</actioncontainer>
@@ -1964,7 +1964,7 @@ global_authorized = result</script>
     <notecontainer id="t4" x="4480.0" y="13177.5" w="64750.0" h="96285.0"></notecontainer>
     <notecontainer id="t5" x="13860.0" y="5722.5" w="64750.0" h="96285.0"></notecontainer>
     <notecontainer id="t6" x="-262.5" y="7192.5" w="76265.0" h="94395.0">xxxx</notecontainer>
-    <actioncontainer id="t7" x="70.0" y="682.5">Control UI: gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2)+random(-gtxy[2]/2,gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)+random(-gtxy[3]/2,gtxy[3]/2)));s</actioncontainer>
+    <actioncontainer id="t7" x="70.0" y="682.5">Control UI: gtxy = getBounds("​​รั​บ​ง​า​น​​"); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2))); touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));s</actioncontainer>
     <connection from="t1" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
   <flow type="flow">
@@ -1975,11 +1975,11 @@ global_authorized = result</script>
     <executionPolicy>STOP</executionPolicy>
     <emergencyStopCount>999999</emergencyStopCount>
     <triggercontainer id="t1" x="-455.0" y="-1697.5" />
-    <actioncontainer id="t2" x="-455.00003" y="-1662.5">Execute Root Command: settings get secure android_id in x</actioncontainer>
+    <actioncontainer id="t2" x="-455.0" y="-1662.5">Execute Root Command: settings get secure android_id in x</actioncontainer>
     <actioncontainer id="t3" x="-455.0" y="-1662.5">Init Variable Text File: /sdcard/.gt/key to file_text</actioncontainer>
     <actioncontainer id="t4" x="-455.0" y="-1627.5">Control UI: file_text = replace(file_text," ",""); stdout = replace(stdout," ",""); file_text = replace(file_text,"\n",""); stdout = replace(stdout,"\n","");</actioncontainer>
     <conditioncontainer id="t5" x="-455.0" y="-1662.5">Expression: stdout == file_text</conditioncontainer>
-    <actioncontainer id="t6" x="-455.0001" y="-1592.5">Init Variable Text File: /storage/emulated/0/.gt/key to register</actioncontainer>
+    <actioncontainer id="t6" x="-455.00012" y="-1592.5">Init Variable Text File: /storage/emulated/0/.gt/key to register</actioncontainer>
     <actioncontainer id="t7" x="-420.0" y="-1662.5">Init Variable Package Info: com.linecorp.lineman.driver into package_info</actioncontainer>
     <conditioncontainer id="t8" x="-455.00006" y="-1662.5">Expression: global_modex == 3</conditioncontainer>
     <actioncontainer id="t9" x="-454.99994" y="-1627.5">GTE-E</actioncontainer>
@@ -2012,7 +2012,7 @@ global_authorized = result</script>
     <conditioncontainer id="t36" x="-350.0" y="-1592.5">Expression: global_modex == 2</conditioncontainer>
     <conditioncontainer id="t37" x="-349.99994" y="-1557.5">Expression: global_modex == 3</conditioncontainer>
     <actioncontainer id="t38" x="-384.99997" y="-1557.5">Control UI: sleep(1);</actioncontainer>
-    <actioncontainer id="t39" x="-455.00003" y="-1662.5">GTD.4</actioncontainer>
+    <actioncontainer id="t39" x="-455.0" y="-1662.5">GTD.4</actioncontainer>
     <actioncontainer id="t40" x="-385.0" y="-1592.5">GTC.4</actioncontainer>
     <actioncontainer id="t41" x="-420.0" y="-1627.5">Control UI: sleep(1);</actioncontainer>
     <actioncontainer id="t42" x="-314.99997" y="-1662.5">Control UI: sleep(1);</actioncontainer>
@@ -2110,7 +2110,7 @@ global_authorized = result</script>
     <name>S</name>
     <description> </description>
     <group>GT Modify</group>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
     <triggercontainer id="t1" x="0.0" y="-647.5">
       <trigger>Quick Settings Tile Selected: Tile 1 ON/OFF GT</trigger>
@@ -2463,7 +2463,7 @@ global_authorized = result</script>
     <name>XX</name>
     <description> </description>
     <group>GT Modify</group>
-    <enabled>true</enabled>
+    <enabled>false</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
     <triggercontainer id="t1" x="70.0" y="52.5">
       <trigger>Quick Settings Tile Selected: Tile 2 ตั้งค่าร้าน</trigger>
