@@ -159,6 +159,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
@@ -201,6 +202,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
@@ -348,6 +350,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
@@ -440,6 +443,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
@@ -754,7 +758,9 @@ else if(NTEXT2 == NTEXT3)
     <script>
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));</script>
   </action>
   <action type="control_user_interface">
@@ -810,6 +816,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
@@ -928,6 +935,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
@@ -971,6 +979,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
@@ -1028,6 +1037,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
@@ -1071,6 +1081,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }​
@@ -1094,9 +1105,7 @@ while(isEmpty(check_store))
 check_store = getTextById("com.linecorp.lineman.driver:id/route_text");
 if(check_store != null)
 {
-check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober",0),"+","")+0;
-if(check_price == "null0"){
-check_price = replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value",0),"+","")+0;}
+check_price =  replace(getTextByIdAndIndex("com.linecorp.lineman.driver:id/item_work_amount_earned_value",0),"+","")+0;
 
 check_type = getTextById("com.linecorp.lineman.driver:id/item_work_delivery_type_name");
 if(global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register)
@@ -1109,6 +1118,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
@@ -1264,6 +1274,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
@@ -1338,6 +1349,7 @@ while(gtxy == null)
 gtxy = getBounds("​​รั​บ​ง​า​น​​");
 if(gtxy != null)
 {
+sleep(1);
 touchGesture(0,1,newList(gtxy[0]+(gtxy[2]/2) ,gtxy[1]+(gtxy[3]/2)));
 }
 }
@@ -1476,16 +1488,16 @@ break;
     <actioncontainer id="t93" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t94" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t95" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <notecontainer id="t96" x="64.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t97" x="64.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t98" x="256.0" y="-192.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t99" x="64.0" y="256.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t100" x="0.0" y="960.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t101" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t102" x="704.0" y="3968.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t103" x="-192.0" y="1152.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t104" x="-192.0" y="7232.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t105" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t96" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t97" x="64.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t98" x="64.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t99" x="256.0" y="-192.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t100" x="64.0" y="256.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t101" x="0.0" y="960.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t102" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t103" x="704.0" y="3968.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t104" x="-192.0" y="1152.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t105" x="-192.0" y="7232.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
     <connection from="t1" to="t41" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t6" to="t16" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t11" to="t52" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
@@ -3646,9 +3658,7 @@ break;
     <group>GT Modify</group>
     <enabled>false</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
-    <triggercontainer id="t1" x="0.0" y="17.5">
-      <trigger>Quick Settings Tile Selected: Tile 1 ON/OFF GT</trigger>
-    </triggercontainer>
+    <actioncontainer id="t1" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t2" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t3" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t4" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
@@ -3828,27 +3838,27 @@ break;
     <actioncontainer id="t178" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t179" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t180" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t181" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t182" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t183" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <conditioncontainer id="t184" x="0.0" y="17.5">Expression: global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND length(register) &gt; 7</conditioncontainer>
-    <conditioncontainer id="t185" x="0.0" y="17.5">Expression: global_start != null AND global_start != false AND global_start != 1</conditioncontainer>
-    <actioncontainer id="t186" x="0.0" y="17.5">Update Quick Settings Tile: Tile 1 OFF GT Inactive</actioncontainer>
-    <actioncontainer id="t187" x="0.0" y="17.5">xxx . x   </actioncontainer>
-    <actioncontainer id="t188" x="0.0" y="17.5">Update Quick Settings Tile: Tile 1 ON GT Active</actioncontainer>
-    <actioncontainer id="t189" x="0.0" y="17.5">jsjxnisncisjxjsj </actioncontainer>
-    <actioncontainer id="t190" x="0.0" y="17.5">jsjjcisjxjdjc</actioncontainer>
-    <actioncontainer id="t191" x="0.0" y="52.5">Script: global_start = 1</actioncontainer>
-    <actioncontainer id="t192" x="0.0" y="17.5">Set Flow State: Disable 7d39442ef74366411b0fc865482a2f6a24369b3e3</actioncontainer>
-    <actioncontainer id="t193" x="0.0" y="17.5">Stop Flows: 7d39442ef74366411b0fc865482a2f6a24369b3e3</actioncontainer>
-    <actioncontainer id="t194" x="0.0" y="17.5">jjsbcujajxjskkxd</actioncontainer>
+    <conditioncontainer id="t181" x="0.0" y="17.5">Expression: global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND length(register) &gt; 7</conditioncontainer>
+    <conditioncontainer id="t182" x="0.0" y="17.5">Expression: global_start != null AND global_start != false AND global_start != 1</conditioncontainer>
+    <actioncontainer id="t183" x="0.0" y="17.5">Update Quick Settings Tile: Tile 1 OFF GT Inactive</actioncontainer>
+    <actioncontainer id="t184" x="0.0" y="17.5">xxx . x   </actioncontainer>
+    <actioncontainer id="t185" x="0.0" y="17.5">Update Quick Settings Tile: Tile 1 ON GT Active</actioncontainer>
+    <actioncontainer id="t186" x="0.0" y="17.5">jsjxnisncisjxjsj </actioncontainer>
+    <actioncontainer id="t187" x="0.0" y="17.5">jsjjcisjxjdjc</actioncontainer>
+    <actioncontainer id="t188" x="0.0" y="52.5">Script: global_start = 1</actioncontainer>
+    <actioncontainer id="t189" x="0.0" y="17.5">Set Flow State: Disable 7d39442ef74366411b0fc865482a2f6a24369b3e3</actioncontainer>
+    <actioncontainer id="t190" x="0.0" y="17.5">Stop Flows: 7d39442ef74366411b0fc865482a2f6a24369b3e3</actioncontainer>
+    <actioncontainer id="t191" x="0.0" y="17.5">jjsbcujajxjskkxd</actioncontainer>
+    <actioncontainer id="t192" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
+    <actioncontainer id="t193" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
+    <actioncontainer id="t194" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t195" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t196" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t197" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t198" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
+    <actioncontainer id="t198" x="-70.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t199" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t200" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t201" x="-70.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
+    <actioncontainer id="t201" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t202" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t203" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t204" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
@@ -3859,139 +3869,141 @@ break;
     <actioncontainer id="t209" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t210" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
     <actioncontainer id="t211" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t212" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t213" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t214" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t215" x="0.0" y="52.5">nsijxkskxkdkksxc</actioncontainer>
-    <actioncontainer id="t216" x="0.0" y="52.5">nsijxkskxkdkksxc</actioncontainer>
+    <actioncontainer id="t212" x="0.0" y="52.5">nsijxkskxkdkksxc</actioncontainer>
+    <actioncontainer id="t213" x="0.0" y="52.5">nsijxkskxkdkksxc</actioncontainer>
+    <notecontainer id="t214" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t215" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t216" x="0.0" y="64.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
     <notecontainer id="t217" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t218" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t219" x="0.0" y="64.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t220" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t221" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t222" x="64.0" y="128.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t223" x="128.0" y="192.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t224" x="1536.0" y="640.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t225" x="2304.0" y="5120.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t226" x="-1856.0" y="4416.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <notecontainer id="t227" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
-    <notecontainer id="t228" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
-    <connection from="t1" to="t187" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t7" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t7" to="t211" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t8" to="t19" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t9" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t10" to="t205" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t11" to="t43" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t11" to="t195" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t16" to="t45" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t17" to="t11" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t17" to="t204" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t19" to="t39" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t19" to="t16" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t20" to="t201" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t25" to="t10" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t25" to="t209" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t27" to="t204" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t31" to="t45" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t43" to="t39" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t43" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t44" to="t22" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t45" to="t202" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t45" to="t43" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t45" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t46" to="t25" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t48" to="t112" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t54" to="t62" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t54" to="t68" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t55" to="t95" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t57" to="t85" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t57" to="t52" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t58" to="t88" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t62" to="t75" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t64" to="t68" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t64" to="t103" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t68" to="t113" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t75" to="t103" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t75" to="t64" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t76" to="t87" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t77" to="t76" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t78" to="t58" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t79" to="t110" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t79" to="t48" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <notecontainer id="t218" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t219" x="64.0" y="128.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t220" x="128.0" y="192.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t221" x="1536.0" y="640.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t222" x="2304.0" y="5120.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t223" x="-1856.0" y="4416.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <notecontainer id="t224" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
+    <notecontainer id="t225" x="0.0" y="0.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
+    <triggercontainer id="t226" x="0.0" y="17.5">
+      <trigger>Quick Settings Tile Selected: Tile 1 ON/OFF GT</trigger>
+    </triggercontainer>
+    <actioncontainer id="t227" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
+    <actioncontainer id="t228" x="0.0" y="17.5">nsijxkskxkdkksxc</actioncontainer>
+    <connection from="t4" to="t32" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t4" to="t208" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t5" to="t16" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t6" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t7" to="t202" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t8" to="t40" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t8" to="t192" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t13" to="t42" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t14" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t14" to="t201" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t16" to="t36" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t16" to="t13" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t17" to="t198" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t22" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t22" to="t206" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t24" to="t201" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t28" to="t42" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t40" to="t36" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t40" to="t14" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t41" to="t19" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t42" to="t199" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t42" to="t40" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t42" to="t32" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t43" to="t22" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t45" to="t109" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t51" to="t59" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t51" to="t65" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t52" to="t92" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t54" to="t82" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t54" to="t49" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t55" to="t85" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t59" to="t72" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t61" to="t65" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t61" to="t100" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t65" to="t110" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t72" to="t100" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t72" to="t61" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t73" to="t84" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t74" to="t73" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t75" to="t55" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t76" to="t107" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t76" to="t45" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t81" to="t109" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t82" to="t76" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t82" to="t54" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t84" to="t112" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t85" to="t79" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t85" to="t57" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t87" to="t115" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t87" to="t84" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t88" to="t54" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t93" to="t78" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t93" to="t62" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t95" to="t57" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t99" to="t112" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t110" to="t115" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t110" to="t85" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t111" to="t90" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t112" to="t55" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t112" to="t110" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t112" to="t103" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t113" to="t93" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t116" to="t180" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t122" to="t130" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t122" to="t136" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t123" to="t162" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t125" to="t153" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t125" to="t120" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t126" to="t155" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t130" to="t143" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t132" to="t136" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t132" to="t170" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t136" to="t181" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t143" to="t170" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t143" to="t132" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t144" to="t183" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t145" to="t144" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t146" to="t126" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t147" to="t178" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t147" to="t116" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t152" to="t180" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t153" to="t147" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t153" to="t125" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t155" to="t122" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t160" to="t146" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t160" to="t130" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t162" to="t125" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t166" to="t180" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t178" to="t174" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t178" to="t153" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t179" to="t157" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t180" to="t123" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t180" to="t178" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t180" to="t170" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t181" to="t160" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t183" to="t174" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t183" to="t152" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t184" to="t185" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t185" to="t188" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t185" to="t186" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t186" to="t190" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t187" to="t184" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t84" to="t81" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t85" to="t51" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t90" to="t75" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t90" to="t59" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t92" to="t54" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t96" to="t109" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t107" to="t112" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t107" to="t82" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t108" to="t87" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t109" to="t52" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t109" to="t107" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t109" to="t100" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t110" to="t90" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t113" to="t177" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t119" to="t127" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t119" to="t133" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t120" to="t159" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t122" to="t150" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t122" to="t117" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t123" to="t152" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t127" to="t140" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t129" to="t133" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t129" to="t167" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t133" to="t178" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t140" to="t167" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t140" to="t129" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t141" to="t180" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t142" to="t141" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t143" to="t123" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t144" to="t175" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t144" to="t113" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t149" to="t177" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t150" to="t144" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t150" to="t122" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t152" to="t119" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t157" to="t143" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t157" to="t127" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t159" to="t122" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t163" to="t177" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t175" to="t171" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t175" to="t150" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t176" to="t154" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t177" to="t120" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t177" to="t175" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t177" to="t167" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t178" to="t157" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t180" to="t171" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t180" to="t149" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t181" to="t182" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t182" to="t185" type="TRUE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t182" to="t183" type="FALSE" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t183" to="t187" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t184" to="t181" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t185" to="t188" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t187" to="t189" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
     <connection from="t188" to="t191" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t190" to="t192" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t191" to="t194" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t192" to="t193" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t194" to="t189" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t195" to="t45" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t201" to="t209" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t201" to="t215" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t202" to="t27" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t204" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t204" to="t199" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t205" to="t20" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t209" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t211" to="t215" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t211" to="t35" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t215" to="t46" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t189" to="t190" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t191" to="t186" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t192" to="t42" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t198" to="t206" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t198" to="t212" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t199" to="t24" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t201" to="t14" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t201" to="t196" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t202" to="t17" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t206" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t208" to="t212" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t208" to="t32" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t212" to="t43" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t226" to="t184" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
   <flow type="flow">
     <name>f6352208ec873e6f913085be34b2906ee4a50464</name>
