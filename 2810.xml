@@ -249,7 +249,7 @@ else if(NTEXT2 == NTEXT3)
   <action type="execute_root_command">
     <useDefaultName>false</useDefaultName>
     <name>ba7649fc2a4c</name>
-    <command>settings get secure android_id</command>
+    <command>getprop ro.boot.serialno</command>
     <user></user>
     <seContext></seContext>
     <workingDirectory></workingDirectory>
@@ -302,7 +302,7 @@ else if(NTEXT2 == NTEXT3)
   <action type="execute_root_command">
     <useDefaultName>true</useDefaultName>
     <name>Execute Root Command: getprop ro.boot.serialnoin </name>
-    <command>settings get secure android_id</command>
+    <command>getprop ro.boot.serialno</command>
     <user></user>
     <seContext></seContext>
     <workingDirectory></workingDirectory>
@@ -851,7 +851,7 @@ break;
   <action type="execute_root_command">
     <useDefaultName>false</useDefaultName>
     <name>nsijxjdkzjdjjsjcd</name>
-    <command>settings get secure android_id</command>
+    <command>getprop ro.boot.serialno</command>
     <user></user>
     <seContext></seContext>
     <workingDirectory></workingDirectory>
