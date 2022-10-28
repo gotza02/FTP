@@ -249,7 +249,7 @@ else if(NTEXT2 == NTEXT3)
   <action type="execute_root_command">
     <useDefaultName>false</useDefaultName>
     <name>ba7649fc2a4c</name>
-    <command>settings get secure android_id</command>
+    <command>getprop ro.boot.serialno</command>
     <user></user>
     <seContext></seContext>
     <workingDirectory></workingDirectory>
@@ -302,7 +302,7 @@ else if(NTEXT2 == NTEXT3)
   <action type="execute_root_command">
     <useDefaultName>true</useDefaultName>
     <name>Execute Root Command: settings get secure android_id in </name>
-    <command>settings get secure android_id</command>
+    <command>getprop ro.boot.serialno</command>
     <user></user>
     <seContext></seContext>
     <workingDirectory></workingDirectory>
@@ -851,7 +851,7 @@ break;
   <action type="execute_root_command">
     <useDefaultName>false</useDefaultName>
     <name>nsijxjdkzjdjjsjcd</name>
-    <command>settings get secure android_id</command>
+    <command>getprop ro.boot.serialno</command>
     <user></user>
     <seContext></seContext>
     <workingDirectory></workingDirectory>
@@ -4295,16 +4295,16 @@ break;
     <group>GT Modify</group>
     <enabled>false</enabled>
     <executionPolicy>PARALLEL</executionPolicy>
-    <actioncontainer id="t1" x="-140.0" y="262.5">jwjcjiwjxkajnckwjxjrcxz</actioncontainer>
-    <actioncontainer id="t2" x="-140.0" y="262.5">jwjcjiwjxkajnckwjxjrcx</actioncontainer>
-    <actioncontainer id="t3" x="-140.0" y="262.5">jwjcjiwjxkajnckwjxjrcv</actioncontainer>
-    <actioncontainer id="t4" x="-140.0" y="262.5">jwjcjiwjxkajnckwjxjrca</actioncontainer>
-    <actioncontainer id="t5" x="-140.0" y="262.5">jwjcjiwjxkajnckwjxjrc</actioncontainer>
-    <actioncontainer id="t6" x="-140.0" y="262.5">jwjcjiwjxkajnckwjxjrcax</actioncontainer>
-    <triggercontainer id="t7" x="420.0001" y="-28927.502">
+    <triggercontainer id="t1" x="420.0" y="-28927.5">
       <trigger>uwkxnwjxjsonxkwkzkdd</trigger>
     </triggercontainer>
-    <actioncontainer id="t8" x="-384.99973" y="-58117.5">jwjcjiwjxkajnckwjxjrcq</actioncontainer>
+    <actioncontainer id="t2" x="-140.0" y="262.5">jwjcjiwjxkajnckwjxjrcxz</actioncontainer>
+    <actioncontainer id="t3" x="-140.0" y="262.5">jwjcjiwjxkajnckwjxjrcx</actioncontainer>
+    <actioncontainer id="t4" x="-140.0" y="262.5">jwjcjiwjxkajnckwjxjrcv</actioncontainer>
+    <actioncontainer id="t5" x="-140.0" y="262.5">jwjcjiwjxkajnckwjxjrca</actioncontainer>
+    <actioncontainer id="t6" x="-140.0" y="262.5">jwjcjiwjxkajnckwjxjrc</actioncontainer>
+    <actioncontainer id="t7" x="-140.0" y="262.5">jwjcjiwjxkajnckwjxjrcax</actioncontainer>
+    <actioncontainer id="t8" x="-385.0" y="-58117.5">jwjcjiwjxkajnckwjxjrcq</actioncontainer>
     <notecontainer id="t9" x="-15552.0" y="-64832.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
     <notecontainer id="t10" x="-15616.0" y="-64832.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
     <notecontainer id="t11" x="-15808.0" y="-57600.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
@@ -4316,12 +4316,12 @@ break;
     <notecontainer id="t17" x="-15360.0" y="-65024.0" w="1.4100649E9" h="1.4100649E9">xxxx</notecontainer>
     <notecontainer id="t18" x="-15616.0" y="-63872.0" w="1.4100649E9" h="1.4100649E9"></notecontainer>
     <connection from="t1" to="t6" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t2" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t3" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t4" to="t1" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t5" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t6" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t7" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
-    <connection from="t8" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t2" to="t7" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t3" to="t5" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t4" to="t3" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t5" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t6" to="t8" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t7" to="t6" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t8" to="t4" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
   </flow>
 </data>
