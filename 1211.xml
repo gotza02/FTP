@@ -1,18 +1,4 @@
-	price = null;
-	count = 0;
-	while(price == null OR price == "null0")
-	{
-
-	price1 = replace(getTextById("com.linecorp.lineman.driver:id/item_work_amount_to_pay_value"),"+","")+0;
-	price2 = replace(getTextById("com.linecorp.lineman.driver:id/ThisIDWasChangedInOctober"),"+","")+0;
-	if(price1 != null OR price1 != "null0"){
-	price = price1;
-	}
-	else if (price2 != null OR price2 != "null0"){
-	price == price2;
-	}
-	if(price != null AND price != "null0")
-	{<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <data version="1.37.0">
   <trigger type="user_interface_event">
     <useDefaultName>false</useDefaultName>
@@ -90,7 +76,7 @@
   </condition>
   <condition type="expression">
     <useDefaultName>true</useDefaultName>
-    <name>Expression: global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND length(register) &gt; 7</name>
+    <name>Expression: global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND length(register) &gt; 5</name>
     <expression>global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND length(register) &gt; 5</expression>
   </condition>
   <condition type="expression">
