@@ -91,7 +91,7 @@
   <condition type="expression">
     <useDefaultName>true</useDefaultName>
     <name>Expression: global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND length(register) &gt; 7</name>
-    <expression>global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND length(register) &gt; 7</expression>
+    <expression>global_authorized != false AND global_authorized != null AND global_name == "GT Premium" AND global_register == true AND global_authorized == register AND length(register) &gt; 5</expression>
   </condition>
   <condition type="expression">
     <useDefaultName>true</useDefaultName>
