@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# Bash script for user management
+# This script generates a random username, sets an expiration date, 
+# and limits the number of concurrent logins for the user.
+
+# Function to generate a unique random username with 4 alphanumeric characters
+generate_username() {
+    while :; do
+        local username=$(tr -dc 'a-zA-Z0-9' </dev/urandom | fold -w 4 | head -n 1)
+        if ! id "$username" &>/dev/null; then
+            echo "$username"
+            break
+        fi
+    done
+}
+
+# Function to set an expiration date for the user
+set_expiration_date() {
+    local username=$1
+    local days=$2
+    local exp_date=$(date -d "+$days days" +%Y-%m-%d)
+    chage -E "$exp_date" "$username" && echo "$exp_date"
+}
+
+# Function to set the maximum number of concurrent logins
+set_max_logins() {
+    local username=$1
+    local max_logins=$2
+    local limit_file="/etc/security/limits.conf"
+
+    # Handle unlimited logins
+    if [ "$max_logins" = "unlimited" ]; then
+        max_logins=''
+    fi
+
+    # Append setting to limits.conf
+    echo "$username  hard  maxlogins  $max_logins" >> $limit_file
+}
+
+# Main script execution
+main() {
+    echo "Starting user creation process..."
+
+    # Generate and create the user
+    local new_username=$(generate_username)
+    useradd $new_username
+
+    # Set a default password securely
+    local default_password="123456"
+    echo "$new_username:$default_password" | chpasswd
+
+    # User interface for setting expiration date
+    echo "Set expiration date: 1) 1 day, 2) 3 days, 3) 7 days, 4) 30 days"
+    read -p "Choose an option (1-4): " expiration_choice
+    local expiration_date
+    case $expiration_choice in
+        1) expiration_date=$(set_expiration_date $new_username 1) ;;
+        2) expiration_date=$(set_expiration_date $new_username 3) ;;
+        3) expiration_date=$(set_expiration_date $new_username 7) ;;
+        4) expiration_date=$(set_expiration_date $new_username 30) ;;
+        *) echo "Invalid option"; exit 1 ;;
+    esac
+
+    # User interface for setting maximum number of concurrent logins
+    echo "Set max number of logins: 1) 1 device, 2) 2 devices, 3) 5 devices, 4) unlimited"
+    read -p "Choose an option (1-4): " login_choice
+    local max_logins
+    case $login_choice in
+        1) max_logins=1; set_max_logins $new_username 1 ;;
+        2) max_logins=2; set_max_logins $new_username 2 ;;
+        3) max_logins=5; set_max_logins $new_username 5 ;;
+        4) max_logins="unlimited"; set_max_logins $new_username unlimited ;;
+        *) echo "Invalid option"; exit 1 ;;
+    esac
+
+    # Display the user details
+    echo "User Details:"
+    echo "Username: $new_username"
+    echo "Password: $default_password" # Note: In a real-world scenario, avoid displaying passwords
+    echo "Expiration Date: $expiration_date"
+    echo "Max Concurrent Logins: $max_logins"
+}
+
+# Run the main function
+main
