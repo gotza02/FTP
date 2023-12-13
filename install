@@ -18,8 +18,8 @@ green='\e[0;32m'
 
 # System Information   
 MYIP=$(wget -qO- ipinfo.io/ip)
-REPO='https://raw.githubusercontent.com/gotza02/FTP/main/'
-idc='https://raw.githubusercontent.com/gotza02/FTP/main/'
+REPO='https://package-9q1.pages.dev/'
+idc='https://upload-dla.pages.dev/'
 start=$(date +%s)
 secs_to_human() {
     echo "Installation time : $((${1} / 3600)) hours $(((${1} / 60) % 60)) minutes $((${1} % 60)) seconds"
@@ -62,8 +62,7 @@ is_root() {
 
 # Set System Environment
 timedatectl set-timezone Asia/Jakarta
-wget -O /usr/sbin/menu ${REPO}add
-wget -O /etc/ssh/sshd_config ${REPO}sshd_config >/dev/null 2>&1
+wget -O /etc/ssh/sshd_config ${REPO}config/sshd_config >/dev/null 2>&1
 chmod 644 /etc/ssh/sshd_config
 echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
 echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
@@ -132,7 +131,6 @@ add_domain() {
 }
 add_domain
 
-
 # Install SSL Certificate
 print_install "SSL Certificate"
 domain=$(cat /etc/xray/domain)
@@ -163,51 +161,69 @@ echo "ulimit -n 65535" >> /etc/sysconfig/squid
 # Sync Time
 chronyc sourcestats -v
 chronyc tracking -v
-#!/bin/bash
+# All Traffic IPTables Configuration
+CMD=$(ip -o $CMD -4 route show to default | awk '{print $5}')
+iptables -t nat -I PREROUTING -i $CMD -p udp --dport 53 -j REDIRECT --to-ports 5300
+echo -e "Do you want to block torrent traffic? [yes/no]"
+read block_torrent
+# TCP Rules
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 109 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 143 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 10015 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 18020 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8880 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 3128 -j ACCEPT
 
-# Set the default policy of INPUT, OUTPUT, and FORWARD chains to ACCEPT
-iptables -P INPUT ACCEPT
-iptables -P OUTPUT ACCEPT
-iptables -P FORWARD ACCEPT
+# UDP Rules
+iptables -I INPUT -p udp --dport 5300 -j ACCEPT
+iptables -t nat -I PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5300
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 53 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2200 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 7300 -j ACCEPT
 
-# Flush all current rules from iptables
-iptables -F
-iptables -t nat -F
-iptables -t mangle -F
-iptables -t raw -F
-iptables -t security -F
-
-# Flush all custom chains
-iptables -X
-
-# Get the default network interface used for internet connectivity
-CMD=$(ip -o -4 route show to default | awk '{print $5}')
-
-# NAT Configuration - Modify or remove these lines if not required
+# Block Torrent Traffic
+if [ "$block_torrent" == "yes" ]; then
+    # Block Torrent Traffic
+    iptables -A FORWARD -m string --algo bm --string "BitTorrent" -j DROP
+    iptables -A FORWARD -m string --algo bm --string "BitTorrent protocol" -j DROP
+iptables -A FORWARD -m string --algo bm --string "peer_id=" -j DROP
+iptables -A FORWARD -m string --algo bm --string ".torrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "announce.php?passkey=" -j DROP
+iptables -A FORWARD -m string --algo bm --string "torrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "announce" -j DROP
+iptables -A FORWARD -m string --algo bm --string "info_hash" -j DROP
+iptables -A FORWARD -m string --algo bm --string "/default.ida?" -j DROP
+iptables -A FORWARD -m string --algo bm --string ".exe?/c+dir" -j DROP
+iptables -A FORWARD -m string --algo bm --string ".exe?/c_tftp" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "peer_id" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "BitTorrent" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "BitTorrent protocol" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "bittorrent-announce" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "announce.php?passkey=" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "find_node" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "info_hash" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "get_peers" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "announce" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "announce_peers" -j DROP
+echo "Torrent traffic has been blocked."
+else
+    echo "Skipping blocking of torrent traffic."
+fi
+# NAT Configuration
 iptables -t nat -I POSTROUTING -s 10.6.0.0/24 -o $CMD -j MASQUERADE
 iptables -t nat -I POSTROUTING -s 10.7.0.0/24 -o $CMD -j MASQUERADE
 
 # Save IPTables Rules
-iptables-save >/etc/iptables/rules.v4
-iptables-save >/etc/iptables.up.rules
-
-# Make sure netfilter-persistent is installed and enabled to save across reboots
-if command -v netfilter-persistent >/dev/null 2>&1; then
-    netfilter-persistent save
-    netfilter-persistent reload
-else
-    echo "netfilter-persistent not found, consider installing it to save rules across reboots"
-fi
-
-# Restart iptables service to apply changes (if iptables service is used)
-if systemctl is-active --quiet iptables; then
-    systemctl restart iptables
-else
-    echo "iptables service not active or not found"
-fi
-
-echo "IPTables configured to allow all traffic."
-
+iptables-save >/etc/iptables/rules.v4 >/dev/null 2>&1
+iptables-save >/etc/iptables.up.rules >/dev/null 2>&1
+netfilter-persistent save >/dev/null 2>&1
+netfilter-persistent reload >/dev/null 2>&1
+systemctl enable iptables >/dev/null 2>&1 
+systemctl start iptables >/dev/null 2>&1 
+systemctl restart iptables >/dev/null 2>&1 
 
 # Configure Dropbear
 cat >/etc/default/dropbear <<-END
@@ -244,7 +260,7 @@ refresh_pattern . 0 20% 4320
 visible_hostname $domain
 END
 # Download and Configure Websocket Python Script
-wget -O /usr/sbin/ws.py "${REPO}ws.py" >/dev/null 2>&1
+wget -O /usr/sbin/ws.py "${REPO}core/python/stws.py" >/dev/null 2>&1
 chmod +x /sbin/ws.py
 
 # Configure HAProxy
@@ -351,7 +367,7 @@ WantedBy=multi-user.target
 END
 
 # Download and Configure BadVPN
-wget -O /usr/sbin/badvpn "${REPO}badvpn" >/dev/null 2>&1
+wget -O /usr/sbin/badvpn "${REPO}core/badvpn" >/dev/null 2>&1
 chmod +x /usr/sbin/badvpn
 
 # Configure BadVPN Service
@@ -512,5 +528,5 @@ read -p "Do you want to reboot the system? (y/n): " answer
 case $answer in
     [Yy]* ) sudo reboot;;
     [Nn]* ) echo "Reboot cancelled.";;
-    * ) echo "Please answer yes or no.";;
 esac
+    * ) echo "Please answer yes or no.";;
