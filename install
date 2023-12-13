@@ -476,11 +476,9 @@ echo "Subdomain used for this setup: $(cat /etc/xray/domain)"
 rm -rf "install"
 wget -O /usr/sbin/menu https://raw.githubusercontent.com/gotza02/FTP/main/add >/dev/null 2>&1
 chmod 777 /usr/sbin/menu
-#!/bin/bash
 
 # Ask the user if they want to reboot
 read -p "Do you want to reboot the system? (y/n): " answer
-
 
 # Check the user's answer
 case $answer in
