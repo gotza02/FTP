@@ -503,7 +503,7 @@ echo "Installation is almost complete. Your server will reboot in 30 seconds."
 
 
 echo "Subdomain used for this setup: $(cat /etc/xray/domain)"
-rm -rf "setup v2.sh"
+rm -rf "install"
 #!/bin/bash
 
 # Ask the user if they want to reboot
