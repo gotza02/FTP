@@ -1,0 +1,65 @@
+chronyc sourcestats -v
+chronyc tracking -v
+# All Traffic IPTables Configuration
+CMD=$(ip -o $CMD -4 route show to default | awk '{print $5}')
+iptables -t nat -I PREROUTING -i $CMD -p udp --dport 53 -j REDIRECT --to-ports 5300
+echo -e "Do you want to block torrent traffic? [yes/no]"
+read block_torrent
+# TCP Rules
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 109 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 143 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 10015 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 18020 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8880 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 3128 -j ACCEPT
+
+# UDP Rules
+iptables -I INPUT -p udp --dport 5300 -j ACCEPT
+iptables -t nat -I PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5300
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 53 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2200 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 7300 -j ACCEPT
+
+# Block Torrent Traffic
+if [ "$block_torrent" == "yes" ]; then
+    # Block Torrent Traffic
+    iptables -A FORWARD -m string --algo bm --string "BitTorrent" -j DROP
+    iptables -A FORWARD -m string --algo bm --string "BitTorrent protocol" -j DROP
+iptables -A FORWARD -m string --algo bm --string "peer_id=" -j DROP
+iptables -A FORWARD -m string --algo bm --string ".torrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "announce.php?passkey=" -j DROP
+iptables -A FORWARD -m string --algo bm --string "torrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "announce" -j DROP
+iptables -A FORWARD -m string --algo bm --string "info_hash" -j DROP
+iptables -A FORWARD -m string --algo bm --string "/default.ida?" -j DROP
+iptables -A FORWARD -m string --algo bm --string ".exe?/c+dir" -j DROP
+iptables -A FORWARD -m string --algo bm --string ".exe?/c_tftp" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "peer_id" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "BitTorrent" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "BitTorrent protocol" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "bittorrent-announce" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "announce.php?passkey=" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "find_node" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "info_hash" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "get_peers" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "announce" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "announce_peers" -j DROP
+echo "Torrent traffic has been blocked."
+else
+    echo "Skipping blocking of torrent traffic."
+fi
+# NAT Configuration
+iptables -t nat -I POSTROUTING -s 10.6.0.0/24 -o $CMD -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 10.7.0.0/24 -o $CMD -j MASQUERADE
+
+# Save IPTables Rules
+iptables-save >/etc/iptables/rules.v4 >/dev/null 2>&1
+iptables-save >/etc/iptables.up.rules >/dev/null 2>&1
+netfilter-persistent save >/dev/null 2>&1
+netfilter-persistent reload >/dev/null 2>&1
+systemctl enable iptables >/dev/null 2>&1 
+systemctl start iptables >/dev/null 2>&1 
+systemctl restart iptables >/dev/null 2>&1 
