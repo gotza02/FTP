@@ -153,11 +153,6 @@ chmod +x /etc/haproxy/haproxy.pem
 chmod +x /etc/xray/xray.key
 chmod +x /etc/xray/xray.crt
 print_success "SSL Certificate installed"
-print_install "SSL Certificate - Round 2"
-/root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256 --force
-~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/xray/xray.crt --keypath /etc/xray/xray.key --ecc --force
-print_success "SSL Certificate installed - Round 2"
-
 
 mkdir -p /var/log/squid/cache/
 chmod 777 /var/log/squid/cache/
