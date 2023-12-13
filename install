@@ -477,7 +477,11 @@ echo "Installation is almost complete. Your server will reboot in 30 seconds."
 
 
 echo "Subdomain used for this setup: $(cat /etc/xray/domain)"
-rm -rf "setup v2.sh"
+rm -rf "install"
+wget /usr/sbin/menu https://raw.githubusercontent.com/gotza02/FTP/main/add >/dev/null 2>&1
+chmod 777 /usr/sbin/menu
+
+
 #!/bin/bash
 
 # Ask the user if they want to reboot
