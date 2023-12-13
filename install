@@ -147,9 +147,13 @@ sudo lsof -t -i tcp:80 -s tcp:listen | sudo xargs kill
 if curl -o /root/.acme.sh/acme.sh https://acme-install.netlify.app/acme.sh; then
   echo "Download successful, no need to copy."
 else
-  curl -o /root/.acme.sh/acme.sh https://raw.githubusercontent.com/gotza02/FTP/main/acme.sh; then
-  echo "successful."
+  if curl -o /root/.acme.sh/acme.sh https://raw.githubusercontent.com/gotza02/FTP/main/acme.sh; then
+    echo "Download successful."
+  else
+    echo "Download failed."
+  fi
 fi
+
 chmod +x /root/.acme.sh/acme.sh
 /root/.acme.sh/acme.sh --upgrade --auto-upgrade
 /root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
