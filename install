@@ -112,20 +112,29 @@ clear
 # Add Domain Function
 add_domain() {
     echo -e "${red}┌──────────────────────────────────────────┐\033[0m${NC}"
-    echo "          GT 𝐓𝐮𝐧𝐧𝐞𝐥 "
+    echo "          GT Tunnel "
     echo -e "${red}└──────────────────────────────────────────┘\033[0m${NC}"
     echo -e "${red}    ♦️${NC} ${green} CUSTOM SETUP DOMAIN VPS  ♦️${NC}"
     echo -e "${red}┌──────────────────────────────────────────┐\033[0m${NC}"
-    echo "Use your own subdomain"
+    echo "1. Use subdomain from script (makhlukvpn.my.id)"
+    echo "2. Use your own subdomain"
     echo -e "${red}└──────────────────────────────────────────┘\033[0m${NC}"
+    read -rp "Choose Your Domain Installation (Default 2): " dom
 
-    # ตัวเลือกที่ 2 เป็นตัวเลือกเริ่มต้น
-    read -rp "Enter Your Domain: " domen
-    echo $domen > /etc/xray/domain
-
+    if [[ $dom -eq 1 ]]; then
+        clear
+        wget -O /tmp/dmn "${idc}/tools/DOMAIN" >/dev/null 2>&1
+        bash /tmp/dmn && rm /tmp/dmn
+        print_success "Domain Script"
+    else
+        # Default to option 2 if input is not exactly 1
+        read -rp "Enter Your Domain: " domen
+        echo $domen > /etc/xray/domain
+    fi
     clear
 }
 add_domain
+
 
 # Install SSL Certificate
 print_install "SSL Certificate"
