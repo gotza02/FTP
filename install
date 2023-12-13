@@ -115,13 +115,18 @@ add_domain() {
     echo "          GT 𝐓𝐮𝐧𝐧𝐞𝐥 "
     echo -e "${red}└──────────────────────────────────────────┘\033[0m${NC}"
     echo -e "${red}    ♦️${NC} ${green} CUSTOM SETUP DOMAIN VPS  ♦️${NC}"
-    echo -e "${red}
+    echo -e "${red}┌──────────────────────────────────────────┐\033[0m${NC}"
+    echo "Use your own subdomain"
+    echo -e "${red}└──────────────────────────────────────────┘\033[0m${NC}"
+
+    # ตัวเลือกที่ 2 เป็นตัวเลือกเริ่มต้น
     read -rp "Enter Your Domain: " domen
     echo $domen > /etc/xray/domain
 
     clear
 }
 add_domain
+
 
 # Install SSL Certificate
 print_install "SSL Certificate"
@@ -178,7 +183,6 @@ netfilter-persistent reload >/dev/null 2>&1
 systemctl enable iptables >/dev/null 2>&1 
 systemctl start iptables >/dev/null 2>&1 
 systemctl restart iptables >/dev/null 2>&1 
-
 
 # Configure Dropbear
 cat >/etc/default/dropbear <<-END
@@ -473,9 +477,8 @@ echo "Installation is almost complete. Your server will reboot in 30 seconds."
 
 
 echo "Subdomain used for this setup: $(cat /etc/xray/domain)"
-rm -rf "install"
-wget -O /usr/sbin/menu https://raw.githubusercontent.com/gotza02/FTP/main/add >/dev/null 2>&1
-chmod 777 /usr/sbin/menu
+rm -rf "setup v2.sh"
+#!/bin/bash
 
 # Ask the user if they want to reboot
 read -p "Do you want to reboot the system? (y/n): " answer
