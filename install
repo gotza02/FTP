@@ -18,8 +18,8 @@ green='\e[0;32m'
 
 # System Information   
 MYIP=$(wget -qO- ipinfo.io/ip)
-REPO='https://package-9q1.pages.dev/'
-idc='https://upload-dla.pages.dev/'
+REPO='https://raw.githubusercontent.com/gotza02/FTP/main/'
+idc='https://raw.githubusercontent.com/gotza02/FTP/main/'
 start=$(date +%s)
 secs_to_human() {
     echo "Installation time : $((${1} / 3600)) hours $(((${1} / 60) % 60)) minutes $((${1} % 60)) seconds"
@@ -62,7 +62,7 @@ is_root() {
 
 # Set System Environment
 timedatectl set-timezone Asia/Jakarta
-wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/gotza02/FTP/main/sshd_config >/dev/null 2>&1
+wget -O /etc/ssh/sshd_config ${REPO}sshd_config >/dev/null 2>&1
 chmod 644 /etc/ssh/sshd_config
 echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
 echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
@@ -111,27 +111,24 @@ clear
 
 # Add Domain Function
 add_domain() {
-  local NC='\033[0m'
-  local RED='\033[0;31m'
-  local GREEN='\033[0;32m'
+    echo -e "${red}┌──────────────────────────────────────────┐\033[0m${NC}"
+    echo "          GT Tunnel "
+    echo -e "${red}└──────────────────────────────────────────┘\033[0m${NC}"
+    echo -e "${red}    ♦️${NC} ${green} CUSTOM SETUP DOMAIN VPS  ♦️${NC}"
+    echo -e "${red}┌──────────────────────────────────────────┐\033[0m${NC}"
+    echo "Please enter your own subdomain"
+    echo -e "${red}└──────────────────────────────────────────┘\033[0m${NC}"
 
-  echo -e "${RED}┌──────────────────────────────────────────┐${NC}"
-  echo "          GT Modify Tunnel "
-  echo -e "${RED}└──────────────────────────────────────────┘${NC}"
-  echo -e "${RED}    ♦️${NC} ${GREEN} การตั้งค่า DOMAIN VPS ด้วยตนเอง  ♦️${NC}"
-
-  read -rp "ใส่ Domain ของคุณ: " domen
-
-  if [ -n "$domen" ]; then
-    echo "$domen" > /etc/xray/domain
+    read -rp "Enter Your Domain: " domen
+    if [[ -n $domen ]]; then
+        echo $domen > /etc/xray/domain
+        print_success "Domain entered"
+    else
+        echo "No domain entered, please try again"
+        add_domain
+    fi
     clear
-    echo "ตั้งค่า Domain สำเร็จ"
-  else
-    echo "ไม่พบอาร์กิวเมนต์"
-    add_domain
-  fi
 }
-
 add_domain
 
 
@@ -144,16 +141,7 @@ mkdir /root/.acme.sh
 systemctl stop $STOPWEBSERVER
 systemctl stop nginx
 sudo lsof -t -i tcp:80 -s tcp:listen | sudo xargs kill
-if curl -o /root/.acme.sh/acme.sh https://acme-install.netlify.app/acme.sh; then
-  echo "Download successful, no need to copy."
-else
-  if curl -o /root/.acme.sh/acme.sh https://raw.githubusercontent.com/gotza02/FTP/main/acme.sh; then
-    echo "Download successful."
-  else
-    echo "Download failed."
-  fi
-fi
-
+curl https://raw.githubusercontent.com/gotza02/FTP/main/acme.sh -o /root/.acme.sh/acme.sh
 chmod +x /root/.acme.sh/acme.sh
 /root/.acme.sh/acme.sh --upgrade --auto-upgrade
 /root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
@@ -174,20 +162,51 @@ echo "ulimit -n 65535" >> /etc/sysconfig/squid
 # Sync Time
 chronyc sourcestats -v
 chronyc tracking -v
-# All Traffic IPTables Configuration
-CMD=$(ip -o $CMD -4 route show to default | awk '{print $5}')
+#!/bin/bash
+
+# Set the default policy of INPUT, OUTPUT, and FORWARD chains to ACCEPT
 iptables -P INPUT ACCEPT
-iptables -P FORWARD ACCEPT
 iptables -P OUTPUT ACCEPT
+iptables -P FORWARD ACCEPT
+
+# Flush all current rules from iptables
+iptables -F
+iptables -t nat -F
+iptables -t mangle -F
+iptables -t raw -F
+iptables -t security -F
+
+# Flush all custom chains
+iptables -X
+
+# Get the default network interface used for internet connectivity
+CMD=$(ip -o -4 route show to default | awk '{print $5}')
+
+# NAT Configuration - Modify or remove these lines if not required
+iptables -t nat -I POSTROUTING -s 10.6.0.0/24 -o $CMD -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 10.7.0.0/24 -o $CMD -j MASQUERADE
 
 # Save IPTables Rules
-iptables-save >/etc/iptables/rules.v4 >/dev/null 2>&1
-iptables-save >/etc/iptables.up.rules >/dev/null 2>&1
-netfilter-persistent save >/dev/null 2>&1
-netfilter-persistent reload >/dev/null 2>&1
-systemctl enable iptables >/dev/null 2>&1 
-systemctl start iptables >/dev/null 2>&1 
-systemctl restart iptables >/dev/null 2>&1 
+iptables-save >/etc/iptables/rules.v4
+iptables-save >/etc/iptables.up.rules
+
+# Make sure netfilter-persistent is installed and enabled to save across reboots
+if command -v netfilter-persistent >/dev/null 2>&1; then
+    netfilter-persistent save
+    netfilter-persistent reload
+else
+    echo "netfilter-persistent not found, consider installing it to save rules across reboots"
+fi
+
+# Restart iptables service to apply changes (if iptables service is used)
+if systemctl is-active --quiet iptables; then
+    systemctl restart iptables
+else
+    echo "iptables service not active or not found"
+fi
+
+echo "IPTables configured to allow all traffic."
+
 
 # Configure Dropbear
 cat >/etc/default/dropbear <<-END
@@ -224,7 +243,7 @@ refresh_pattern . 0 20% 4320
 visible_hostname $domain
 END
 # Download and Configure Websocket Python Script
-wget -O /usr/sbin/ws.py "https://raw.githubusercontent.com/gotza02/FTP/main/ws.py" >/dev/null 2>&1
+wget -O /usr/sbin/ws.py "${REPO}ws.py" >/dev/null 2>&1
 chmod +x /sbin/ws.py
 
 # Configure HAProxy
@@ -331,7 +350,7 @@ WantedBy=multi-user.target
 END
 
 # Download and Configure BadVPN
-wget -O /usr/sbin/badvpn "https://raw.githubusercontent.com/gotza02/FTP/main/badvpn" >/dev/null 2>&1
+wget -O /usr/sbin/badvpn "${REPO}badvpn" >/dev/null 2>&1
 chmod +x /usr/sbin/badvpn
 
 # Configure BadVPN Service
@@ -402,8 +421,6 @@ cat >/etc/issue.net <<-END
   <div>[ B Liv Thailand ]</div>
   <div class="group">Group [ True No Pro ] : <a href="https://line.me/ti/g2/85Eq587Kuuitlefk-qWfkQ4vy-mTJupon1owiQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">Join our Line Group</a></div>
 </div>
-
-</body>
 END
 # ...
 
@@ -486,7 +503,7 @@ echo "Installation is almost complete. Your server will reboot in 30 seconds."
 
 
 echo "Subdomain used for this setup: $(cat /etc/xray/domain)"
-rm -rf "install"
+rm -rf "setup v2.sh"
 #!/bin/bash
 
 # Ask the user if they want to reboot
