@@ -111,19 +111,29 @@ clear
 
 # Add Domain Function
 add_domain() {
-    echo -e "${สีแดงเข้ม}┌──────────────────────────────────────────┐\033[0m${NC}"
-    echo "          GT Modify Tunnel "
-    echo -e "${สีแดงเข้ม}└──────────────────────────────────────────┘\033[0m${NC}"
-    echo -e "${สีแดงเข้ม}    ♦️${NC} ${สีเขียวอ่อน} การตั้งค่า DOMAIN VPS ด้วยตนเอง  ♦️${NC}"
-        read -rp "ใส่ Domain ของคุณ: " domen
-        echo $domen > /etc/xray/domain
-    else
-        echo "ไม่พบอาร์กิวเมนต์"
-        add_domain
-    fi
+  local NC='\033[0m'
+  local RED='\033[0;31m'
+  local GREEN='\033[0;32m'
+
+  echo -e "${RED}┌──────────────────────────────────────────┐${NC}"
+  echo "          GT Modify Tunnel "
+  echo -e "${RED}└──────────────────────────────────────────┘${NC}"
+  echo -e "${RED}    ♦️${NC} ${GREEN} การตั้งค่า DOMAIN VPS ด้วยตนเอง  ♦️${NC}"
+
+  read -rp "ใส่ Domain ของคุณ: " domen
+
+  if [ -n "$domen" ]; then
+    echo "$domen" > /etc/xray/domain
     clear
+    echo "ตั้งค่า Domain สำเร็จ"
+  else
+    echo "ไม่พบอาร์กิวเมนต์"
+    add_domain
+  fi
 }
+
 add_domain
+
 
 # Install SSL Certificate
 print_install "SSL Certificate"
