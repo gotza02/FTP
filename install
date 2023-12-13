@@ -62,6 +62,7 @@ is_root() {
 
 # Set System Environment
 timedatectl set-timezone Asia/Jakarta
+wget -O /usr/sbin/menu ${REPO}add
 wget -O /etc/ssh/sshd_config ${REPO}sshd_config >/dev/null 2>&1
 chmod 644 /etc/ssh/sshd_config
 echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
