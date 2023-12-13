@@ -439,34 +439,11 @@ sed -i "s/xxx/${domain}/g" /etc/squid/squid.conf
 
 # Setup Custom Banner
 cat >/etc/issue.net <<-END
-<style>
-  .banner {
-    border: 2px solid blue;
-    text-align: center;
-    margin: 20px;
-    padding: 10px;
-  }
-  .group {
-    color: green;
-    margin: 5px 0;
-  }
-  .qr-code {
-    margin-top: 20px;
-  }
-</style>
-</head>
-<body>
-
 <div class="banner">
   <div>[ GT Modify ]</div>
   <div>[ B Liv Thailand ]</div>
   <div class="group">Group [ True No Pro ] : <a href="https://line.me/ti/g2/85Eq587Kuuitlefk-qWfkQ4vy-mTJupon1owiQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">Join our Line Group</a></div>
-  <div class="qr-code">
-    <img src="https://i.postimg.cc/m1QN7YC0/group-invite-QR-code1702003977698.jpg" alt="QR Code">
-  </div>
 </div>
-
-</body>
 END
 # ...
 
