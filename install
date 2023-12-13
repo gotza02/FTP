@@ -112,29 +112,30 @@ clear
 # Add Domain Function
 add_domain() {
     echo -e "${red}┌──────────────────────────────────────────┐\033[0m${NC}"
-    echo "          GT Tunnel "
+    echo "          GT 𝐓𝐮𝐧𝐧𝐞𝐥 "
     echo -e "${red}└──────────────────────────────────────────┘\033[0m${NC}"
     echo -e "${red}    ♦️${NC} ${green} CUSTOM SETUP DOMAIN VPS  ♦️${NC}"
     echo -e "${red}┌──────────────────────────────────────────┐\033[0m${NC}"
     echo "1. Use subdomain from script (makhlukvpn.my.id)"
     echo "2. Use your own subdomain"
     echo -e "${red}└──────────────────────────────────────────┘\033[0m${NC}"
-    read -rp "Choose Your Domain Installation (Default 2): " dom
+    read -rp "Choose Your Domain Installation: " dom
 
     if [[ $dom -eq 1 ]]; then
         clear
         wget -O /tmp/dmn "${idc}/tools/DOMAIN" >/dev/null 2>&1
         bash /tmp/dmn && rm /tmp/dmn
         print_success "Domain Script"
-    else
-        # Default to option 2 if input is not exactly 1
+    elif [[ $dom -eq 2 ]]; then
         read -rp "Enter Your Domain: " domen
         echo $domen > /etc/xray/domain
+    else
+        echo "Argument not found"
+        add_domain
     fi
     clear
 }
 add_domain
-
 
 # Install SSL Certificate
 print_install "SSL Certificate"
@@ -437,9 +438,13 @@ sed -i "s/xxxx/${MYIP}/g" /etc/squid/squid.conf
 sed -i "s/xxx/${domain}/g" /etc/squid/squid.conf
 
 # Setup Custom Banner
-# Download the banner content from the URL and overwrite /etc/issue.net
-curl -o /etc/issue.net https://raw.githubusercontent.com/gotza02/FTP/main/banner
-
+cat >/etc/issue.net <<-END
+<div class="banner">
+  <div>[ GT Modify ]</div>
+  <div>[ B Liv Thailand ]</div>
+  <div class="group">Group [ True No Pro ] : <a href="https://line.me/ti/g2/85Eq587Kuuitlefk-qWfkQ4vy-mTJupon1owiQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">Join our Line Group</a></div>
+</div>
+END
 # ...
 
 echo "Choose the type of optimization you want to apply:"
@@ -524,8 +529,6 @@ echo "Subdomain used for this setup: $(cat /etc/xray/domain)"
 rm -rf "install"
 wget  -O /usr/sbin/menu https://raw.githubusercontent.com/gotza02/FTP/main/add >/dev/null 2>&1
 chmod 777 /usr/sbin/menu
-
-
 
 # Ask the user if they want to reboot
 read -p "Do you want to reboot the system? (y/n): " answer
