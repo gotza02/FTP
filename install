@@ -127,7 +127,6 @@ add_domain() {
 }
 add_domain
 
-
 # Install SSL Certificate
 print_install "SSL Certificate"
 domain=$(cat /etc/xray/domain)
@@ -163,19 +162,57 @@ CMD=$(ip -o $CMD -4 route show to default | awk '{print $5}')
 iptables -t nat -I PREROUTING -i $CMD -p udp --dport 53 -j REDIRECT --to-ports 5300
 echo -e "Do you want to block torrent traffic? [yes/no]"
 read block_torrent
+# TCP Rules
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 109 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 143 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 10015 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 18020 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8880 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 3128 -j ACCEPT
 
-# Allow All TCP and UDP Ports
-iptables -I INPUT -p tcp -j ACCEPT
-iptables -I INPUT -p udp -j ACCEPT
+# UDP Rules
+iptables -I INPUT -p udp --dport 5300 -j ACCEPT
+iptables -t nat -I PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5300
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 53 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2200 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 7300 -j ACCEPT
 
-# คำสั่งต่อไปนี้เป็นส่วนของการบล็อก Torrent Traffic (หากต้องการใช้งาน)
-# [โค้ดสำหรับการบล็อก Torrent Traffic ตามที่มีอยู่ในสคริปต์เดิม]
-
-# NAT Configuration (เหมือนเดิม)
+# Block Torrent Traffic
+if [ "$block_torrent" == "yes" ]; then
+    # Block Torrent Traffic
+    iptables -A FORWARD -m string --algo bm --string "BitTorrent" -j DROP
+    iptables -A FORWARD -m string --algo bm --string "BitTorrent protocol" -j DROP
+iptables -A FORWARD -m string --algo bm --string "peer_id=" -j DROP
+iptables -A FORWARD -m string --algo bm --string ".torrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "announce.php?passkey=" -j DROP
+iptables -A FORWARD -m string --algo bm --string "torrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "announce" -j DROP
+iptables -A FORWARD -m string --algo bm --string "info_hash" -j DROP
+iptables -A FORWARD -m string --algo bm --string "/default.ida?" -j DROP
+iptables -A FORWARD -m string --algo bm --string ".exe?/c+dir" -j DROP
+iptables -A FORWARD -m string --algo bm --string ".exe?/c_tftp" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "peer_id" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "BitTorrent" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "BitTorrent protocol" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "bittorrent-announce" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "announce.php?passkey=" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "find_node" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "info_hash" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "get_peers" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "announce" -j DROP
+iptables -A FORWARD -m string --algo kmp --string "announce_peers" -j DROP
+echo "Torrent traffic has been blocked."
+else
+    echo "Skipping blocking of torrent traffic."
+fi
+# NAT Configuration
 iptables -t nat -I POSTROUTING -s 10.6.0.0/24 -o $CMD -j MASQUERADE
 iptables -t nat -I POSTROUTING -s 10.7.0.0/24 -o $CMD -j MASQUERADE
 
-# Save IPTables Rules (เหมือนเดิม)
+# Save IPTables Rules
 iptables-save >/etc/iptables/rules.v4 >/dev/null 2>&1
 iptables-save >/etc/iptables.up.rules >/dev/null 2>&1
 netfilter-persistent save >/dev/null 2>&1
@@ -392,8 +429,10 @@ sed -i "s/xxx/${domain}/g" /etc/squid/squid.conf
 
 # Setup Custom Banner
 cat >/etc/issue.net <<-END
-<div class="rainbow-text" style="text-align: center;">
-	<span class="block-line"><span><span style="color:#ff0000;">*</span><span style="color:#ff1500;">*</span><span style="color:#ff2b00;">*</span><span style="color:#ff4000;">*</span><span style="color:#ff5100;">*</span><span style="color:#ff6600;">*</span><span style="color:#ff7b00;">*</span><span style="color:#ff8c00;">*</span><span style="color:#ffa200;">*</span><span style="color:#ffb700;">*</span><span style="color:#ffc800;">*</span><span style="color:#ffdd00;">*</span><span style="color:#fff200;">*</span><span style="color:#fbff00;">*</span><span style="color:#e6ff00;">*</span><span style="color:#d0ff00;">*</span><span style="color:#bfff00;">*</span><span style="color:#aaff00;">*</span><span style="color:#95ff00;">*</span><span style="color:#84ff00;">*</span></span></span><br><span class="block-line"><span><span style="color:#6eff00;">W</span><span style="color:#59ff00;">e</span><span style="color:#48ff00;">l</span><span style="color:#33ff00;">c</span><span style="color:#1eff00;">o</span><span style="color:#0dff00;">m</span><span style="color:#00ff09;">e&nbsp;</span></span><span><span style="color:#00ff1e;">G</span><span style="color:#00ff2f;">T&nbsp;</span></span><span><span style="color:#00ff44;">T</span><span style="color:#00ff59;">u</span><span style="color:#00ff6a;">n</span><span style="color:#00ff80;">n</span><span style="color:#00ff95;">e</span><span style="color:#00ffa6;">l</span></span></span><br><span class="block-line"><span><span style="color:#00ffbb;">*</span><span style="color:#00ffd0;">*</span><span style="color:#00ffe1;">*</span><span style="color:#00fff7;">*</span><span style="color:#00f2ff;">*</span><span style="color:#00ddff;">*</span><span style="color:#00ccff;">*</span><span style="color:#00b7ff;">*</span><span style="color:#00a1ff;">*</span><span style="color:#0091ff;">*</span><span style="color:#007bff;">*</span><span style="color:#0066ff;">*</span><span style="color:#0055ff;">*</span><span style="color:#0040ff;">*</span><span style="color:#002bff;">*</span><span style="color:#0019ff;">*</span><span style="color:#0004ff;">*</span><span style="color:#1100ff;">*</span><span style="color:#2200ff;">*</span><span style="color:#3700ff;">*</span></span></span><br><span class="block-line"><span><span style="color:#4d00ff;">ต</span><span style="color:#5e00ff;">้</span><span style="color:#7300ff;">อ</span><span style="color:#8800ff;">ง</span><span style="color:#9900ff;">ก</span><span style="color:#ae00ff;">า</span><span style="color:#c300ff;">ร</span><span style="color:#d400ff;">ไ</span><span style="color:#ea00ff;">ฟ</span><span style="color:#ff00ff;">ล</span><span style="color:#ff00ee;">์&nbsp;</span></span><span><span style="color:#ff00d9;">ต</span><span style="color:#ff00c3;">ิ</span><span style="color:#ff00b2;">ด</span><span style="color:#ff009d;">ต</span><span style="color:#ff0088;">่</span><span style="color:#ff0077;">อ&nbsp;</span></span><span><span style="color:#ff0062;">A</span><span style="color:#ff004c;">d</span><span style="color:#ff003b;">m</span><span style="color:#ff0026;">i</span><span style="color:#ff0011;">n</span></span></span>
+<div class="banner">
+  <div>[ GT Modify ]</div>
+  <div>[ B Liv Thailand ]</div>
+  <div class="group">Group [ True No Pro ] : <a href="https://line.me/ti/g2/85Eq587Kuuitlefk-qWfkQ4vy-mTJupon1owiQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">Join our Line Group</a></div>
 </div>
 END
 # ...
@@ -478,11 +517,10 @@ echo "Installation is almost complete. Your server will reboot in 30 seconds."
 
 echo "Subdomain used for this setup: $(cat /etc/xray/domain)"
 rm -rf "install"
-wget /usr/sbin/menu https://raw.githubusercontent.com/gotza02/FTP/main/add >/dev/null 2>&1
+wget  -O /usr/sbin/menu https://raw.githubusercontent.com/gotza02/FTP/main/add >/dev/null 2>&1
 chmod 777 /usr/sbin/menu
 
 
-#!/bin/bash
 
 # Ask the user if they want to reboot
 read -p "Do you want to reboot the system? (y/n): " answer
