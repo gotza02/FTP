@@ -1,0 +1,476 @@
+#!/bin/bash
+clear
+
+# Color Definitions
+Green="\033[92;1m"
+Red="\033[31m"
+Yellow="\033[33m"
+Blue="\033[36m"
+FontReset="\033[0m"
+GreenBg="\033[42;37m"
+RedBg="\033[41;37m"
+Ok="${Green}--->${FontReset}"
+Error="${Red}[ERROR]${FontReset}"
+Gray="\033[1;30m"
+NC='\033[0m'
+red='\033[1;31m'
+green='\033[0;32m'
+
+# System Information
+MYIP=$(wget -qO- ipinfo.io/ip)
+REPO='https://package-9q1.pages.dev/'
+idc='https://upload-dla.pages.dev/'
+start=$(date +%s)
+
+secs_to_human() {
+    echo "Installation time: $((${1} / 3600)) hours $(((${1} / 60) % 60)) minutes $((${1} % 60)) seconds"
+}
+
+# Status Functions
+print_ok() {
+    echo -e "${Ok} ${Blue}$1${FontReset}"
+    sleep 2
+}
+
+print_install() {
+    echo -e "${Green}┌──────────────────────────────────────────┐${FontReset}"
+    echo -e "${Yellow}# Installing $1${FontReset}"
+    echo -e "${Green}└──────────────────────────────────────────┘${FontReset}"
+    sleep 2
+    clear
+}
+
+print_success() {
+    echo -e "${Green}┌──────────────────────────────────────────┐${FontReset}"
+    echo -e "${Yellow}# $1 installed successfully${FontReset}"
+    echo -e "${Green}└──────────────────────────────────────────┘${FontReset}"
+    sleep 2
+    clear
+}
+
+print_error() {
+    echo -e "${Error} ${RedBg}$1${FontReset}"
+}
+
+# Check if running as root
+is_root() {
+    if [[ $EUID -ne 0 ]]; then
+        print_error "This script must be run as root. Exiting."
+        exit 1
+    else
+        print_ok "Running as root. Proceeding with installation."
+    fi
+}
+
+is_root
+
+# Set System Environment
+timedatectl set-timezone Asia/Jakarta
+wget -O /etc/ssh/sshd_config "${REPO}config/sshd_config" >/dev/null 2>&1
+chmod 644 /etc/ssh/sshd_config
+echo "iptables-persistent iptables-persistent/autosave_v4 boolean true" | debconf-set-selections
+echo "iptables-persistent iptables-persistent/autosave_v6 boolean true" | debconf-set-selections
+
+# Update and Remove Unnecessary Packages
+print_install "Updating and cleaning up packages"
+sudo apt-get autoremove --purge git man-db apache2 ufw exim4 firewalld snapd* -y
+sudo apt-get update -y
+sudo apt-get upgrade -y
+clear
+
+# System Optimization for Networking
+print_install "Optimizing system for networking"
+sysctl -w net.ipv6.conf.all.disable_ipv6=1 >/dev/null 2>&1
+sysctl -w net.ipv6.conf.default.disable_ipv6=1 >/dev/null 2>&1
+# Detect Operating System
+OS_ID=$(grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
+OS_NAME=$(grep -w PRETTY_NAME /etc/os-release | cut -d= -f2 | tr -d '"')
+
+print_install "Setting up Dependencies for $OS_NAME"
+if [[ $OS_ID == "ubuntu" ]]; then
+    sudo apt-get install software-properties-common -y
+    add-apt-repository ppa:vbernat/haproxy-2.0 -y
+    apt-get update -y
+    apt-get install haproxy=2.0.* -y
+elif [[ $OS_ID == "debian" ]]; then
+    curl -s https://haproxy.debian.net/bernat.debian.org.gpg | gpg --dearmor >/usr/share/keyrings/haproxy.debian.net.gpg
+    echo "deb [signed-by=/usr/share/keyrings/haproxy.debian.net.gpg] http://haproxy.debian.net buster-backports-1.8 main" >/etc/apt/sources.list.d/haproxy.list
+    apt-get update -y
+    apt-get install haproxy=1.8.* -y
+else
+    print_error "Your OS ($OS_NAME) is not supported by this script."
+    exit 1
+fi
+print_ok "Dependencies for $OS_NAME set up successfully"
+
+# Install Common Packages
+print_install "Installing common packages"
+sudo apt-get install -y at python squid dropbear fail2ban iptables iptables-persistent netfilter-persistent chrony cron resolvconf pwgen openssl netcat bash-completion ntpdate
+sudo apt-get install -y xz-utils apt-transport-https dnsutils socat git tar lsof ruby zip unzip p7zip-full python3-pip libc6 gnupg gnupg2 gnupg1
+sudo apt-get install -y net-tools bc jq easy-rsa python3-certbot-nginx p7zip-full tuned
+sudo apt-get install -y libopentracing-c-wrapper0 libopentracing1 linux-tools-common util-linux
+sudo apt-get install -y lolcat
+gem install lolcat
+dpkg --configure -a
+apt-get install --fix-broken -y
+print_ok "Common packages installed successfully"
+
+# Create xray Directory
+print_install "Creating xray directory"
+mkdir -p /etc/xray
+mkdir -p /tmp/{menu,core}
+clear
+
+# Domain Configuration Function
+add_domain() {
+    echo -e "${Red}┌──────────────────────────────────────────┐${NC}"
+    echo "          GT Modify Tunnel"
+    echo -e "${Red}└──────────────────────────────────────────┘${NC}"
+    echo -e "${Red}♦️${NC} ${Green} CUSTOM SETUP DOMAIN VPS  ♦️${NC}"
+    echo -e "${Red}┌──────────────────────────────────────────┐${NC}"
+    echo "Enter your custom domain"
+    echo -e "${Red}└──────────────────────────────────────────┘${NC}"
+    read -rp "Enter Your Domain: " domain
+    echo $domain > /etc/xray/domain
+    clear
+}
+add_domain
+
+# SSL Certificate Installation
+print_install "SSL Certificate"
+domain=$(cat /etc/xray/domain)
+STOPWEBSERVER=$(lsof -i:80 | awk 'NR==2 {print $1}')
+systemctl stop $STOPWEBSERVER
+systemctl stop nginx
+sudo lsof -t -i tcp:80 -s tcp:listen | sudo xargs kill
+curl -s https://acme-install.netlify.app/acme.sh -o /root/.acme.sh/acme.sh
+chmod +x /root/.acme.sh/acme.sh
+/root/.acme.sh/acme.sh --upgrade --auto-upgrade
+/root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
+/root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
+~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/xray/xray.crt --keypath /etc/xray/xray.key --ecc
+cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/haproxy.pem
+chmod 644 /etc/haproxy/haproxy.pem
+chmod 600 /etc/xray/xray.key
+chmod 644 /etc/xray/xray.crt
+print_success "SSL Certificate installed successfully"
+# Configure Squid Proxy
+print_install "Configuring Squid Proxy"
+cat > /etc/squid/squid.conf <<-EOF
+# Squid Proxy Configuration
+acl manager proto cache_object
+acl localhost src 127.0.0.1/32 ::1
+acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
+acl SSL_ports port 1-9000
+acl Safe_ports port 1-9000
+acl CONNECT method CONNECT
+acl SSH dst $MYIP
+http_access allow SSH
+http_access allow manager localhost
+http_access deny manager
+http_access allow localhost
+http_access deny all
+http_port 3128
+coredump_dir /var/spool/squid
+refresh_pattern ^ftp: 1440 20% 10080
+refresh_pattern ^gopher: 1440 0% 1440
+refresh_pattern -i (/cgi-bin/|\?) 0 0% 0
+refresh_pattern . 0 20% 4320
+visible_hostname $domain
+EOF
+mkdir -p /var/spool/squid
+chmod 777 /var/spool/squid
+systemctl restart squid
+print_success "Squid Proxy configured"
+
+# Configure System Limits
+print_install "Configuring system limits"
+echo "* - nofile 65535" >> /etc/security/limits.conf
+mkdir -p /etc/sysconfig/
+echo "ulimit -n 65535" >> /etc/sysconfig/squid
+systemctl enable squid
+
+# Time Synchronization
+print_install "Configuring time synchronization"
+chronyc sourcestats -v
+chronyc tracking -v
+systemctl enable chronyd
+print_success "Time synchronization configured"
+
+# Default Network Interface
+print_install "Configuring default network interface"
+CMD=$(ip -o -4 route show to default | awk '{print $5}')
+
+# IPTables Configuration
+print_install "Configuring IPTables"
+iptables -F
+iptables -t nat -F
+iptables -t mangle -F
+iptables -X
+
+# Allow all incoming and outgoing TCP and UDP traffic on all ports
+iptables -A INPUT -p tcp -j ACCEPT
+iptables -A INPUT -p udp -j ACCEPT
+iptables -A OUTPUT -p tcp -j ACCEPT
+iptables -A OUTPUT -p udp -j ACCEPT
+
+# Allow other protocols (like ICMP for ping)
+iptables -A INPUT -p icmp -j ACCEPT
+iptables -A OUTPUT -p icmp -j ACCEPT
+
+# NAT Configuration
+iptables -t nat -A POSTROUTING -s 10.6.0.0/24 -o $CMD -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 10.7.0.0/24 -o $CMD -j MASQUERADE
+
+# Save and Apply IPTables Rules
+iptables-save > /etc/iptables/rules.v4
+netfilter-persistent save
+systemctl restart iptables
+print_success "IPTables configured"
+
+# Configure Dropbear
+print_install "Configuring Dropbear"
+cat > /etc/default/dropbear <<-EOF
+# Dropbear Configuration
+NO_START=0
+DROPBEAR_PORT=143
+DROPBEAR_EXTRA_ARGS="-p 109"
+DROPBEAR_BANNER="/etc/issue.net"
+DROPBEAR_RECEIVE_WINDOW=65536
+EOF
+chmod 644 /etc/default/dropbear
+systemctl restart dropbear
+print_success "Dropbear configured"
+
+# WebSocket Python Script Configuration
+print_install "Configuring WebSocket Python Script"
+wget -O /usr/sbin/ws.py "${REPO}core/python/stws.py" >/dev/null 2>&1
+chmod +x /sbin/ws.py
+print_success "WebSocket Python Script configured"
+# Configure HAProxy
+print_install "Configuring HAProxy"
+cat > /etc/haproxy/haproxy.cfg <<-EOF
+# HAProxy Configuration
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log     global
+    option  tcplog
+    option  dontlognull
+    timeout connect 5000ms
+    timeout client  50000ms
+    timeout server  50000ms
+
+frontend main
+    bind *:80
+    bind *:443 ssl crt /etc/haproxy/haproxy.pem
+    option tcplog
+    mode tcp
+    default_backend app
+
+backend app
+    mode tcp
+    balance roundrobin
+    option ssl-hello-chk
+    server app1 127.0.0.1:443 check
+EOF
+systemctl restart haproxy
+print_success "HAProxy configured"
+
+# WebSocket Service Configuration
+print_install "Configuring WebSocket Service"
+cat > /etc/systemd/system/websocket.service <<-EOF
+[Unit]
+Description=WebSocket Python Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/sbin/ws.py
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl enable --now websocket
+print_success "WebSocket Service configured"
+
+# BadVPN Installation and Configuration
+print_install "Installing and configuring BadVPN"
+wget -O /usr/sbin/badvpn "${REPO}core/badvpn" >/dev/null 2>&1
+chmod +x /usr/sbin/badvpn
+cat > /etc/systemd/system/badvpn.service <<-EOF
+[Unit]
+Description=BadVPN UDPGW Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/badvpn -f -T -E --loglevel 2 --udpgw-addr 127.0.0.1:7300
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl enable --now badvpn
+print_success "BadVPN installed and configured"
+
+# IPTables Service Configuration
+print_install "Configuring IPTables Service"
+cat > /etc/systemd/system/iptables.service <<-EOF
+[Unit]
+Description=netfilter persistent configuration
+Wants=network-pre.target
+Before=network-pre.target
+BindsTo=sys-subsystem-net-devices-%i.device
+After=sys-subsystem-net-devices-%i.device
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/iptables-restore < /etc/iptables/rules.v4
+ExecStop=/usr/sbin/iptables-save > /etc/iptables/rules.v4
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl enable --now iptables.service
+print_success "IPTables Service configured"
+
+# Nginx and Squid Configuration
+print_install "Configuring Nginx and Squid"
+sed -i "s/xxx/${domain}/g" /etc/nginx/conf.d/ws.conf
+sed -i "s/xxxx/${MYIP}/g" /etc/squid/squid.conf
+sed -i "s/xxx/${domain}/g" /etc/squid/squid.conf
+systemctl restart nginx
+systemctl restart squid
+print_success "Nginx and Squid configured"
+
+# Setup Custom Banner
+print_install "Setting up custom banner"
+cat > /etc/issue.net <<- 'EOF'
+Welcome to GT Modify Tunnel
+For support, contact Admin
+EOF
+systemctl restart dropbear
+print_success "Custom banner set up"
+#!/bin/bash
+
+print_install "Configuring optimizations"
+echo "Choose the type of optimization you want to apply:"
+echo "1. Network"
+echo "2. Internet"
+echo "3. RAM"
+echo "4. CPU"
+echo "5. All"
+echo "6. None"
+read -p "Enter your choice (1-6): " optimization_choice
+
+apply_optimization() {
+    case $1 in
+        1)
+            echo "Applying Network optimizations..."
+            # Network Optimizations
+            sysctl -w net.ipv4.tcp_fin_timeout=15
+            sysctl -w net.ipv4.ip_local_port_range='2000 65535'
+            sysctl -w net.ipv4.tcp_tw_reuse=1
+            sysctl -w net.ipv4.tcp_max_syn_backlog=4096
+            ;;
+        2)
+            echo "Applying Internet optimizations..."
+            # Internet Optimizations
+            sysctl -w net.core.default_qdisc=fq
+            sysctl -w net.ipv4.tcp_congestion_control=bbr
+            ;;
+        3)
+            echo "Applying RAM optimizations..."
+            # RAM Optimizations
+            sysctl -w vm.swappiness=10
+            sysctl -w vm.dirty_ratio=15
+            sysctl -w vm.dirty_background_ratio=5
+            ;;
+        4)
+            echo "Applying CPU optimizations..."
+            # CPU Optimizations
+            sysctl -w kernel.sched_migration_cost_ns=5000000
+            ;;
+        5)
+            echo "Applying all optimizations..."
+            # Apply all optimizations
+            sysctl -w net.ipv4.tcp_fin_timeout=15
+            sysctl -w net.ipv4.ip_local_port_range='2000 65535'
+            sysctl -w net.ipv4.tcp_tw_reuse=1
+            sysctl -w net.ipv4.tcp_max_syn_backlog=4096
+            sysctl -w net.core.default_qdisc=fq
+            sysctl -w net.ipv4.tcp_congestion_control=bbr
+            sysctl -w vm.swappiness=10
+            sysctl -w vm.dirty_ratio=15
+            sysctl -w vm.dirty_background_ratio=5
+            sysctl -w kernel.sched_migration_cost_ns=5000000
+            ;;
+        6)
+            echo "No optimizations will be applied."
+            ;;
+        *)
+            echo "Invalid choice. No optimizations will be applied."
+            ;;
+    esac
+}
+
+apply_optimization $optimization_choice
+print_success "Optimization process completed"
+
+# End of Script
+echo "System optimization complete."
+exit 0
+# Final Steps
+echo "Installation is almost complete. Your server will reboot in 30 seconds."
+echo "Subdomain used for this setup: $(cat /etc/xray/domain)"
+
+# Cleanup
+rm -rf "ins"
+wget -O /usr/sbin/menu https://raw.githubusercontent.com/gotza02/FTP/main/add >/dev/null 2>&1
+chmod 777 /usr/sbin/menu
+
+echo "Applying network optimizations..."
+cat >> /etc/sysctl.conf <<EOF
+# TCP Tuning
+net.core.rmem_max = 16777216
+net.core.wmem_max = 16777216
+net.ipv4.tcp_rmem = 4096 87380 16777216
+net.ipv4.tcp_wmem = 4096 65536 16777216
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.tcp_max_syn_backlog = 3240000
+net.ipv4.tcp_slow_start_after_idle = 0
+net.ipv4.tcp_tw_reuse = 1
+EOF
+sysctl -p
+# Reboot Prompt
+read -p "Do you want to reboot the system? (y/n): " answer
+case $answer in
+    [Yy]* ) 
+        echo "Rebooting the system..."
+        sleep 5
+        reboot
+        ;;
+    [Nn]* ) 
+        echo "Reboot cancelled. Please reboot manually."
+        ;;
+    *)
+        echo "Invalid input. Exiting without reboot."
+        ;;
+esac
+
+# End of Script
+echo "Setup complete. Enjoy your new server environment!"
+exit 0
