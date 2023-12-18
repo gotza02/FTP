@@ -226,7 +226,7 @@ chmod +x /sbin/ws.py
 # Configure HAProxy
 cat >/etc/haproxy/haproxy.cfg<<-END
 # HAProxy Configuration [MakhlukVPNTunnel Loadbalancer]
-global       
+global
     stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
     stats timeout 1d
     tune.h2.initial-window-size 2147483647
@@ -249,7 +249,7 @@ defaults
     timeout connect 200ms
     timeout client 300s
     timeout server 300s
-    
+
 frontend multiport
     mode tcp
     bind-process 1 2
@@ -288,20 +288,21 @@ backend recir_https_www
     server web-ssh 127.0.0.1:22 check
 
 backend MKVPN
-    mode http
+    mode tcp
     server xray-ws 127.0.0.1:10015 send-proxy check
 
 backend BOT_MKVPN
     mode tcp
     server open-ssh 127.0.0.1:109 check
-    
+
 backend recir_http
     mode tcp
     server loopback-for-http abns@haproxy-http send-proxy-v2 check
-   
+
 backend recir_https
     mode tcp
     server loopback-for-https abns@haproxy-https send-proxy-v2 check
+
 END
 
 # Configure Websocket Service
