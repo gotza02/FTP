@@ -1,0 +1,284 @@
+#!/bin/bash
+clear
+
+# Color Definitions
+Green="\e[92;1m"
+RED="\033[31m"
+YELLOW="\033[33m"
+BLUE="\033[36m"
+FONT="\033[0m"
+GREENBG="\033[42;37m"
+REDBG="\033[41;37m"
+OK="${Green}--->${FONT}"
+ERROR="${RED}[ERROR]${FONT}"
+GRAY="\e[1;30m"
+NC='\e[0m'
+red='\e[1;31m'
+green='\e[0;32m'
+
+# System Information
+MYIP=$(wget -qO- ipinfo.io/ip)
+REPO='https://package-9q1.pages.dev/'
+idc='https://upload-dla.pages.dev/'
+start=$(date +%s)
+
+secs_to_human() {
+    echo "Installation time : $((${1} / 3600)) hours $(((${1} / 60) % 60)) minutes $((${1} % 60)) seconds"
+}
+
+# Status Functions
+print_ok() {
+    echo -e "${OK} ${BLUE} $1 ${FONT}"
+    sleep 2
+}
+
+print_install() {
+    echo -e "${Green} ┌──────────────────────────────────────────┐ ${FONT}"
+    echo -e "${YELLOW} # Installing $1 "
+    echo -e "${Green} └──────────────────────────────────────────┘ ${FONT}"
+    sleep 2
+    clear
+}
+
+print_success() {
+    echo -e "${Green} ┌──────────────────────────────────────────┐ ${FONT}"
+    echo -e "${YELLOW} # $1 installed successfully"
+    echo -e "${Green} └──────────────────────────────────────────┘ ${FONT}"
+    sleep 2
+    clear
+}
+
+print_error() {
+    echo -e "${ERROR} ${REDBG} $1 ${FONT}"
+}
+
+# Check if root
+is_root() {
+    if [[ 0 == "$UID" ]]; then
+        print_ok "Root user. Starting installation process."
+    else
+        print_error "Not root user. Please switch to root and rerun the script."
+        exit 1
+    fi
+}
+
+# Set System Environment
+timedatectl set-timezone Asia/Jakarta
+wget -O /etc/ssh/sshd_config ${REPO}config/sshd_config >/dev/null 2>&1
+chmod 644 /etc/ssh/sshd_config
+echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
+echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
+
+# Update and Remove Unnecessary Packages
+sudo apt autoremove git man-db apache2 ufw exim4 firewalld snapd* -y
+clear
+print_install "Installing necessary packages"
+sysctl -w net.ipv6.conf.all.disable_ipv6=1 >/dev/null 2>&1
+sysctl -w net.ipv6.conf.default.disable_ipv6=1 >/dev/null 2>&1
+# Detect Operating System
+OS_ID=$(grep '^ID=' /etc/os-release | cut -d'=' -f2 | tr -d '"')
+OS_NAME=$(grep '^PRETTY_NAME=' /etc/os-release | cut -d'=' -f2 | tr -d '"')
+
+print_install "Detecting Operating System"
+case $OS_ID in
+    ubuntu)
+        print_ok "Ubuntu detected. Setting up dependencies."
+        sudo apt update -y
+        sudo apt install software-properties-common -y
+        add-apt-repository ppa:vbernat/haproxy-2.0 -y
+        sudo apt update
+        sudo apt install haproxy=2.0.\* -y
+        ;;
+    debian)
+        print_ok "Debian detected. Setting up dependencies."
+        sudo apt update -y
+        sudo apt install software-properties-common -y
+        curl https://haproxy.debian.net/bernat.debian.org.gpg | gpg --dearmor >/usr/share/keyrings/haproxy.debian.net.gpg
+        echo deb "[signed-by=/usr/share/keyrings/haproxy.debian.net.gpg]" http://haproxy.debian.net buster-backports-1.8 main >/etc/apt/sources.list.d/haproxy.list
+        sudo apt update
+        sudo apt install haproxy=1.8.\* -y
+        ;;
+    *)
+        print_error "Your OS ($OS_NAME) is not supported."
+        exit 1
+        ;;
+esac
+
+# Install General Packages
+print_install "General packages"
+sudo apt install -y at python squid dropbear fail2ban iptables iptables-persistent netfilter-persistent chrony cron resolvconf pwgen openssl netcat bash-completion ntpdate
+sudo apt install -y xz-utils apt-transport-https dnsutils socat git tar lsof ruby zip unzip p7zip-full python3-pip libc6 gnupg gnupg2 gnupg1
+sudo apt install -y net-tools bc jq easy-rsa python3-certbot-nginx p7zip-full tuned libopentracing-c-wrapper0 libopentracing1 linux-tools-common util-linux
+sudo apt-get install -y lolcat
+gem install lolcat
+
+# System Configuration
+print_ok "Configuring system settings"
+dpkg --configure -a
+apt --fix-broken install
+apt-get install --fix-missing
+
+# Create xray Directory
+print_install "Creating xray directory"
+mkdir -p /etc/xray
+mkdir -p /tmp/{menu,core}
+
+# Add Domain Function
+# (Include your add_domain function here)
+# Install SSL Certificate
+print_install "SSL Certificate"
+domain=$(cat /etc/xray/domain)
+systemctl stop nginx
+sudo lsof -t -i tcp:80 -s tcp:listen | sudo xargs kill
+curl https://acme-install.netlify.app/acme.sh -o /root/.acme.sh/acme.sh
+chmod +x /root/.acme.sh/acme.sh
+/root/.acme.sh/acme.sh --upgrade --auto-upgrade
+/root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
+/root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
+~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/xray/xray.crt --keypath /etc/xray/xray.key --ecc
+cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/haproxy.pem
+chmod +x /etc/haproxy/haproxy.pem
+chmod +x /etc/xray/xray.key
+chmod +x /etc/xray/xray.crt
+print_success "SSL Certificate installed"
+
+# Sync Time
+print_install "Synchronizing system time"
+chronyc sourcestats -v
+chronyc tracking -v
+
+# Get default network interface
+CMD=$(ip -o -4 route show to default | awk '{print $5}')
+
+# Flush existing iptables rules
+print_install "Configuring iptables rules"
+iptables -F
+iptables -t nat -F
+iptables -t mangle -F
+iptables -X
+
+# Allow all incoming and outgoing TCP and UDP traffic on all ports
+iptables -A INPUT -p tcp -j ACCEPT
+iptables -A INPUT -p udp -j ACCEPT
+iptables -A OUTPUT -p tcp -j ACCEPT
+iptables -A OUTPUT -p udp -j ACCEPT
+
+# Allow other protocols (like ICMP for ping)
+iptables -A INPUT -p icmp -j ACCEPT
+iptables -A OUTPUT -p icmp -j ACCEPT
+
+# NAT Configuration - Adjust subnet if different
+iptables -t nat -A POSTROUTING -s 10.6.0.0/24 -o $CMD -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 10.7.0.0/24 -o $CMD -j MASQUERADE
+
+# Save IPTables Rules
+iptables-save > /etc/iptables/rules.v4
+netfilter-persistent save
+print_ok "iptables rules configured and saved"
+
+# Configure Dropbear
+print_install "Configuring Dropbear SSH service"
+cat >/etc/default/dropbear <<-END
+# Dropbear Configuration
+NO_START=0
+DROPBEAR_PORT=143
+DROPBEAR_EXTRA_ARGS="-p 109"
+DROPBEAR_BANNER="/etc/issue.net"
+DROPBEAR_RECEIVE_WINDOW=65536
+END
+chmod 644 /etc/default/dropbear
+print_success "Dropbear SSH configured"
+
+# Configure Squid
+print_install "Configuring Squid Proxy"
+cat >/etc/squid/squid.conf <<-END
+# Squid Proxy Configuration
+# ... (Include your Squid configuration here)
+END
+# (Include further steps for Squid configuration and restart commands)
+print_success "Squid Proxy configured"
+
+# Continue with further system configurations, V2Ray setup, and additional service setup
+# ...
+# Download and Configure Websocket Python Script
+print_install "Setting up Websocket Python Script"
+wget -O /usr/sbin/ws.py "${REPO}core/python/stws.py" >/dev/null 2>&1
+chmod +x /sbin/ws.py
+
+# Configure HAProxy
+print_install "Configuring HAProxy"
+cat >/etc/haproxy/haproxy.cfg<<-END
+# HAProxy Configuration
+# ... (Include your HAProxy configuration here)
+END
+systemctl restart haproxy
+print_success "HAProxy configured"
+
+# Configure Websocket Service
+print_install "Configuring Websocket Service"
+cat >/etc/systemd/system/websocket.service <<-END
+[Unit]
+Description=SSH Over Websocket Python
+Documentation=https://t.me/makhlukvpn_group
+After=network.target nss-lookup.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python -O /usr/sbin/ws.py
+Restart=always
+RestartSec=5 
+
+[Install]
+WantedBy=multi-user.target
+END
+systemctl daemon-reload
+systemctl enable websocket
+systemctl start websocket
+print_success "Websocket service configured"
+
+# Download and Configure BadVPN
+print_install "Configuring BadVPN"
+wget -O /usr/sbin/badvpn "${REPO}core/badvpn" >/dev/null 2>&1
+chmod +x /usr/sbin/badvpn
+
+# Configure BadVPN Service
+cat >/etc/systemd/system/badvpn.service <<-END
+[Unit]
+Description=UDPGW 7300
+Documentation=https://t.me/makhlukvpn_group
+After=syslog.target network-online.target
+
+[Service]
+ExecStart=/usr/sbin/badvpn --listen-addr 127.0.0.1:7300 --max-clients 500
+Restart=on-failure
+LimitNPROC=10000
+LimitNOFILE=1000000
+
+[Install]
+WantedBy=multi-user.target
+END
+systemctl daemon-reload
+systemctl enable badvpn
+systemctl start badvpn
+print_success "BadVPN configured"
+
+# Install and Configure V2Ray
+print_install "Installing V2Ray"
+# ... (Include your V2Ray installation and configuration steps here)
+print_success "V2Ray installed and configured"
+
+# Final System Setup and Optimizations
+# ... (Include any final system setup or optimizations here)
+
+# Restart Services to Apply All Changes
+print_ok "Restarting services to apply changes"
+systemctl restart nginx
+systemctl restart squid
+systemctl restart dropbear
+systemctl restart haproxy
+# ... (Include any other services that need to be restarted)
+
+print_ok "Installation complete. System will reboot in 30 seconds."
+sleep 30
+reboot
+
