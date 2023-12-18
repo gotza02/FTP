@@ -1,0 +1,219 @@
+#!/bin/bash
+
+# Enhanced Bunny V2Ray Manager Installation Script
+# This script installs and manages Bunny V2Ray Manager with improved error handling and system compatibility checks.
+
+clear
+
+# Function Definitions
+
+# Function to display a progress bar
+fun_bar () {
+    local -a comando=( "$1" "$2" )
+    {
+        [[ -e $HOME/fim ]] && rm $HOME/fim
+        ${comando[0]} -y > /dev/null 2>&1
+        ${comando[1]} -y > /dev/null 2>&1
+        touch $HOME/fim
+    } > /dev/null 2>&1 &
+
+    tput civis
+    echo -ne "  \033[1;33mWAIT \033[1;37m- \033[1;33m["
+    while true; do
+        for ((i=0; i<18; i++)); do
+            echo -ne "\033[1;31m#"
+            sleep 0.1s
+        done
+        [[ -e $HOME/fim ]] && rm $HOME/fim && break
+        echo -e "\033[1;33m]"
+        sleep 1s
+        tput cuu1
+        tput dl1
+        echo -ne "  \033[1;33mWAIT \033[1;37m- \033[1;33m["
+    done
+    echo -e "\033[1;33m]\033[1;37m -\033[1;32m SUCCESS \033[1;37m"
+    tput cnorm
+}
+
+# Display script header
+echo -e "\033[1;31m════════════════════════════════════════════════════\033[0m"
+tput setaf 7 ; tput setab 4 ; tput bold ; printf '%40s%s%-12s\n' "Welcome to Enhanced Bunny V2Ray Manager" ; tput sgr0
+echo -e "\033[1;31m════════════════════════════════════════════════════\033[0m"
+echo ""
+
+# Initialize color variables
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+plain='\033[0m'
+
+# Check for root user
+if [[ $EUID -ne 0 ]]; then
+    echo -e "${red}Error: This script must be run as root.${plain}\n" 
+    exit 1
+fi
+
+# Function to detect system information
+detect_system_info() {
+    # Detect OS type
+    if [[ -f /etc/redhat-release ]]; then
+        release="centos"
+    elif grep -Eqi "debian" /etc/issue; then
+        release="debian"
+    elif grep -Eqi "ubuntu" /etc/issue; then
+        release="ubuntu"
+    elif grep -Eqi "centos|red hat|redhat" /etc/issue; then
+        release="centos"
+    else
+        echo -e "${red}Unable to detect your operating system.${plain}\n"
+        exit 1
+    fi
+
+    # Detect architecture
+    arch=$(uname -m)
+    case $arch in
+        x86_64|amd64) arch="amd64" ;;
+        aarch64|arm64) arch="arm64" ;;
+        *) arch="unsupported"; echo -e "${red}Your architecture ($arch) is not supported by this script.${plain}" ;;
+    esac
+
+    # Ensure the system is 64-bit
+    if [[ $(getconf WORD_BIT) != '32' && $(getconf LONG_BIT) != '64' ]]; then
+        echo "This script does not support 32-bit systems. Please use a 64-bit system."
+        exit 1
+    fi
+}
+
+# Call the system detection function
+detect_system_info
+
+# Function to check and handle OS version
+check_os_version() {
+    local os_version=""
+    if [[ -f /etc/os-release ]]; then
+        os_version=$(awk -F'[= ."]' '/VERSION_ID/{print $3}' /etc/os-release)
+    elif [[ -f /etc/lsb-release ]]; then
+        os_version=$(awk -F'[= ."]+' '/DISTRIB_RELEASE/{print $2}' /etc/lsb-release)
+    fi
+
+    if [[ -z "$os_version" ]]; then
+        echo -e "${red}Unable to determine the version of your operating system.${plain}\n"
+        exit 1
+    fi
+
+    case $release in
+        centos) [[ $os_version -lt 7 ]] && echo -e "${red}Please use CentOS 7 or higher version system.${plain}\n" && exit 1 ;;
+        ubuntu) [[ $os_version -lt 16 ]] && echo -e "${red}Please use Ubuntu 16 or higher version system.${plain}\n" && exit 1 ;;
+        debian) [[ $os_version -lt 8 ]] && echo -e "${red}Please use Debian 8 or higher version system.${plain}\n" && exit 1 ;;
+    esac
+}
+
+# Call the OS version check function
+check_os_version
+# Function to install base dependencies
+install_base() {
+    echo -e "${green}Installing necessary dependencies...${plain}"
+    if [[ $release == "centos" ]]; then
+        yum install -y wget curl tar > /dev/null 2>&1
+    else
+        apt-get update > /dev/null 2>&1
+        apt-get install -y wget curl tar > /dev/null 2>&1
+    fi
+    if [[ $? -ne 0 ]]; then
+        echo -e "${red}Dependency installation failed. Please check your network and package manager.${plain}"
+        exit 1
+    fi
+}
+fun_bar 'install_base'
+
+# Function to download and install Bunny V2Ray Manager
+install_Bunny_V2Ray_Manager() {
+    systemctl stop bunny-v2ray > /dev/null 2>&1
+    echo -e "${green}Downloading Bunny V2Ray Manager...${plain}"
+    local install_dir="/usr/local"
+    local install_url=""
+
+    if [ -z "$1" ]; then
+        local latest_version=$(curl -Ls "https://api.github.com/repos/BunnyDevelopers/Bunny-V2Ray-Manager-Bot/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        if [[ ! -n "$latest_version" ]]; then
+            echo -e "${red}Failed to detect the latest version of Bunny V2Ray Manager. Please check your network or try manually specifying the version to install.${plain}"
+            exit 1
+        fi
+        install_url="https://github.com/BunnyDevelopers/Bunny-V2Ray-Manager-Bot/releases/download/${latest_version}/bunny-v2ray-linux-${arch}.tar.gz"
+    else
+        latest_version=$1
+        install_url="https://github.com/BunnyDevelopers/Bunny-V2Ray-Manager-Bot/releases/download/${latest_version}/bunny-v2ray-linux-${arch}.tar.gz"
+    fi
+
+    wget -N --no-check-certificate -O "${install_dir}/bunny-v2ray-linux-${arch}.tar.gz" ${install_url} > /dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        echo -e "${red}Failed to download Bunny V2Ray Manager. Please check your network or try a different version.${plain}"
+        exit 1
+    fi
+
+    echo -e "${green}Installing Bunny V2Ray Manager...${plain}"
+    tar zxvf "${install_dir}/bunny-v2ray-linux-${arch}.tar.gz" -C "${install_dir}" > /dev/null 2>&1
+    rm "${install_dir}/bunny-v2ray-linux-${arch}.tar.gz"
+
+    if [[ ! -d "${install_dir}/bunny-v2ray" ]]; then
+        echo -e "${red}Installation failed. Bunny V2Ray Manager directory not found.${plain}"
+        exit 1
+    fi
+
+    cd "${install_dir}/bunny-v2ray" || exit
+    chmod +x bunny-v2ray
+    chmod +x bin/xray-linux-${arch}
+    cp -f bunny-v2ray.service /etc/systemd/system/
+
+    wget --no-check-certificate -O /usr/bin/bunny-v2ray https://raw.githubusercontent.com/BunnyDevelopers/Bunny-V2Ray-Manager-Bot/main/bunny-v2ray.sh > /dev/null 2>&1
+    chmod +x /usr/bin/bunny-v2ray
+
+    systemctl daemon-reload
+    systemctl enable bunny-v2ray
+    systemctl start bunny-v2ray
+
+    if [[ $? -ne 0 ]]; then
+        echo -e "${red}Failed to start Bunny V2Ray Manager service. Please check the service configuration.${plain}"
+        exit 1
+    fi
+}
+
+echo -e "${green}Starting the installation process...${plain}"
+install_base
+install_Bunny_V2Ray_Manager "$1"
+
+# Final Message and Contact Information
+clear
+echo -e "\033[1;31m \033[1;33mMAIN COMMAND: \033[1;32mbunny-v2ray\033[0m"
+echo "To manage the service, use the command: bunny-v2ray"
+echo -e "For more information and support, visit the Bunny V2Ray Manager GitHub repository."
+echo -e "Encoded contact information:"
+echo 'ZWNobyAgIlwwMzNbMTszM20gTU9SRSBJTkZPUk1BVElPTiAo4LeA4LeQ4Lap4LeSIOC3gOC3kuC3g+C3iuC2reC2uykgXDAzM1sxOzMxbShcMDMzWzE7MzZtVEVMRUdSQU1cMDMzWzE7MzFtKTogXDAzM1sxOzM3bUBzaWJhdHJvdyDwn5Sl4pqh77iP4pqh77iPIFNpdGh1bSBCYXRyb3cg8J+HsfCfh7Ag4pqh77iP4pqh77iP8J+UpVwwMzNbMG0i' | base64 -d | sh
+# Cleanup and Final Setup
+
+cleanup() {
+    echo -e "${green}Cleaning up temporary files...${plain}"
+    rm -f "${install_dir}/bunny-v2ray-linux-${arch}.tar.gz" > /dev/null 2>&1
+    echo -e "${green}Cleanup complete.${plain}"
+}
+
+# Function to display completion message and usage instructions
+completion_message() {
+    clear
+    echo -e "${green}Bunny V2Ray Manager installation completed successfully!${plain}"
+    echo ""
+    echo -e "Use the command ${yellow}bunny-v2ray${plain} to manage the Bunny V2Ray service."
+    echo -e "For additional help or information, refer to the official GitHub repository or contact support."
+    echo ""
+    echo -e "Encoded contact and support information:"
+    echo 'ZWNobyAgIlwwMzNbMTszM20gTU9SRSBJTkZPUk1BVElPTiAo4LeA4LeQ4Lap4LeSIOC3gOC3kuC3g+C3iuC2reC2uykgXDAzM1sxOzMxbShcMDMzWzE7MzZtVEVMRUdSQU1cMDMzWzE7MzFtKTogXDAzM1sxOzM3bUBzaWJhdHJvdyDwn5Sl4pqh77iP4pqh77iPIFNpdGh1bSBCYXRyb3cg8J+HsfCfh7Ag4pqh77iP4pqh77iP8J+UpVwwMzNbMG0i' | base64 -d | sh
+    echo ""
+    echo -e "${green}Thank you for using Bunny V2Ray Manager!${plain}"
+}
+
+# Execute the cleanup and show completion message
+cleanup
+completion_message
+
+# End of the script
+exit 0
