@@ -393,14 +393,26 @@ sed -i "s/xxx/${domain}/g" /etc/squid/squid.conf
 
 # Setup Custom Banner
 cat > /etc/issue.net <<- 'END'
-[38;5;227m[48;5;236m┌─────────────────────────────┐[0m
-[38;5;227m[48;5;236m│   ยินดีต้อนรับสู่ GT Modify Tunnel   │[0m
-[38;5;227m[48;5;236m│   หากต้องการข้อมูลเพิ่มเติมโปรดติดต่อ Admin   │[0m
-[38;5;227m[48;5;236m└─────────────────────────────┘[0m
-[38;5;214m[48;5;236m[[0m [38;5;231mGT Modify[0m [38;5;214m][0m
-[38;5;214m[48;5;236m[[0m [38;5;231mB Liv Thailand[0m [38;5;214m][0m
-[38;5;227m[48;5;236mGroup [0m[[38;5;231mTrue No Pro[0m [38;5;227m] :[0m
-[38;5;227m[48;5;236mJoin our Line Group: [0m[38;5;33mhttps://line.me/ti/g2/85Eq587Kuuitlefk-qWfkQ4vy-mTJupon1owiQ[0m
+<div style="background-color: #e4e4e4; padding: 10px; text-align: center;">
+    <div style="background-color: #ffdd00; padding: 10px; border-radius: 10px;">
+        <pre style="font-size: 16px; line-height: 1.4; margin: 0;">
+<span style="color: #ff8000;">┌─────────────────────────────┐</span>
+<span style="color: #ff8000;">│</span> <span style="color: #ffdd00;">ยินดีต้อนรับสู่ GT Modify Tunnel</span> <span style="color: #ff8000;">│</span>
+<span style="color: #ff8000;">│</span> <span style="color: #ffdd00;">หากต้องการข้อมูลเพิ่มเติมโปรดติดต่อ Admin</span> <span style="color: #ff8000;">│</span>
+<span style="color: #ff8000;">└─────────────────────────────┘</span>
+</pre>
+    </div>
+    <div style="margin-top: 10px;">
+        <span style="color: #ff214f; font-weight: bold;">[ GT Modify ]</span>
+        <span style="color: #ff214f; font-weight: bold;">[ B Liv Thailand ]</span>
+    </div>
+    <div>
+        <span style="color: #ff8000;">Group</span> <span style="color: #ff214f; font-weight: bold;">[ True No Pro ]</span> :
+    </div>
+    <div>
+        <span style="color: #ff8000;">Join our Line Group: </span><a href="https://line.me/ti/g2/85Eq587Kuuitlefk-qWfkQ4vy-mTJupon1owiQ" style="color: #337ab7;">https://line.me/ti/g2/85Eq587Kuuitlefk-qWfkQ4vy-mTJupon1owiQ</a>
+    </div>
+</div>
 END
 
 # ...
