@@ -278,52 +278,37 @@ function base_package() {
 clear
 # Fungsi input domain
 function pasang_domain() {
-echo -e ""
-clear
+    echo -e ""
+    clear
     echo -e "   .----------------------------------."
-echo -e "   |\e[1;32mPlease Select a Domain Type Below \e[0m|"
-echo -e "   '----------------------------------'"
-echo -e "     \e[1;32m1)\e[0m Domain Sendiri"
-echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random Khusus Digital ocean ISP LAIN ✖️ "
-echo -e "   ------------------------------------"
-read -p "   Please select numbers 1 or Any Button(Random) : " host
-echo ""
-if [[ $host == "1" ]]; then
-echo -e "   \e[1;32mPlease Enter Your Subdomain $NC"
-read -p "   Subdomain: " host1
-#if [[ "$KEY" = "" ]]; then
-#echo -e "\e[0;37m Enter Your ID & Api Key Bot Telegram To Receive Backup"
-#read -rp " ID: " -e CHATID
-#read -rp " API KEY: " -e KEY
-#cat <<EOF>>/root/.key
-#$KEY
-#EOF    MASIH OTW GANN AUTOBACKUP ########
-#cat <<EOF>>/root/.CHATID
-#$CHATID
-#EOF
-fi
-clear
-if [[ "$email" = "" ]]; then
-  echo -e "\e[0;37m Enter Your Name To Receive Backup"
-  read -rp " Name: " -e email
-  cat <<EOF>>/root/.email
-$email
-EOF
-fi
-echo "IP=" >> /var/lib/kyt/ipvps.conf
-echo $host1 > /etc/xray/domain
-echo $host1 > /root/domain
-echo ""
-elif [[ $host == "2" ]]; then
-#install cf
-wget ${REPO}リドワン/cf.sh && chmod +x cf.sh && ./cf.sh
-rm -f /root/cf.sh
-clear
-else
-print_install "Random Subdomain/Domain is Used"
-clear
+    echo -e "   |\e[1;32mPlease Select a Domain Type Below \e[0m|"
+    echo -e "   '----------------------------------'"
+    echo -e "     \e[1;32m1)\e[0m Domain Sendiri"
+    echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random Khusus Digital ocean ISP LAIN ✖️ "
+    echo -e "   ------------------------------------"
+    read -p "   Please select numbers 1 or Any Button(Random) : " host
+    echo ""
+    if [[ $host == "1" ]]; then
+        echo -e "   \e[1;32mPlease Enter Your Subdomain $NC"
+        read -p "   Subdomain: " host1
+        if [[ "$email" = "" ]]; then
+            echo -e "\e[0;37m Enter Your Name To Receive Backup"
+            read -rp " Name: " -e email
+            echo "$email" >/root/.email
+        fi
+        echo "IP=" >> /var/lib/kyt/ipvps.conf
+        echo $host1 > /etc/xray/domain
+        echo $host1 > /root/domain
+    elif [[ $host == "2" ]]; then
+        #install cf
+        wget ${REPO}リドワン/cf.sh && chmod +x cf.sh && ./cf.sh
+        rm -f /root/cf.sh
+    else
+        print_install "Random Subdomain/Domain is Used"
     fi
+    clear
 }
+
 
 clear
 #GANTI PASSWORD DEFAULT # GAMAU AHHH AH AH MYRIDNIHH LYNZ ANAK SOLEH
