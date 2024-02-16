@@ -278,36 +278,41 @@ function base_package() {
 clear
 # Fungsi input domain
 function pasang_domain() {
-    echo -e ""
     clear
     echo -e "   .----------------------------------."
-    echo -e "   |\e[1;32mPlease Select a Domain Type Below \e[0m|"
+    echo -e "   |กรุณาเลือกประเภทโดเมนด้านล่างนี้|"
     echo -e "   '----------------------------------'"
-    echo -e "     \e[1;32m1)\e[0m Domain Sendiri"
-    echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random Khusus Digital ocean ISP LAIN ✖️ "
+    echo -e "     1) โดเมนของตัวเอง"
+    echo -e "     2) ใช้โดเมนสุ่ม พิเศษสำหรับ Digital Ocean หรือ ISP อื่น ✖️"
     echo -e "   ------------------------------------"
-    read -p "   Please select numbers 1 or Any Button(Random) : " host
+    read -p "   กรุณาเลือกหมายเลข 1 หรือ ปุ่มอื่นๆ (สุ่ม) : " host
     echo ""
+
     if [[ $host == "1" ]]; then
-        echo -e "   \e[1;32mPlease Enter Your Subdomain $NC"
-        read -p "   Subdomain: " host1
-        if [[ "$email" = "" ]]; then
-            echo -e "\e[0;37m Enter Your Name To Receive Backup"
-            read -rp " Name: " -e email
-            echo "$email" >/root/.email
+        echo -e "   กรุณาใส่ชื่อโดเมนย่อยของคุณ"
+        read -p "   โดเมนย่อย: " host1
+        # ตรวจสอบให้แน่ใจว่าได้ตั้งค่าอีเมลสำหรับการแจ้งเตือนการสำรองข้อมูล
+        if [[ -z "$email" ]]; then
+            echo -e " ใส่ชื่อของคุณเพื่อรับการแจ้งเตือนการสำรองข้อมูล"
+            read -rp " ชื่อ: " email
+            echo "$email" > /root/.email
         fi
+        # สมมติว่าตั้งค่า IP ล่วงหน้าเป็นสิ่งจำเป็น
         echo "IP=" >> /var/lib/kyt/ipvps.conf
-        echo $host1 > /etc/xray/domain
-        echo $host1 > /root/domain
+        echo "$host1" > /etc/xray/domain
+        echo "$host1" > /root/domain
     elif [[ $host == "2" ]]; then
-        #install cf
-        wget ${REPO}リドワン/cf.sh && chmod +x cf.sh && ./cf.sh
+        # ติดตั้ง cf สำหรับการตั้งค่าโดเมนสุ่ม
+        wget -O cf.sh ${REPO}/リドワン/cf.sh && chmod +x cf.sh && ./cf.sh
         rm -f /root/cf.sh
     else
-        print_install "Random Subdomain/Domain is Used"
+        echo "ใช้โดเมนย่อย/โดเมนสุ่ม"
+        # ต้องการยังต้องการการตั้งค่าสำหรับการใช้โดเมนสุ่ม, ถ้ามี
     fi
     clear
 }
+
+
 
 
 clear
