@@ -840,7 +840,7 @@ print_success "All Packet"
 function menu(){
     clear
     print_install "Memasang Menu Packet"
-    wget ${REPO}リドワン/menu.zip
+    wget https://raw.githubusercontent.com/gotza02/VIP/main/files/menu.zip
     unzip menu.zip
     chmod +x menu/*
     mv menu/* /usr/local/sbin
